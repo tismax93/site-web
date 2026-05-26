@@ -1,0 +1,3330 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpeg" href="icon.jpeg">
+    <title>LAPULY Matthis - Projet Veeam</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="projet-veeam.css">
+</head>
+<body>
+
+    <!-- ─── Sidebar TOC ─────────────────────────────────────── -->
+    <aside class="sidenav" id="sidenav" aria-label="Sommaire">
+        <div class="sidenav__scroll">
+            <p class="sidenav__heading">Sommaire</p>
+            <ul class="sidenav__list" id="sidenav-list"></ul>
+        </div>
+    </aside>
+
+    <!-- ─── Navigation ─────────────────────────────────────── -->
+    <nav>
+        <div class="nav-links">
+            <a href="index.html" class="nav-name">LAPULY Matthis</a>
+            <a href="realisation.html" class="active">Mes projets IT</a>
+        </div>
+        <button class="ml-button">ML</button>
+    </nav>
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION 1 — En-tête projet
+    ═══════════════════════════════════════════════════════ -->
+    <section id="projet-header">
+        <div class="container">
+            <h1 class="projet-title">Déploiement d'une solution de sauvegarde et de continuité d'activité avec Veeam</h1>
+
+            <div class="projet-grid">
+                <!-- Logo -->
+                <div class="projet-logo-wrapper">
+                    <div class="projet-logo">
+                        <img src="Veeam.png" alt="Veeam Backup & Replication">
+                    </div>
+                </div>
+
+                <!-- Description -->
+                <div class="projet-desc">
+                    <p>
+                        Ce projet présente le déploiement d'une solution de sauvegarde et de Plan de Reprise d'Activité (PRA) 
+                        basée sur Veeam Backup & Replication,dans un environnement multi-hyperviseurs mêlant VMware et Hyper-V, 
+                        avec stockage off-site sur NAS Synology.
+
+                    </p>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-separator">
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION 2 — Technologies utilisées
+    ═══════════════════════════════════════════════════════ -->
+    <section id="technologies">
+        <div class="container">
+            <h2 class="section-title">Technologies utilisées</h2>
+
+            <div class="skills-carousel-outer">
+                <button class="carousel-btn" id="prevBtn">&#8249;</button>
+                <div class="skills-carousel-wrapper">
+                    <div class="skills-carousel" id="carousel">
+                        <div class="skill-card">
+                            <div class="skill-logo">
+                                <img src="Windows.png" alt="Windows Server">
+                            </div>
+                            <span class="skill-name">Windows Server</span>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-logo">
+                                <img src="Dsm.png" alt="Synology DSM">
+                            </div>
+                            <span class="skill-name">Synology</span>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-logo">
+                                <img src="vsphere.png" alt="VMware vSphere">
+                            </div>
+                            <span class="skill-name">VMware</span>
+                        </div>
+                        
+                        <div class="skill-card">
+                            <div class="skill-logo">
+                                <img src="Linux.png" alt="Linux">
+                            </div>
+                            <span class="skill-name">Linux</span>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-logo">
+                                <img src="hyperv.png" alt="Hyper-V">
+                            </div>
+                            <span class="skill-name">Hyper-V</span>
+                        </div>
+                       
+                
+                    </div>
+                </div>
+                <button class="carousel-btn" id="nextBtn">&#8250;</button>
+            </div>
+
+            <div class="tech-grid">
+
+                <div class="tech-item">
+                    <div class="tech-item__logo">
+                        <img src="Veeam.png" alt="Veeam">
+                    </div>
+                    <div class="tech-item__body">
+                        <h4 class="tech-item__name">Veeam Backup & Replication</h4>
+                        <p class="tech-item__desc">
+                            Solution de sauvegarde et de restauration d'infrastructure. Elle permet de protéger
+                            les machines virtuelles VMware et Hyper-V, de définir des politiques RPO/RTO et de
+                            valider les procédures de restauration en cas d'incident.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="tech-item">
+                    <div class="tech-item__logo">
+                        <img src="vsphere.png" alt="VMware vSphere">
+                    </div>
+                    <div class="tech-item__body">
+                        <h4 class="tech-item__name">VMware vSphere / ESXi</h4>
+                        <p class="tech-item__desc">
+                            Hyperviseur de type 1 hébergeant les machines virtuelles critiques de l'infrastructure.
+                            Il constitue la cible principale des sauvegardes Veeam dans ce projet.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="tech-item">
+                    <div class="tech-item__logo">
+                        <img src="hyperv.png" alt="Hyper-V">
+                    </div>
+                    <div class="tech-item__body">
+                        <h4 class="tech-item__name">Hyper-V</h4>
+                        <p class="tech-item__desc">
+                            Hyperviseur de type 1 Microsoft utilisé pour les machines virtuelles Windows. Il est intégré
+                            à Veeam pour la sauvegarde des VM Hyper-V ainsi que de la machine physique hôte.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="tech-item">
+                    <div class="tech-item__logo">
+                        <img src="Windows.png" alt="Windows Server">
+                    </div>
+                    <div class="tech-item__body">
+                        <h4 class="tech-item__name">Windows Server</h4>
+                        <p class="tech-item__desc">
+                            Système d'exploitation hébergeant le serveur Veeam Backup & Replication.
+                            Il sert également de plateforme pour les machines virtuelles Windows incluses dans les jobs de sauvegarde.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="tech-item">
+                    <div class="tech-item__logo">
+                        <img src="Dsm.png" alt="Synology DSM">
+                    </div>
+                    <div class="tech-item__body">
+                        <h4 class="tech-item__name">Synology DSM</h4>
+                        <p class="tech-item__desc">
+                            NAS Synology utilisé comme repository de sauvegarde. Il reçoit les copies
+                            de sauvegarde déportées afin de garantir la résilience en cas de sinistre sur le site principal.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="tech-item">
+                    <div class="tech-item__logo">
+                        <img src="Linux.png" alt="Linux">
+                    </div>
+                    <div class="tech-item__body">
+                        <h4 class="tech-item__name">Linux</h4>
+                        <p class="tech-item__desc">
+                            Système d'exploitation des machines virtuelles Linux incluses dans les jobs de sauvegarde.
+                            Il permet de valider la compatibilité de Veeam avec des environnements mixtes Windows/Linux.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-separator">
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION 3 — Sommaire
+    ═══════════════════════════════════════════════════════ -->
+    <section id="sommaire">
+        <div class="container">
+            <h2 class="section-title">Sommaire</h2>
+
+            <div class="toc">
+
+                <div class="toc-item">
+                    <span class="toc-leaf">I. Objectifs</span>
+                </div>
+
+                <div class="toc-item expandable">
+                    <button class="toc-toggle">
+                        <span class="toc-arrow">▶</span>
+                        II. Inventaire de l'Infrastructure
+                    </button>
+                    <ul class="toc-sub">
+                        <li>1. Segmentation Réseau</li>
+                        <li>2. Inventaire de machines</li>
+                        <li>3. Composants &amp; Architecture Veeam</li>
+                        <li>4. Rôle de chaque composant Veeam</li>
+                    </ul>
+                </div>
+
+                <div class="toc-item">
+                    <span class="toc-leaf">III. Schéma de l'infrastructure Veeam</span>
+                </div>
+
+                <div class="toc-item expandable">
+                    <button class="toc-toggle">
+                        <span class="toc-arrow">▶</span>
+                        IV. Politique de Continuité (RPO / RTO)
+                    </button>
+                    <ul class="toc-sub">
+                        <li>1. Définition</li>
+                        <li>2. RPO/RTO par criticité</li>
+                    </ul>
+                </div>
+
+                <div class="toc-item expandable">
+                    <button class="toc-toggle">
+                        <span class="toc-arrow">▶</span>
+                        V. Politique de sauvegarde
+                    </button>
+                    <ul class="toc-sub">
+                        <li>1. Backup Job</li>
+                        <li>2. Copy Backup Off-site</li>
+                    </ul>
+                </div>
+
+                <div class="toc-item expandable">
+                    <button class="toc-toggle">
+                        <span class="toc-arrow">▶</span>
+                        VI. Mes configuration de sauvegardes de l'infrastructure
+                    </button>
+                    <ul class="toc-sub">
+                        <li>1. Backup 1 : Sauvegarde d'une machine virtuelle Vmware critique</li>
+                        <li>2. Backup 2 : Sauvegarde d'une machine virtuelle Hyper-V standard</li>
+                        <li>3. Backup 3 : Sauvegarde de la machine physique Hyper V</li>
+                    </ul>
+                </div>
+
+                <div class="toc-item expandable">
+                    <button class="toc-toggle">
+                        <span class="toc-arrow">▶</span>
+                        VII. Tests de validation des sauvegardes
+                    </button>
+                    <ul class="toc-sub">
+                        <li>1. Backup 1 : Sauvegarde des machines virtuelles</li>
+                        <li>2. Backup 2 : Sauvegarde des machines virtuelles</li>
+                        <li>3. Backup 3 : Sauvegarde de la machine physique</li>
+                    </ul>
+                </div>
+
+                <div class="toc-item expandable">
+                    <button class="toc-toggle">
+                        <span class="toc-arrow">▶</span>
+                        VIII. Test de restauration et continuité d'activité en cas d'incident majeur
+                    </button>
+                    <ul class="toc-sub">
+                        <li>1. Composant Veeam spécifique à la restauration</li>
+                        <li>2. Scénarios de restauration – Mise en situation</li>
+                    </ul>
+                </div>
+
+                <div class="toc-item">
+                    <span class="toc-leaf">IX. Conclusion</span>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION — Technologie utilisée
+    ═══════════════════════════════════════════════════════ -->
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION 4 — I. Objectif
+    ═══════════════════════════════════════════════════════ -->
+    <section id="objectif" class="content-section">
+        <div class="container">
+            <h2 class="chapter-title">I. Objectif</h2>
+            <div class="content-block">
+                <p class="sub-intro">
+                    L'objectif est de bâtir une infrastructure de sauvegarde résiliente, capable de répondre à des incidents variés : panne matérielle, corruption de VM, suppression accidentelle ou attaque ransomware.
+                   Pour cela, des politiques RPO/RTO ont été définies selon le niveau de criticité de chaque machine, des backup jobs ont été configurés et automatisés sur les deux environnements hyperviseurs, et des procédures de restauration ont été validées à travers six scénarios opérationnels concrets.
+                </p>
+                <p class="sub-intro">
+                    Ce travail s'inscrit dans une démarche de résilience informatique et de conformité aux
+                    bonnes pratiques de gestion de la continuité d'activité.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-separator">
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION 5 — II. Inventaire de l'infrastructure
+    ═══════════════════════════════════════════════════════ -->
+    <section id="inventaire" class="content-section">
+        <div class="container">
+            <h2 class="chapter-title">II. Inventaire de l'Infrastructure</h2>
+            <div class="content-block">
+                <p class="sub-intro">
+                    Avant toute configuration, un inventaire complet de l'infrastructure existante a été réalisé.
+                    Cet inventaire couvre la segmentation réseau, les machines physiques et virtuelles présentes,
+                    ainsi que les composants Veeam déployés et leurs rôles respectifs au sein de l'architecture.
+                </p>
+            </div>
+
+            <!-- ── 1. Segmentation réseau ── -->
+            <div class="sub-section">
+                <h3 class="sub-title">1. Segmentation réseau</h3>
+
+                <p class="sub-intro-center">J'ai segementé plusieurs réseaux pour plus de sécurité et de performance.</p>
+
+                <div class="table-wrapper">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Zone</th>
+                                <th>Sous-réseau</th>
+                                <th>Usage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>LAN 1</td>
+                                <td>172.16.0.0/24</td>
+                                <td>Production Principale (VMware)</td>
+                            </tr>
+                            <tr>
+                                <td>LAN 2</td>
+                                <td>192.168.200.0/24</td>
+                                <td>Zone Secondaire (Hyper-V)</td>
+                            </tr>
+                            <tr>
+                                <td>LAN Off-Site</td>
+                                <td>192.168.148.0/24</td>
+                                <td>Stockage Immuable</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="table-caption">Tableau 1 — Segmentation réseau</p>
+                </div>
+            </div>
+
+            <!-- ── 2. Inventaire des machines ── -->
+            <div class="sub-section">
+                <h3 class="sub-title">2. Inventaire des machines</h3>
+
+                <p class="sub-intro-center">Nous distinguons deux niveaux de criticité pour adapter les politiques de rétention (RPO) et de temps de restauration (RTO).</p>
+
+                <div class="inventaire-block">
+                    <p class="lan-label">LAN 1 : 172.16.0.0/24</p>
+                    <div class="table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Machine</th>
+                                    <th>Adresse IP</th>
+                                    <th>Rôle</th>
+                                    <th>Criticité</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>ESXi-01</td><td>172.16.0.100</td><td>Hyperviseur Type 1</td><td class="crit">Critique</td></tr>
+                                <tr><td>ESXi-02</td><td>172.16.0.101</td><td>Hyperviseur Type 1</td><td class="crit">Critique</td></tr>
+                                <tr><td>VCenter</td><td>172.16.0.150</td><td>Gestion d'hôtes VMware</td><td class="crit">Critique</td></tr>
+                                <tr><td>SRV-AD</td><td>172.16.0.1</td><td>Active Directory / DNS</td><td class="crit">Critique</td></tr>
+                                <tr><td>SRV-BROKER</td><td>172.16.0.5</td><td>Broker RDS</td><td class="crit">Critique</td></tr>
+                                <tr><td>RDSHOST1</td><td>172.16.0.3</td><td>RDS Session Host</td><td class="std">Standard</td></tr>
+                                <tr><td>RDSHOST2</td><td>172.16.0.4</td><td>RDS Session Host</td><td class="std">Standard</td></tr>
+                                <tr><td>SRV-FILER</td><td>172.16.0.78</td><td>Serveurs de fichier</td><td class="std">Standard</td></tr>
+                            </tbody>
+                        </table>
+                        <p class="table-caption">Tableau 2 — Inventaire LAN 1</p>
+                    </div>
+                </div>
+
+                <div class="inventaire-block">
+                    <p class="lan-label">LAN 2 : 192.168.200.0/24</p>
+                    <div class="table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Machine</th>
+                                    <th>Adresse IP</th>
+                                    <th>Rôle</th>
+                                    <th>Criticité</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>HYPERV-01</td><td>192.168.200.200</td><td>Hyperviseur Type 1</td><td class="crit">Critique</td></tr>
+                                <tr><td>SRV-GATEWAY</td><td>192.168.200.2</td><td>RDS Gateway</td><td class="crit">Critique</td></tr>
+                                <tr><td>SRV-GLPI</td><td>192.168.200.1</td><td>Serveur web</td><td class="std">Standard</td></tr>
+                            </tbody>
+                        </table>
+                        <p class="table-caption">Tableau 3 — Inventaire LAN 2</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── 3. Composants Veeam ── -->
+            <div class="sub-section">
+                <h3 class="sub-title">3. Composants &amp; Architecture Veeam</h3>
+
+                <p class="sub-intro-center">Veeam nécessite plusieurs composants pour fonctionner correctement. Chaque composant Veeam a un rôle spécifique dans l'architecture de sauvegarde et de restauration.</p>
+
+                <div class="table-wrapper">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Machine</th>
+                                <th>Rôle</th>
+                                <th>Réseau</th>
+                                <th>Adresse IP</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>SRV-VEEAM</td><td>Backup Server</td><td>LAN 01</td><td>172.16.0.10</td></tr>
+                            <tr><td>PROXY-01</td><td>Backup Proxy</td><td>LAN 01</td><td>172.16.0.12</td></tr>
+                            <tr><td>NAS-01</td><td>Repository NAS</td><td>LAN 01</td><td>172.16.0.2</td></tr>
+                            <tr><td>REPO-01</td><td>Repository Windows Server</td><td>LAN 01</td><td>172.16.0.11</td></tr>
+                            <tr><td>PROXY-02</td><td>Proxy Veeam Hyper-V</td><td>LAN 02</td><td>192.168.200.21</td></tr>
+                            <tr><td>REPO-02</td><td>Repository Windows Server</td><td>LAN 02</td><td>192.168.200.20</td></tr>
+                            <tr><td>NAS-02</td><td>Repository NAS</td><td>LAN 02</td><td>192.168.200.128</td></tr>
+                            <tr><td>NAS-03</td><td>NAS isolé</td><td>LAN Off-site</td><td>192.168.148.128</td></tr>
+                            <tr><td>Linux-REPO</td><td>Repository Linux Hardened</td><td>LAN Off-site</td><td>192.168.148.57</td></tr>
+                        </tbody>
+                    </table>
+                    <p class="table-caption">Tableau 4 — Composants Veeam</p>
+                </div>
+            </div>
+
+            <!-- ── 4. Rôle de chaque composant Veeam ── -->
+            <div class="sub-section">
+                <h3 class="sub-title">4. Rôle de chaque composant Veeam</h3>
+
+
+                <div class="roles-grid">
+                    <div class="role-card">
+                        <div class="role-icon">BS</div>
+                        <div class="role-content">
+                            <h4>Backup Server</h4>
+                            <p>C'est le serveur principal de Veeam, le cerveau de l'infrastructure. Il gère les jobs de sauvegarde, la planification, la communication entre tous les composants Veeam.</p>
+                        </div>
+                    </div>
+                    <div class="role-card">
+                        <div class="role-icon">BP</div>
+                        <div class="role-content">
+                            <h4>Backup Proxy</h4>
+                            <p>Le proxy est le moteur de traitement des données. C'est lui qui lit les données des VM ou serveurs, puis applique la compression, la déduplication et le chiffrement avant l'envoi vers le stockage.</p>
+                        </div>
+                    </div>
+                    <div class="role-card">
+                        <div class="role-icon">Re</div>
+                        <div class="role-content">
+                            <h4>Repository</h4>
+                            <p>Le repository est simplement l'endroit où les fichiers de sauvegarde sont stockés (.vbk, .vib, .vrb). Son rôle est de conserver les données de manière fiable.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <hr class="section-separator">
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION 6 — III. Schéma de l'infrastructure (Topologie)
+    ═══════════════════════════════════════════════════════ -->
+    <section id="topologie" class="content-section">
+        <div class="container">
+            <h2 class="chapter-title">III. Schéma de l'infrastructure Veeam</h2>
+            <div class="content-block">
+                <p class="sub-intro">Le schéma ci-dessous représente l'architecture globale de l'infrastructure Veeam déployée.
+                Cliquez sur l'image pour l'agrandir.</p>
+            </div>
+
+            <div class="topology-wrapper">
+                <div class="topology-img-container" onclick="openLightbox()">
+                    <img src="Schema-veeam.jpg" alt="Topologie Veeam" class="topology-img">
+                    <div class="zoom-hint">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35M11 8v6M8 11h6"/>
+                        </svg>
+                        Zoom
+                    </div>
+                </div>
+            </div>
+            <p class="table-caption">Schéma de l'infrastructure Veeam</p>
+        </div>
+    </section>
+
+
+    <hr class="section-separator">
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION 7 — IV. Politique de Continuité (RPO / RTO)
+    ═══════════════════════════════════════════════════════ -->
+    <section id="rpo-rto" class="content-section">
+        <div class="container">
+            <h2 class="chapter-title">IV. Politique de Continuité (RPO / RTO)</h2>
+            <div class="content-block">
+                <p class="sub-intro">
+                    Cette section définit les objectifs de récupération pour garantir la résilience de l'infrastructure
+                    en cas d'incident.
+                </p>
+            </div>
+
+            <!-- ── 1. Définition ── -->
+            <div class="sub-section">
+                <h3 class="sub-title">1. Définition</h3>
+                <ul class="definition-list">
+                    <li><strong>RPO (Recovery Point Objective)</strong> : Perte de données maximale admissible en cas d'incident.</li>
+                    <li><strong>RTO (Recovery Time Objective)</strong> : Délai maximal de rétablissement du service après un incident.</li>
+                </ul>
+            </div>
+
+            <!-- ── 2. RPO/RTO par criticité ── -->
+            <div class="sub-section">
+                <h3 class="sub-title">2. RPO/RTO par criticité</h3>
+
+                <div class="table-wrapper">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Criticité</th>
+                                <th>RPO</th>
+                                <th>RTO</th>
+                                <th>Justification</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Critique</td>
+                                <td>2h</td>
+                                <td>&lt;10 sec</td>
+                                <td>Services vitaux nécessaires à l'activité immédiate des utilisateurs.</td>
+                            </tr>
+                            <tr>
+                                <td>Standard</td>
+                                <td>24h</td>
+                                <td>&lt;20 min</td>
+                                <td>Services dont l'indisponibilité temporaire est tolérable sans impact majeur.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <hr class="section-separator">
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION 8 — V. Politique de sauvegarde
+    ═══════════════════════════════════════════════════════ -->
+    <section id="politique-sauvegarde" class="content-section">
+        <div class="container">
+            <h2 class="chapter-title">V. Politique de sauvegarde</h2>
+            <div class="content-block">
+                <p class="sub-intro">
+                    Cette section détaille les paramètres techniques appliqués aux jobs de sauvegarde
+                    selon l'importance des machines.
+                </p>
+            </div>
+
+            <!-- ── 1. Backup Job ── -->
+            <div class="sub-section">
+                <h3 class="sub-title">1. Backup Job</h3>
+
+                <div class="content-block">
+                    <p>
+                        Les Backup Jobs définissent quelles machines protéger, vers quel repository, à quelle fréquence
+                        et selon quelle politique de rétention. Chaque job est configuré en fonction du niveau de
+                        criticité des machines cibles afin de respecter les objectifs RPO/RTO définis.
+                    </p>
+                </div>
+
+                <div class="definition-box definition-box--single">
+                    <div class="def-item">
+                        <h4>Backup Job</h4>
+                        <p>Tâche planifiée dans Veeam Backup &amp; Replication qui orchestre la sauvegarde d'une ou
+                        plusieurs machines (virtuelles ou physiques) vers un repository défini. Il configure le mode
+                        de sauvegarde (Full / Incrémental), la fréquence d'exécution, la rétention des points de
+                        restauration et les options de traitement applicatif (VSS).</p>
+                    </div>
+                </div>
+
+                <p class="sub-intro-center">Politique de sauvegarde pour les backup Job de l'infrastructure</p>
+
+                <div class="table-wrapper">
+                    <table class="data-table policy-table">
+                        <thead>
+                            <tr>
+                                <th>Critère</th>
+                                <th>Politique <span>CRITICAL</span></th>
+                                <th>Politique <span>STANDARD</span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Mode de sauvegarde</td>
+                                <td>Forward Incremental</td>
+                                <td>Forward Incremental</td>
+                            </tr>
+                            <tr>
+                                <td>Fréquence</td>
+                                <td>Incrémental toutes les 2h (12/jour)</td>
+                                <td>1 sauvegarde/jour (incremental)</td>
+                            </tr>
+                            <tr>
+                                <td>RPO</td>
+                                <td>2h</td>
+                                <td>24h</td>
+                            </tr>
+                            <tr>
+                                <td>Rétention onsite</td>
+                                <td>7 jours = 84 restore points</td>
+                                <td>14 jours = 14 restore points</td>
+                            </tr>
+                            <tr>
+                                <td>Synthetic Full</td>
+                                <td>1/semaine</td>
+                                <td>1/semaine</td>
+                            </tr>
+                            <tr>
+                                <td>Active Full</td>
+                                <td>1/mois</td>
+                                <td>1/mois</td>
+                            </tr>
+                            <tr>
+                                <td>Application-Aware Processing</td>
+                                <td>Activé</td>
+                                <td>Activé</td>
+                            </tr>
+                            <tr>
+                                <td>Offsite</td>
+                                <td>Backup Copy Job<br>Snapshot Immuables / Linux Hardened</td>
+                                <td>Hyper Backup Synology</td>
+                            </tr>
+
+                            <tr>
+                                <td>GFS Weekly</td>
+                                <td>12 mois</td>
+                                <td>2 mois</td>
+                            </tr>
+                            <tr>
+                                <td>GFS Yearly</td>
+                                <td>2 ans</td>
+                                <td>—</td>
+                            </tr>
+                            <tr>
+                                <td>Objectif RTO</td>
+                                <td>&lt;10 sec</td>
+                                <td>&lt;20min</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- ── 2. Copy Backup Off-site ── -->
+            <div class="sub-section">
+                <h3 class="sub-title">2. Copy Backup Off-site</h3>
+                <div class="content-block">
+                    <p>
+                        Afin de respecter la stratégie 3-2-1-1, une copie des sauvegardes est stockée sur une machine
+                        offsite avec une immutabilité des données pour les ressources critiques. Les sauvegardes
+                        sont copiées via Veeam Backup Copy Jobs ou Hyper Backup Synology selon le type de machine.
+                    </p>
+                </div>
+
+                <div class="definition-box">
+                    <div class="def-item">
+                        <h4>Copy Backup</h4>
+                        <p>Permet de copier le dernier point de restauration d'un backup job vers un autre emplacement sécurisé,
+                        indépendamment de la chaîne du backup job.</p>
+                    </div>
+                    <div class="def-item">
+                        <h4>Hyper Backup</h4>
+                        <p>Outil de sauvegarde intégré aux NAS Synology. Il permet de copier les données du NAS vers
+                        un autre emplacement sécurisé : disque externe, autre NAS, serveur distant ou cloud.</p>
+                    </div>
+                </div>
+
+                <div class="table-wrapper">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Backup JOB</th>
+                                <th>Technologie</th>
+                                <th>Target</th>
+                                <th>Immuabilité</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Critical : Vmware_To_LUN</td>
+                                <td>Backup Copy</td>
+                                <td>LINUX-REPO</td>
+                                <td>Linux Hardened</td>
+                            </tr>
+                            <tr>
+                                <td>Standard : HyperV_to_NAS-02</td>
+                                <td>Hyper Backup</td>
+                                <td>NAS-03</td>
+                                <td>Snapshot Replication</td>
+                            </tr>
+                            <tr>
+                                <td>Critique : Host HyperV_To_REPO-02</td>
+                                <td>Backup Copy</td>
+                                <td>NAS-03</td>
+                                <td>Snapshot Replication</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    
+<hr class="section-separator">
+     <!-- ═══════════════════════════════════════════════════════
+         SECTION 9 — VI. Configuration des sauvegardes de l'infrastructure
+    ═══════════════════════════════════════════════════════ -->
+    <section id="configuration" class="content-section">
+        <div class="container">
+            <h2 class="chapter-title">VI. Mes configuration de sauvegardes de l'infrastructure</h2>
+            <div class="content-block">
+                <p class="sub-intro">
+                    Cette section détaille les configurations de chaque backup de mon infrastructure . Une backup contient une backup job et une copy backup job
+                    au sein de l'infrastructure Veeam.
+                </p>
+            </div>
+
+            <!-- ── 1. Backup 1 : Sauvegarde d'une machine virtuelle Vmware critique ── -->
+            <div class="sub-section">
+                <h3 class="sub-title">1. Backup 1 : Sauvegarde d'une machine virtuelle Vmware critique</h3>
+
+                <!-- A. Topologie -->
+                <div class="config-subsection">
+                    <h4 class="config-label">A. Topologie</h4>
+                    <p class="sub-intro">
+                    Voici la topologie de la backup 1 qui protège les machines virtuelles critiques de l'environnement VMware. 
+                </p>
+                    <div class="topology-wrapper">
+                        <div class="topology-img-container" onclick="openLightbox('backup1')">
+                            <img src="Schema-backup-1.jpg" alt="Topologie Backup 1" class="topology-img">
+                            <div class="zoom-hint">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35M11 8v6M8 11h6"/>
+                                </svg>
+                                Zoom
+                            </div>
+                        </div>
+                    </div>
+                <p class="table-caption">Topologie — Backup 1 : Vmware critique</p>
+                </div>
+
+                <!-- B. Backup Job 1: Vmware_To_LUN VMWARE CRITICAL -->
+                <div class="config-subsection">
+                    <h4 class="config-label">B. Backup Job 1 : <span class="italic-underline">Vmware_To_LUN : </span> VMWARE CRITICAL</h4>
+                    
+                    <p class="sub-intro">
+                        Ce Backup job assure la protection des machines virtuelles identifiées comme 
+                        <strong class="crit">Critiques</strong> au sein de l'environnement VMware
+                    </p>
+
+                    <div class="table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Paramètre</th>
+                                    <th>Détail Technique</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Nom du Job</td>
+                                    <td>VM_CRITICAL_TO_LUN</td>
+                                </tr>
+                                <tr>
+                                    <td>Source</td>
+                                    <td>Cluster VMware (ESXi-01, ESXi-02)</td>
+                                </tr>
+                                <tr>
+                                    <td>Destination</td>
+                                    <td>REPO-01 (LUN iSCSI Synology)</td>
+                                </tr>
+                                <tr>
+                                    <td>Criticité</td>
+                                    <td>Critique</td>
+                                </tr>
+                                <tr>
+                                    <td>Proxy utilisé</td>
+                                    <td>PROXY-01</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                   <!-- Le LUN Synology -->
+                        <h5 class="subsub-title">La LUN Synology</h5>
+
+                        <div class="freq-row">
+                            <div class="freq-col">
+                                <figure class="image-card image-wide">
+                                    <img src="screen1.png" alt="LUN VMware Critical" class="image-card__img">
+                                    <figcaption class="image-card__caption">Synology - LUN ISCSi</figcaption>
+                                </figure>
+                            </div>
+                            <div class="freq-col">
+                                <figure class="image-card image-wide">
+                                    <img src="screen2.png" alt="Target iSCSI" class="image-card__img">
+                                    <figcaption class="image-card__caption">Target iSCSI</figcaption>
+                                </figure>
+                                <div class="config-note">
+                                    <p>J'ai créé une LUN liée à une target iSCSI « iSCSI-VEEAM »</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    <!-- Paramètre de stockage du Backup Job 1 -->
+                    <h5 class="subsub-title">Paramètre de stockage du Backup Job 1</h5>
+
+                    <figure class="image-card image-wide">
+                <img src="screen3.png" class="image-card__img" alt="Paramètre de stockage">
+                <figcaption class="image-card__caption">Paramètre de stockage</figcaption>
+                </figure>
+                    <div class="param-blocks">
+                        <div class="param-block">
+                            <strong>Backup Proxy</strong>
+                            <p>J'ai choisi le mode de transport en réseau afin d'effectuer le traitement des sauvegardes avec le Backup Proxy 172.16.0.12</p>
+                        </div>
+                        <div class="param-block">
+                            <strong>Backup Repository</strong>
+                            <p>J'ai choisi mon repositoire LUN iSCSI comme destination de stockage. C'est à cet emplacement que les fichiers de sauvegarde sont enregistrés</p>
+                        </div>
+                        <div class="param-block">
+                            <strong>Rétention Policy</strong>
+                            <p>J'ai défini une rétention de 7 jours. Veeam conservera les points de restauration sur cette durée. Les sauvegardes plus anciennes que cette période sont automatiquement supprimées pour libérer de l'espace</p>
+                        </div>
+                        <div class="param-block">
+                            <strong>Paramètre GFS</strong>
+                            <p>J'ai activé la conservation GFS pour garder certaines sauvegardes full plus longtemps à des fins d'archivage. Je conserverai 4 hebdomadaires, 12 mensuelles et 2 annuelles, ce qui me permet d'avoir des points de restauration historiques pour ces VM critique</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Paramétrage des fréquences -->
+                    <h5 class="subsub-title">Paramétrage des fréquences</h5>
+
+                    <div class="freq-row">
+                        <div class="freq-col">
+                            <figure class="image-card image-wide">
+                                <img src="screen4.png" alt="LUN VMware Critical" class="image-card__img">
+                                <figcaption class="image-card__caption">Paramètre de fréquence backup Full</figcaption>
+                            </figure>
+                            <div class="freq-note">
+                                <p>J'ai mis une <strong>Synthetic Full</strong> une fois par semaine (samedi)</p>
+                                <p>J'ai mis une <strong>Active Full</strong> une fois par mois</p>
+                            </div>
+                        </div>
+                        <div class="freq-col">
+                            <figure class="image-card image-wide">
+                                <img src="screen5.png" alt="LUN VMware Critical" class="image-card__img">
+                                <figcaption class="image-card__caption">Paramètre de fréquence</figcaption>
+                            </figure>
+                            <div class="freq-note">
+                                <p>J'ai paramétré une exécution automatique toutes les deux heures afin de respecter un RPO de 2h comme énoncé dans la politique de stockage</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- C. Backup Copy 1: Backup-Job1_To_Linux-Hardened -->
+                <div class="config-subsection">
+                    <h4 class="config-label">C. Backup Copy 1: Backup-Job1_To_Linux-Hardened</h4>
+                    
+                    <p class="sub-intro">
+                        Ce Copy Job permet de copier les backups des VM critique VMware vers un repositorie
+                        Linux hors du site de production avec la fonctionnalité Hardened pour l'immutabilité
+                        des copy. Une chaîne de sauvegarde indépendante sera alors créée.
+                    </p>
+
+                    <div class="table-wrapper">
+                        <table class="data-table green-table">
+                            <thead>
+                                <tr>
+                                    <th>Paramètre</th>
+                                    <th>Détail de la Configuration</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Nom du Job</td>
+                                    <td>Backup-Job1_To_Linux-Hardened</td>
+                                </tr>
+                                <tr>
+                                    <td>Cible</td>
+                                    <td>Repository Linux Hors-site (Offsite)</td>
+                                </tr>
+                                <tr>
+                                    <td>Type de stockage</td>
+                                    <td>Partition 100 Go / Système de fichiers XFS</td>
+                                </tr>
+                                <tr>
+                                    <td>Sécurité</td>
+                                    <td>Immutabilité active (Hardened Repository)</td>
+                                </tr>
+                                <tr>
+                                    <td>Mode de copie</td>
+                                    <td>Immediate Copy (Synchronisation temps réel)</td>
+                                </tr>
+                                <tr>
+                                    <td>Utilisateur</td>
+                                    <td>Compte dédié « veeam » (Non-root)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Configuration de la partition XFS Linux -->
+                    <h5 class="subsub-title">Configuration de la partition XFS Linux</h5>
+                    
+                    <figure class="image-card image-medium">
+                        <img src="screen6.png" alt="Partition XFS" class="image-card__img">
+                        <figcaption class="image-card__caption">Configuration partition XFS</figcaption>
+                    </figure>
+
+                    <div class="config-note">
+                        <p>J'ai créé un point de montage liée à une partition de 100G pour ce repositorie configuré en xfs pour la fonctionnalité d'immutabilité</p>
+                    </div>
+
+                    <figure class="image-card image-wide">
+                        <img src="screen7.png" alt="Répertoire backup-vmware" class="image-card__img">
+                        <figcaption class="image-card__caption">Répertoire backup-vmware</figcaption>
+                    </figure>
+
+                    <div class="config-note">
+                        <p>J'ai créé un utilisateur dédié à Veeam pour ne pas utiliser le compte root. J'ai mis en propriétaire du point de montage l'utilisateur veeam et j'ai donné les permission en lecture/écriture/exécution au propriétaire du point de montage et exécution et lecture pour le groupe et es autres</p>
+                    </div>
+
+                    <figure class="image-card image-wide">
+                        <img src="screen8.png" alt="Configuration sudo" class="image-card__img">
+                        <figcaption class="image-card__caption">Configuration sudo</figcaption>
+                    </figure>
+
+                    <div class="config-note">
+                        <p>Pour que Veeam puisse effectuer des modifications sur la machine linux, l'utilisateur veeam doit utiliser le mode sudo sans mot de passe. J'ai donc ajouté la ligne ALL = (ALL :ALL) NOPASSWD : ALL pour effectuer cela</p>
+                    </div>
+
+
+                    <h5 class="subsub-title">Paramètre de stockage du Copy Backup 1</h5>
+
+                     <figure class="image-card image-small">
+                        <img src="screen9.png" alt="Repository Linux Hardened" class="image-card__img">
+                        <figcaption class="image-card__caption">Paramètre du repository Linux Hardened</figcaption>
+                    </figure>
+
+                    <div class="config-note">
+                        <p>J'ai ciblé le point de montage linux de 100Go en tant que repositorie veeam et activé l'immutabilité</p>
+                    </div>
+
+                    <figure class="image-card image-small">
+                        <img src="screen10.png" alt="Paramètre de stockage" class="image-card__img">
+                        <figcaption class="image-card__caption">Paramètre de stockage</figcaption>
+                    </figure>
+
+                    <div class="config-note">
+                        <p>Je choisi le serveur Linux Offsite en tant que repository distant, ainsi qu'une rétention plus élevée que celle du backup job, afin d'archiver davantage de sauvegardes en cas d'incident majeur.</p>
+                    </div>
+                </div>
+                
+
+                <!-- ── 2. Backup 2 : Sauvegarde d’une machine virtuelle Hyper-V standard ── -->
+            <div class="sub-section">
+
+                <h3 class="sub-title">2. Backup 2 : Sauvegarde d’une machine virtuelle Hyper-V standard</h3>
+
+                <p class="sub-intro-center">
+                    Je vais vous présenter la Backup 2 qui concerne la sauvegarde des machines virtuelles
+                    <strong>Standard</strong> hébergées sur l’environnement <strong>Hyper-V</strong>.
+            </p>
+
+            <!-- A. Topologie -->
+            <div class="config-subsection">
+                <h4 class="config-label">A. Topologie</h4>
+
+                <p class="sub-intro">
+                     Voici la topologie de la backup 2 qui protège les machines virtuelles standards de l'environnement Hyper-V.
+                </p>
+
+                <div class="topology-wrapper">
+                    <div class="topology-img-container" onclick="openLightbox('backup2')">
+                        <img src="Schema-backup-2.jpg" alt="Topologie Backup 2 Hyper-V Standard" class="topology-img">
+                        <div class="zoom-hint">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <path d="M21 21l-4.35-4.35M11 8v6M8 11h6"></path>
+                            </svg>
+                            Zoom
+                        </div>
+                    </div>
+                </div>
+                <p class="table-caption">Topologie — Backup 2 : Hyper-V standard</p>
+            </div>
+
+            <!-- B. Backup Job 2 : HyperV_To_NAS-02 -->
+            <div class="config-subsection">
+                <h4 class="config-label">
+                    B. Backup Job 2 : <span class="italic-underline">HyperV_To_NAS-02</span> — HYPER-V STANDARD
+                </h4>
+
+                <p class="sub-intro">
+                    Ce Backup Job permet de copier les machines virtuelles
+                    <strong>Standard</strong> hébergées sur l’environnement
+                    <strong>Hyper-V</strong> vers le repository <strong>NAS-02</strong>
+                    situé sur le réseau <strong>LAN 02</strong>.
+                </p>
+
+                <div class="table-wrapper">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Paramètre</th>
+                                <th>Détail de la Configuration</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Nom du Job</td>
+                                <td>HyperV_To_NAS-02</td>
+                            </tr>
+                            <tr>
+                                <td>Source</td>
+                                <td>Infrastructure Microsoft Hyper-V (LAN 02)</td>
+                            </tr>
+                            <tr>
+                                <td>Destination</td>
+                                <td>Repository NAS-02 (Synology)</td>
+                            </tr>
+                            <tr>
+                                <td>Criticité</td>
+                                <td>Standard (RPO 24h / RTO &lt; 20 min)</td>
+                            </tr>
+                            <tr>
+                                <td>Proxy utilisé</td>
+                                <td>Proxy-02 (LAN 02)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+         <!-- Paramètre de stockage du Backup Job 2 -->
+                    <h5 class="subsub-title">Paramètre de stockage du Backup Job 2</h5>
+
+                    <figure class="image-card image-medium">
+                <img src="screen11.png" class="image-card__img" alt="Paramètre de stockage">
+                <figcaption class="image-card__caption">Paramètre de stockage</figcaption>
+                </figure>
+                    <div class="param-blocks">
+                        <div class="param-block">
+                            <strong>Backup Proxy</strong>
+                            <p>J’ai choisi le mode Off-host backup afin d’effectuer le traitement des sauvegardes avec le Backup Proxy 192.168.200.21</p>
+                        </div>
+                        <div class="param-block">
+                            <strong>Backup Repository</strong>
+                            <p>J’ai configuré le repository NAS-02 comme destination de stockage. C’est à cet emplacement que les fichiers de sauvegarde sont enregistrés</p>
+                        </div>
+                        <div class="param-block">
+                            <strong>Rétention Policy</strong>
+                            <p>J’ai défini une rétention de 14 jours. Veeam conservera les points de restauration sur cette durée</p>
+                        </div>
+                        <div class="param-block">
+                            <strong>Paramètre GFS</strong>
+                            <p>J’ai activé la conservation GFS pour garder certaines sauvegardes full plus longtemps à des fins d’archivage. Nous conservons 2 hebdomadaires et 2 mensuelle. Nous aurons donc moins d’archivage que les vm critique pour économiser les performances  </p>
+                        </div>
+                    </div>
+                
+
+                <!-- Paramétrage des fréquences -->
+
+<h5 class="subsub-title">Paramétrage des fréquences</h5>
+
+<div class="freq-row">
+  <!-- Colonne gauche -->
+  <div class="freq-col">
+    <figure class="image-card image-wide">
+      <img src="screen12.png" alt="Paramètre de fréquence backup Full" class="image-card__img">
+      <figcaption class="image-card__caption">Paramètre de fréquence backup Full</figcaption>
+    </figure>
+
+    <div class="freq-note">
+      <p>J'ai configuré une <strong>Synthetic Full</strong> une fois par semaine (<strong>samedi</strong>).</p>
+      <p>J'ai configuré une <strong>Active Full</strong> une fois par mois .</p>
+    </div>
+  </div>
+
+  <!-- Colonne droite -->
+  <div class="freq-col is-large">
+    <figure class="image-card image-wide">
+      <img src="screen13.png" alt="Paramètre de fréquence" class="image-card__img">
+      <figcaption class="image-card__caption">Paramètre de fréquence</figcaption>
+    </figure>
+
+    <div class="freq-note">
+      <p>J'ai paramétré une exécution automatique <strong>quotidienne à 22h</strong> afin de respecter la politique de sauvegarde définie pour les machines virtuelles standard.</p>
+    </div>
+  </div>
+</div>
+
+<!-- B. Hyper Backup : NAS-02_To_NAS-03 — OFF-SITE -->
+ 
+<div class="config-subsection">
+  <h4 class="config-label config-label--center">
+    <span class="label-center">
+      B. Hyper Backup : <span class="italic-underline">NAS-02_To_NAS-03— OFF-SITE
+    </span>
+  </h4>
+
+  <p class="sub-intro sub-intro--center">
+    Cette tâche <strong>Hyper Backup Synology</strong> permet de copier les backup du NAS-02 (LAN02) vers 
+    le NAS-03 (Off-Site).</p>
+</div>
+
+
+
+  <h5 class="subsub-title">Paramètre de la fréquence de la tâche</h5>
+
+  <div class="freq-row">
+    <div class="freq-col">
+      <figure class="image-card image-medium">
+        <img src="screen14.png" alt="Paramétrage fréquence Hyper Backup" class="image-card__img">
+        <figcaption class="image-card__caption">Paramétrage de la fréquence Hyper Backup</figcaption>
+      </figure>
+    </div>
+
+    <div class="freq-col">
+      <!-- note descendue -->
+      <div class="freq-note freq-note--lower">
+        <p>
+          Une sauvegarde est exécutée <strong>quotidiennement à 22h</strong> afin d’assurer une
+          réplication régulière des sauvegardes vers le site <strong>Off-Site</strong>.
+        </p>
+      </div>
+    </div>
+  </div>
+
+
+
+   <!-- ── 3.	Backup 3 : Sauvegarde d’une machine physique Hyper V  ── -->
+            <div class="sub-section">
+
+                <h3 class="sub-title">3.	Backup 3 : Sauvegarde d’une machine physique Hyper V </h3>
+
+                <p class="sub-intro-center">
+                    Je vais présenter la Backup 3 qui concerne la sauvegarde de la machine physique
+                    <strong>Host Hyper-V</strong>.
+            </p>
+
+            <!-- A. Topologie -->
+            <div class="config-subsection">
+                <h4 class="config-label">A. Topologie</h4>
+
+                <p class="sub-intro">
+                    Voici la topologie de la backup 3 qui protège la machine physique Host Hyper-V.</p>
+
+                <div class="topology-wrapper">
+                    <div class="topology-img-container" onclick="openLightbox('backup3')">
+                        <img src="Schema-backup-3.jpg" alt="Topologie Backup 3" class="topology-img">
+                        <div class="zoom-hint">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <path d="M21 21l-4.35-4.35M11 8v6M8 11h6"></path>
+                            </svg>
+                            Zoom
+                        </div>
+                    </div>
+                </div>
+                <p class="table-caption">Topologie — Backup 3 : Machine physique Hyper-V</p>
+            </div>
+
+
+            <!-- B. B.	Backup Job 3 : Host-HyperV_To_REPO-02 -->
+            <div class="config-subsection">
+                <h4 class="config-label">
+                    B. Backup Job 3 : <span class="italic-underline">Host-HyperV_To_REPO-02</span>
+                </h4>
+
+                <p class="sub-intro">
+                    Ce Job permet de copier le barre metal physique
+                    <strong>Hyper V</strong> vers un Repository Windows Server du LAN 02</p>
+ 
+                <div class="table-wrapper">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Paramètre</th>
+                                <th>Détail de la Configuration</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Nom du Job</td>
+                                <td>Host-HyperV_To_REPO-02</td>
+                            </tr>
+                            <tr>
+                                <td>Source</td>
+                                <td>Infrastructure Microsoft Hyper-V (LAN 02)</td>
+                            </tr>
+                            <tr>
+                                <td>Destination</td>
+                                <td>REPO-02 (Windows Server)</td>
+                            </tr>
+                            <tr>
+                                <td>Criticité</td>
+                                <td>Standard</td>
+                            </tr>
+                            <tr>
+                                <td>Proxy utilisé</td>
+                                <td>PROXY-02 (LAN 02)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+
+        <h5 class="subsub-title">Paramètre de stockage du Backup Job 3</h5>
+                    
+                    <figure class="image-card image-small">
+                <img src="screen15.png" class="image-card__img" alt="Paramètre de stockage">
+                <figcaption class="image-card__caption">Paramètre de stockage</figcaption>
+                </figure>
+                    <div class="param-blocks">
+                
+                        <div class="param-block">
+                            <strong>Backup Repository</strong>
+                            <p>J’ai choisi le repository Windows Server de 900Go du LAN 02 comme destination de stockage. C’est à cet emplacement que les fichiers de sauvegarde sont enregistrés</p>
+                        </div>
+                        <div class="param-block">
+                            <strong>Rétention Policy</strong>
+                            <p>J’ai défini une rétention de 14 jours car il s’agit d’une ressource extrêmement critique. Veeam conservera les points de restauration sur cette durée</p>
+                        </div>
+                        <div class="param-block">
+                            <strong>Paramètre GFS</strong>
+                            <p>J’ai activé la conservation GFS pour garder certaines sauvegardes full plus longtemps à des fins d’archivage. Nous conservons 5 hebdomadaires, 12 mensuelle et 2 annuelle. Nous aurons donc plus d’archivage que les autres backup job car il s’agit ici d’une copie très critique</p>
+                        </div>
+                    </div>
+
+<h5 class="subsub-title">Paramètre de fréquence</h5>
+
+  <div class="freq-row">
+    <div class="freq-col">
+      <figure class="image-card image-medium">
+        <img src="screen16.png" alt="Paramétrage fréquence Hyper Backup" class="image-card__img">
+        <figcaption class="image-card__caption">Paramétrage de la fréquence</figcaption>
+      </figure>
+    </div>
+
+    <div class="freq-col">
+      <!-- note descendue -->
+      <div class="freq-note freq-note--lower-haut">
+        <p>
+          Le Job s’exécutera automatiquement<strong> toutes les 2h</strong> afin de respecter un RPO de 2h comme énoncé dans la <strong>politique de sauvegarde</strong> pour les ressources critique.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- C. Copy Backup Job 3 : BackupJob3_To_NAS-03 -->
+                <div class="config-subsection">
+                    <h4 class="config-label">C. Copy Backup Job 3 : <span class="italic-underline">Vmware_To_LUN : </span> VMWARE CRITICAL</h4>
+                    
+                    <p class="sub-intro">
+                        Ce Copy Backup job permet de copier les backup de la <strong>machine physique Hyper-V</strong> vers un repository NAS-03 situé sur le site Off-Site.
+                    </p>
+
+                    <div class="table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Paramètre</th>
+                                    <th>Détail Technique</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Nom du Job</td>
+                                    <td>BackupJob3_To_NAS-03</td>
+                                </tr>
+                                <tr>
+                                    <td>Cible</td>
+                                    <td>NAS-03 (Off-Site)</td>
+                                    
+                                </tr>
+                                <tr>
+                                    <td>Type de stockage</td>
+                                    <td>Volume Synology de 172Go</td>
+                                    
+                                </tr>
+                                <tr>
+                                    <td>Sécurité</td>
+                                    <td>Critique</td>
+                                </tr>
+                                <tr>
+                                    <td>Mode de copie</td>
+                                    <td>Immediate Copy (Synchronisation temps réel)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+
+
+                    <h5 class="subsub-title">Paramètre de stockage du Copy Backup 3</h5>
+
+                    <figure class="image-card image-medium">
+                        <img src="screen17.png" class="image-card__img" alt="Paramètre de stockage Copy Backup">
+                        <figcaption class="image-card__caption">Paramètre de stockage</figcaption>
+                    </figure>
+                    <div class="param-blocks">
+                        <div class="param-block">
+                            <strong>Backup Repository</strong>
+                            <p>J’ai choisi le repository NAS-03 du LAN Off-Site comme destination de stockage. C’est à cet emplacement que les fichiers de sauvegarde sont enregistrés.</p>
+                        </div>
+                        <div class="param-block">
+                            <strong>Rétention Policy</strong>
+                            <p>J’ai défini une rétention de 25 jours. Veeam conservera les points de restauration sur cette durée, plus élevée que le backup job principal.</p>
+                        </div>
+                        <div class="param-block">
+                            <strong>Paramètre GFS</strong>
+                            <p>J’ai activé la conservation GFS avec 8 hebdomadaires, 12 mensuelles et 3 annuelles — la rétention la plus élevée de l’infrastructure, adaptée à la criticité de cette copie off-site.</p>
+                        </div>
+                    </div>
+
+                    <!-- Immutabilité des backup Off-Site -->
+                    <h5 class="subsub-title">Immutabilité des backup Off-Site</h5>
+
+                    <p class="sub-intro-center">
+                        Pour garantir une immutabilité des backups sur le site distant, j’ai configuré une
+                        snapshot réplication sur le dossier contenant les backups.
+                    </p>
+
+                    <div class="freq-row">
+                        <div class="freq-col">
+                            <figure class="image-card image-wide">
+                                <img src="screen18.png" alt="Snapshot Réplication Immutabilité" class="image-card__img">
+                                <figcaption class="image-card__caption">Snapshot Réplication — Immutabilité Off-Site</figcaption>
+                            </figure>
+                        </div>
+                        <div class="freq-col">
+                            <div class="freq-note freq-note--lower-haut">
+                                <p>
+                                    Des copies immuables des Backup seront stockées <strong>tous les jours à 00h</strong> et
+                                    conservées pendant <strong>14 jours</strong>. De cette manière, aucune modification
+                                    ne sera possible pour les copy backup.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                
+
+
+
+
+
+
+  
+
+
+     
+
+
+
+
+
+
+                
+
+
+    
+
+
+
+
+<!-- ─── SECTION VII : Tests de validation des sauvegardes ── -->
+<hr class="section-separator">
+<section class="content-section" id="tests-validation">
+    <div class="container">
+
+        <h2 class="chapter-title">VII. Tests de validation des sauvegardes</h2>
+
+        <div class="content-block">
+            <p>Dans cette section, je vais tester l'exécution de l'ensemble des Backup configuré ci-dessus.</p>
+        </div>
+
+        <!-- ── 1. Backup 1 ── -->
+        <div class="sub-section">
+            <h3 class="sub-title">1. Backup 1 : Sauvegarde des machines virtuelles critique VMWARE</h3>
+
+            <p class="sub-intro-center">
+                Je vais commencer par tester le Backup 1 qui concerne les ressources critiques.
+                (Backup Job 1 et Copy Backup 1)
+            </p>
+
+            <!-- A. Backup Job 1 -->
+            <div class="config-subsection">
+                <h4 class="config-label">
+                    A. Backup Job 1 : <span class="italic-underline">Vmware_To_LUN</span> VMWARE CRITICAL
+                </h4>
+
+                <div class="steps-flow">
+
+                    <!-- screen19 — résultat d'exécution -->
+                    <div class="step-block">
+                        <div class="step-header">
+                            <span class="step-badge">1</span>
+                            <h4 class="step-title">Exécution du Backup Job</h4>
+                        </div>
+                        <div class="content-img-side">
+                            <figure class="image-card image-medium">
+                                <img src="screen19.png" alt="Résultat Backup Job 1" class="image-card__img">
+                                <figcaption class="image-card__caption">Exécution Backup Job 1 — Vmware_To_LUN</figcaption>
+                            </figure>
+                            <div class="side-notes">
+                                <div class="test-note">
+                                    <p>Le Job s'est terminé <strong>correctement</strong> avec un taux de transfert de 32 MB/s — aucune erreur détectée.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- screen20 — fichiers dans le repository -->
+                    <div class="step-block">
+                        <div class="step-header">
+                            <span class="step-badge">2</span>
+                            <h4 class="step-title">Vérification des fichiers dans le repository</h4>
+                        </div>
+                        <div class="content-img-side">
+                            <figure class="image-card image-medium">
+                                <img src="screen20.png" alt="Fichiers backup dans le repository LUN" class="image-card__img">
+                                <figcaption class="image-card__caption">Fichiers de sauvegarde — Repository LUN iSCSI</figcaption>
+                            </figure>
+                            <div class="side-notes">
+                                <div class="test-note">
+                                    <p>Les backup sont bien <strong>stockés sur le repository LUN iSCSI</strong>. Les fichiers .VBK sont présents et accessibles.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Badge de validation -->
+                <div class="validation-badge">
+                    <span>Vmware_To_LUN VMWARE CRITICAL : OK</span>
+                </div>
+
+            </div>
+
+            <!-- B. Copy Job 1 Linux Hardened -->
+            <div class="config-subsection">
+                <h4 class="config-label">
+                    B. Copy <span class="italic-underline">Backup 1 :</span> Backup-Job1_To_Linux-Hardened
+                </h4>
+
+                <div class="steps-flow">
+
+                    <!-- screen21 — résultat d'exécution du Copy Job -->
+                    <div class="step-block">
+                        <div class="step-header">
+                            <span class="step-badge">1</span>
+                            <h4 class="step-title">Exécution du Copy Job</h4>
+                        </div>
+                        <div class="content-img-side">
+                            <figure class="image-card image-medium">
+                                <img src="screen21.png" alt="Résultat Copy Job Linux Hardened" class="image-card__img">
+                                <figcaption class="image-card__caption">Exécution Copy Job — Backup-Job1_To_Linux-Hardened</figcaption>
+                            </figure>
+                            <div class="side-notes">
+                                <div class="test-note">
+                                    <p>Le Copy Job s'est terminé <strong>correctement</strong> à 72 MB/s — aucune erreur détectée.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- screen22 — vérification présence des fichiers -->
+                    <div class="step-block">
+                        <div class="step-header">
+                            <span class="step-badge">2</span>
+                            <h4 class="step-title">Vérification des fichiers sur le repository Linux</h4>
+                        </div>
+                        <div class="content-img-side">
+                            <figure class="image-card image-medium">
+                                <img src="screen22.png" alt="Fichiers backup repository Linux Hardened" class="image-card__img">
+                                <figcaption class="image-card__caption">Vérification des fichiers — Repository Linux Hardened (ls -l)</figcaption>
+                            </figure>
+                            <div class="side-notes">
+                                <div class="test-note">
+                                    <p>Les backups sont bien <strong>stockés sur le repository Linux Hardened</strong>. Les fichiers sont présents et accessibles.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- screen23 — test immutabilité Hardened -->
+                    <div class="step-block">
+                        <div class="step-header">
+                            <span class="step-badge">3</span>
+                            <h4 class="step-title">Test d'immutabilité — Hardened Linux</h4>
+                        </div>
+                        <div class="content-img-side">
+                            <figure class="image-card image-medium">
+                                <img src="screen23.png" alt="Test immutabilité Hardened Linux" class="image-card__img">
+                                <figcaption class="image-card__caption">Test immutabilité — Commande rm refusée (Opération non permise)</figcaption>
+                            </figure>
+                            <div class="side-notes">
+                                <div class="test-note">
+                                    <p>Impossible de <strong>supprimer les backups</strong> via la commande rm — l'immutabilité Hardened Linux est bien active. L'opération est refusée.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Badge de validation -->
+                <div class="validation-badge">
+                    <span>Backup Job Vmware_To_Linux Hardened : OK</span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ── 2. Backup 2 ── -->
+        <div class="sub-section">
+            <h3 class="sub-title">2. Backup 2 : Sauvegarde des machines virtuelles Hyper-V standard</h3>
+
+            <p class="sub-intro-center">
+                Je teste ensuite le Backup 2 qui concerne les ressources standard.
+                (Backup Job 2 et Copy Backup 2)
+            </p>
+
+            <!-- A. Backup Job 2 -->
+            <div class="config-subsection">
+                <h4 class="config-label">
+                    A. Backup Job 2 : <span class="italic-underline">HyperV_To_NAS-02</span>
+                </h4>
+
+                <div class="steps-flow">
+
+                    <!-- screen24 — résultat d'exécution -->
+                    <div class="step-block">
+                        <div class="step-header">
+                            <span class="step-badge">1</span>
+                            <h4 class="step-title">Exécution du Backup Job 2</h4>
+                        </div>
+                        <div class="content-img-side">
+                            <figure class="image-card image-medium">
+                                <img src="screen24.png" alt="Résultat Backup Job 2 HyperV" class="image-card__img">
+                                <figcaption class="image-card__caption">Exécution Backup Job 2 — HyperV_To_NAS-02</figcaption>
+                            </figure>
+                            <div class="side-notes">
+                                <div class="test-note">
+                                    <p>Le Job s'est terminé <strong>correctement</strong> — aucune erreur détectée.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- screen25 — vérification présence des fichiers -->
+                    <div class="step-block">
+                        <div class="step-header">
+                            <span class="step-badge">2</span>
+                            <h4 class="step-title">Vérification des fichiers dans le repository</h4>
+                        </div>
+                        <div class="content-img-side">
+                            <figure class="image-card image-medium">
+                                <img src="screen25.png" alt="Fichiers backup repository NAS" class="image-card__img">
+                                <figcaption class="image-card__caption">Fichiers de sauvegarde — Repository NAS-02</figcaption>
+                            </figure>
+                            <div class="side-notes">
+                                <div class="test-note">
+                                    <p>Les backup sont bien <strong>stockés sur le repository NAS</strong>. Les fichiers .VIB sont présents et accessibles.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Badge de validation -->
+                <div class="validation-badge">
+                    <span>Backup Job HyperV_To_NAS-02 : OK</span>
+                </div>
+
+            </div>
+
+            <!-- B. Hyper Backup NAS-02 To NAS-03 -->
+            <div class="config-subsection">
+                <h4 class="config-label">
+                    B. Hyper Backup : <span class="italic-underline">NAS-02_To_NAS-03</span>
+                </h4>
+
+                <div class="steps-flow">
+
+                    <!-- screen26 — résultat de la tâche Hyper Backup -->
+                    <div class="step-block">
+                        <div class="step-header">
+                            <span class="step-badge">1</span>
+                            <h4 class="step-title">Exécution de la tâche Hyper Backup</h4>
+                        </div>
+                        <div class="content-img-side">
+                            <figure class="image-card image-medium">
+                                <img src="screen26.png" alt="Résultat tâche Hyper Backup NAS-02 To NAS-03" class="image-card__img">
+                                <figcaption class="image-card__caption">Exécution Hyper Backup — NAS-02_To_NAS-03</figcaption>
+                            </figure>
+                            <div class="side-notes">
+                                <div class="test-note">
+                                    <p>La tâche s'est terminée avec <strong>succès</strong> — aucune erreur détectée.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- screen27 — vérification présence des backups sur NAS-03 -->
+                    <div class="step-block">
+                        <div class="step-header">
+                            <span class="step-badge">2</span>
+                            <h4 class="step-title">Vérification des backups sur NAS-03</h4>
+                        </div>
+                        <div class="content-img-side">
+                            <figure class="image-card image-medium">
+                                <img src="screen27.png" alt="Backups copiés sur le NAS-03" class="image-card__img">
+                                <figcaption class="image-card__caption">Vérification des backups — Repository NAS-03 (Off-Site)</figcaption>
+                            </figure>
+                            <div class="side-notes">
+                                <div class="test-note">
+                                    <p>Les backups ont bien été <strong>copiés sur le NAS-03</strong>. Les fichiers sont présents et accessibles depuis le site Off-Site.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Badge de validation -->
+                <div class="validation-badge">
+                    <span>Backup NAS-02_To_NAS-03 : OK</span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ── 3. Backup 3 ── -->
+        <div class="sub-section">
+            <h3 class="sub-title">3. Backup 3 : Sauvegarde de la machine physique Hyper-V</h3>
+
+            <p class="sub-intro-center">
+                Je teste enfin le Backup 3 qui concerne la sauvegarde de la machine physique Host Hyper-V.
+            </p>
+
+            <!-- A. Backup Job 3 -->
+            <div class="config-subsection">
+                <h4 class="config-label">
+                    A. Backup Job 3 : <span class="italic-underline">Host-HyperV_To_REPO-02</span>
+                </h4>
+
+                <div class="steps-flow">
+
+                    <!-- screen28 — résultat d'exécution -->
+                    <div class="step-block">
+                        <div class="step-header">
+                            <span class="step-badge">1</span>
+                            <h4 class="step-title">Exécution du Backup Job 3</h4>
+                        </div>
+                        <div class="content-img-side">
+                            <figure class="image-card image-medium">
+                                <img src="screen28.png" alt="Résultat Backup Job 3 Host HyperV" class="image-card__img">
+                                <figcaption class="image-card__caption">Exécution Backup Job 3 — Host-HyperV_To_REPO-02</figcaption>
+                            </figure>
+                            <div class="side-notes">
+                                <div class="test-note">
+                                    <p>Le Job s'est terminé avec <strong>succès</strong> à 1,616 MB/s — aucune erreur détectée.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- screen29 — vérification présence des fichiers -->
+                    <div class="step-block">
+                        <div class="step-header">
+                            <span class="step-badge">2</span>
+                            <h4 class="step-title">Vérification des fichiers dans le repository</h4>
+                        </div>
+                        <div class="content-img-side">
+                            <figure class="image-card image-medium">
+                                <img src="screen29.png" alt="Fichiers backup repository Windows" class="image-card__img">
+                                <figcaption class="image-card__caption">Fichiers de sauvegarde — Repository Windows Server (REPO-02)</figcaption>
+                            </figure>
+                            <div class="side-notes">
+                                <div class="test-note">
+                                    <p>Les backups ont bien été <strong>copiés sur le repository Windows</strong>. Les fichiers .VBM et .VIB sont présents et accessibles.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Badge de validation -->
+                <div class="validation-badge">
+                    <span>Backup Job Host-HyperV_To_REPO-02 : OK</span>
+                </div>
+
+            </div>
+
+            <!-- B. Copy Backup Job 3 -->
+            <div class="config-subsection">
+                <h4 class="config-label">
+                    B. Copy Backup <span class="italic-underline">Job :</span> BackupJob3_To_NAS-03
+                </h4>
+
+                <div class="steps-flow">
+
+                    <!-- screen30 — résultat d'exécution du Copy Job -->
+                    <div class="step-block">
+                        <div class="step-header">
+                            <span class="step-badge">1</span>
+                            <h4 class="step-title">Exécution du Copy Backup Job</h4>
+                        </div>
+                        <div class="content-img-side">
+                            <figure class="image-card image-medium">
+                                <img src="screen30.png" alt="Résultat Copy Backup Job 3" class="image-card__img">
+                                <figcaption class="image-card__caption">Exécution Copy Backup Job — BackupJob3_To_NAS-03</figcaption>
+                            </figure>
+                            <div class="side-notes">
+                                <div class="test-note">
+                                    <p>Le Job s'est terminé avec <strong>succès</strong> — aucune erreur détectée.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- screen31 — vérification présence des fichiers NAS-03 -->
+                    <div class="step-block">
+                        <div class="step-header">
+                            <span class="step-badge">2</span>
+                            <h4 class="step-title">Vérification des fichiers sur NAS-03</h4>
+                        </div>
+                        <div class="content-img-side">
+                            <figure class="image-card image-medium">
+                                <img src="screen31.png" alt="Backups copiés sur NAS-03 Off-Site" class="image-card__img">
+                                <figcaption class="image-card__caption">Vérification des fichiers — Repository NAS-03 (Off-Site)</figcaption>
+                            </figure>
+                            <div class="side-notes">
+                                <div class="test-note">
+                                    <p>Les backups ont bien été <strong>copiés sur le repository NAS Off-Site</strong>. Les fichiers sont visibles et accessibles.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- screen32 + screen33 — test immutabilité NAS Off-Site -->
+                    <div class="step-block">
+                        <div class="step-header">
+                            <span class="step-badge">3</span>
+                            <h4 class="step-title">Test d'immutabilité — NAS Off-Site</h4>
+                        </div>
+                        <div class="content-img-side">
+                            <div class="images-stack">
+                                <figure class="image-card image-medium">
+                                    <img src="screen32.png" alt="Tentative de suppression NAS Off-Site" class="image-card__img">
+                                    <figcaption class="image-card__caption">Tentative de suppression — NAS-03</figcaption>
+                                </figure>
+                                <figure class="image-card image-medium">
+                                    <img src="screen33.png" alt="Erreur suppression dossier partagé immutable" class="image-card__img">
+                                    <figcaption class="image-card__caption">Erreur — Dossier partagé contenant des instantanés immuables</figcaption>
+                                </figure>
+                            </div>
+                            <div class="side-notes">
+                                <div class="test-note">
+                                    <p>Impossible de <strong>supprimer les backups du NAS</strong> en raison de leur immutabilité. La suppression est refusée — la protection est bien active.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Badge de validation -->
+                <div class="validation-badge">
+                    <span>BackupJob3_To_NAS-03 : OK</span>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ─── SECTION VIII : Restauration ─────────────────────── -->
+<hr class="section-separator">
+<section class="content-section" id="restauration">
+    <div class="container">
+
+        <h2 class="chapter-title">VIII. Test de restauration et continuité d'activité en cas d'incident majeur</h2>
+
+        <div class="content-block">
+            <p>Cette section présente les méthodes de restauration Veeam permettant de remettre les services en fonctionnement après un incident majeur.</p>
+            <p>Un incident majeur peut être :</p>
+            <ul class="definition-list">
+                <li>Panne matérielle d'un hyperviseur</li>
+                <li>Corruption de VM</li>
+                <li>Attaque ransomware</li>
+                <li>Suppression accidentelle</li>
+                <li>Sinistre (incendie, inondation...)</li>
+            </ul>
+        </div>
+
+        <!-- ── 1. Composants Veeam ── -->
+        <div class="sub-section">
+            <h3 class="sub-title">1. Composants Veeam spécifiques à la restauration</h3>
+
+            <p class="sub-intro-center">
+                Deux fonctionnalités Veeam sont nécessaires lors des restaurations.
+            </p>
+
+            <div class="param-blocks">
+                <div class="param-block">
+                    <strong>Mount Server</strong>
+                    <p>Monte les fichiers de sauvegarde et rend leur contenu accessible. Il ouvre le backup, donne accès aux disques VM et sert de passerelle pour lire les données. Dans mon lab, il est installé sur les repositories.</p>
+                </div>
+                <div class="param-block">
+                    <strong>vPower NFS</strong>
+                    <p>Utilisé pour les restaurations Instant VM Recovery — la VM démarre directement depuis le backup en quelques secondes via un datastore NFS temporaire. Dans mon lab, vPower NFS est hébergé sur les repositories.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── 2. Scénarios de restauration ── -->
+        <div class="sub-section">
+            <h3 class="sub-title">2. Scénarios de restauration — Mise en situation opérationnelle</h3>
+
+            <p class="sub-intro-center">
+                Cette partie présente les méthodes de restauration illustrées par des scénarios concrets d'incident.
+            </p>
+
+            <div class="content-block">
+                <p>L'objectif est de démontrer la capacité de l'environnement à :</p>
+                <ul class="definition-list">
+                    <li>Restaurer les services dans des délais maîtrisés (RTO)</li>
+                    <li>S'adapter au niveau de criticité des machines</li>
+                    <li>Garantir la continuité d'activité en cas de panne majeure</li>
+                </ul>
+            </div>
+
+            <!-- A. Restore entire VM -->
+            <div class="config-subsection">
+                <h4 class="config-label">A. Restore entire VM</h4>
+
+                <p class="sub-intro">
+                    Ce scénario cible la restauration d'une VM standard hors service sur un hyperviseur en panne.
+                </p>
+
+                <p class="table-caption">Tableau technique de la restauration</p>
+
+                <div class="table-wrapper">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Élément</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Incident</td>
+                                <td>Panne matérielle de l'hyperviseur ESXi hébergeant les VM standard</td>
+                            </tr>
+                            <tr>
+                                <td>Impact</td>
+                                <td>Toutes les VM de cet hôte sont indisponibles</td>
+                            </tr>
+                            <tr>
+                                <td>Objectif</td>
+                                <td>Restaurer les VM sur l'autre ESXi</td>
+                            </tr>
+                            <tr>
+                                <td>RTO visé</td>
+                                <td>Moins de 20 min</td>
+                            </tr>
+                            <tr>
+                                <td>Solution utilisée</td>
+                                <td>Restore entire VM</td>
+                            </tr>
+                            <tr>
+                                <td>Principe</td>
+                                <td>Veeam lit le backup, copie entièrement les disques VM, recrée la VM et la déploie sur le nouvel hôte</td>
+                            </tr>
+                            <tr>
+                                <td>Type de restauration</td>
+                                <td>Restauration complète (VM + disques + configuration)</td>
+                            </tr>
+                            <tr>
+                                <td>Cas d'usage</td>
+                                <td>VM standards, non critiques, environnement simple</td>
+                            </tr>
+                            <tr>
+                                <td>Avantage</td>
+                                <td>Méthode fiable et propre (VM recréée entièrement)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- a. Topologie de la restauration -->
+                <h6 class="tertiary-label">a. Topologie de la restauration</h6>
+
+                <p class="sub-intro">
+                    Voici la topologie de la restauration Restore Entire VM. Les VM hors service sur l'ESXi-01 sont restaurées sur l'ESXi-02 via le Backup Server et le Mount Server hébergé sur REPO-01.
+                </p>
+
+                <div class="topology-wrapper">
+                    <div class="topology-img-container" onclick="openLightbox('restauration-standard')">
+                        <img src="Schema-restauration-standard.jpg" alt="Topologie Restore Entire VM" class="topology-img">
+                        <div class="zoom-hint">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <path d="M21 21l-4.35-4.35M11 8v6M8 11h6"></path>
+                            </svg>
+                            Zoom
+                        </div>
+                    </div>
+                </div>
+                <p class="table-caption">Topologie — Restore Entire VM</p>
+
+                <!-- b. Test – Restore entire VM -->
+                <h6 class="tertiary-label">b. Test — Restore entire VM</h6>
+
+                <!-- screen34 — état initial : ESXi en panne -->
+                <div class="step-block">
+                    <div class="step-header">
+                        <span class="step-badge">1</span>
+                        <h4 class="step-title">Infrastructure vCenter — ESXi 172.16.0.100 hors service</h4>
+                    </div>
+                    <div class="content-img-side">
+                        <figure class="image-card image-wide">
+                            <img src="screen34.png" alt="ESXi 172.16.0.100 hors service" class="image-card__img">
+                            <figcaption class="image-card__caption">Infrastructure vCenter — ESXi 172.16.0.100 hors service</figcaption>
+                        </figure>
+                        <div class="side-notes">
+                            <div class="test-note test-note--incident">
+                                <p>L'hôte ESXi <strong>172.16.0.100</strong> a un problème matériel empêchant les VM de fonctionner. Je vais restaurer les VM standard vers l'<strong>ESXi 172.16.0.101</strong> via Restore entire VM.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- screen35 — sélection de la fonctionnalité -->
+                <div class="step-block">
+                    <div class="step-header">
+                        <span class="step-badge">2</span>
+                        <h4 class="step-title">Sélection de la fonctionnalité — Restore entire VM</h4>
+                    </div>
+                    <div class="content-img-side">
+                        <figure class="image-card image-wide">
+                            <img src="screen35.png" alt="Sélection Restore entire VM dans Veeam" class="image-card__img">
+                            <figcaption class="image-card__caption">Sélection de la fonctionnalité — Restore entire VM</figcaption>
+                        </figure>
+                        <div class="side-notes">
+                            <div class="test-note">
+                                <p>Je choisis la fonctionnalité <strong>Restore entire VM</strong> depuis le backup de la VM.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- screen36 — paramètres du wizard de restauration -->
+                <div class="step-block">
+                    <div class="step-header">
+                        <span class="step-badge">3</span>
+                        <h4 class="step-title">Résumé du wizard — Paramètres de restauration</h4>
+                    </div>
+                    <div class="content-img-side">
+                        <figure class="image-card image-wide">
+                            <img src="screen36.png" alt="Résumé des paramètres de restauration" class="image-card__img">
+                            <figcaption class="image-card__caption">Résumé du wizard — Paramètres de restauration</figcaption>
+                        </figure>
+                        <div class="side-notes">
+                            <div class="test-note test-note--params">
+                                <p>VM renommée <strong>RDSHOST1-RESTORE</strong>, point de restauration spécifique sélectionné, hôte cible <strong>ESXi 172.16.0.101</strong>, placement dans le datastore <strong>DatastoreVM</strong>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- screen37 — log de restauration Success -->
+                <div class="step-block">
+                    <div class="step-header">
+                        <span class="step-badge">4</span>
+                        <h4 class="step-title">Log de restauration — Status : Success</h4>
+                    </div>
+                    <div class="content-img-side">
+                        <figure class="image-card image-wide">
+                            <img src="screen37.png" alt="Log de restauration — Status Success" class="image-card__img">
+                            <figcaption class="image-card__caption">Log de restauration — Status : Success</figcaption>
+                        </figure>
+                        <div class="side-notes">
+                            <div class="test-note">
+                                <p>Restauration terminée en <strong>5 min</strong> — Status : Success.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- screen38 — VM restaurée visible dans vCenter -->
+                <div class="step-block">
+                    <div class="step-header">
+                        <span class="step-badge">5</span>
+                        <h4 class="step-title">VM RDSHOST1-RESTORE — ESXi 172.16.0.101</h4>
+                    </div>
+                    <div class="content-img-side">
+                        <figure class="image-card image-wide">
+                            <img src="screen38.png" alt="RDSHOST1-RESTORE sur ESXi 172.16.0.101" class="image-card__img">
+                            <figcaption class="image-card__caption">VM RDSHOST1-RESTORE — ESXi 172.16.0.101</figcaption>
+                        </figure>
+                        <div class="side-notes">
+                            <div class="test-note">
+                                <p>La VM a bien été restaurée sur l'<strong>ESXi 172.16.0.101</strong> et est visible dans vCenter.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <!-- Résultat du scénario -->
+                <div class="scenario-result">
+                    <p><strong>Résultat :</strong> En cas de panne d'hyperviseur, je peux restaurer les machines virtuelles standard.</p>
+                </div>
+
+            </div>
+
+            <!-- B. Instant Recovery -->
+            <div class="config-subsection">
+                <h4 class="config-label">B. Instant Recovery</h4>
+
+                <p class="sub-intro">
+                    Ce scénario cible la restauration instantané d'une VM critique hors service sur un hyperviseur en panne.
+                </p>
+
+                <p class="table-caption">Tableau technique de l'Instant Recovery</p>
+
+                <div class="table-wrapper">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Élément</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Incident</td>
+                                <td>Panne matérielle de l'hyperviseur ESXi hébergeant les VM critique</td>
+                            </tr>
+                            <tr>
+                                <td>Impact</td>
+                                <td>Toutes les VM critique de cet hôte sont indisponibles</td>
+                            </tr>
+                            <tr>
+                                <td>Objectif</td>
+                                <td>Restaurer les VM sur l'autre ESXi</td>
+                            </tr>
+                            <tr>
+                                <td>RTO visé</td>
+                                <td>Moins de 5 min</td>
+                            </tr>
+                            <tr>
+                                <td>Solution utilisée</td>
+                                <td>Instant Recovery</td>
+                            </tr>
+                            <tr>
+                                <td>Principe</td>
+                                <td>L'ESXi démarre la VM directement depuis un datastore vPower NFS avant que la restauration complète soit faite</td>
+                            </tr>
+                            <tr>
+                                <td>Type de restauration</td>
+                                <td>Démarrage instantané depuis le backup + migration de stockage une fois que l'instant recovery est fini</td>
+                            </tr>
+                            <tr>
+                                <td>Cas d'usage</td>
+                                <td>VM critiques, besoin de remise en service immédiate</td>
+                            </tr>
+                            <tr>
+                                <td>Avantage</td>
+                                <td>RTO ultra court, service rétabli en quelques secondes, pas d'attente de copie complète</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- a. Topologie – Instant Recovery -->
+                <h6 class="tertiary-label">a. Topologie — Instant Recovery</h6>
+
+                <p class="sub-intro">
+                    Voici la topologie de la restauration Instant Recovery, le Vpower envoie un Datastore NFS temporaire à l'ESXi utilisable directement.
+                </p>
+
+                <div class="topology-wrapper">
+                    <div class="topology-img-container" onclick="openLightbox('instant-recovery')">
+                        <img src="Schema-instante-recovery.jpg" alt="Topologie Instant Recovery" class="topology-img">
+                        <div class="zoom-hint">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <path d="M21 21l-4.35-4.35M11 8v6M8 11h6"></path>
+                            </svg>
+                            Zoom
+                        </div>
+                    </div>
+                </div>
+                <p class="table-caption">Topologie — Instant Recovery</p>
+
+                <!-- b. Test – Instant Recovery -->
+                <h6 class="tertiary-label">b. Test — Instant Recovery</h6>
+
+                <!-- screen39 — état initial : VM critiques hors service -->
+                <div class="step-block">
+                    <div class="step-header">
+                        <span class="step-badge">1</span>
+                        <h4 class="step-title">Infrastructure vCenter — ESXi 172.16.0.100 hors service</h4>
+                    </div>
+                    <div class="content-img-side">
+                        <figure class="image-card image-wide">
+                            <img src="screen39.png" alt="ESXi 172.16.0.100 hors service — VM critiques" class="image-card__img">
+                            <figcaption class="image-card__caption">Infrastructure vCenter — ESXi 172.16.0.100 hors service</figcaption>
+                        </figure>
+                        <div class="side-notes">
+                            <div class="test-note test-note--incident">
+                                <p>L'hôte ESXi <strong>172.16.0.100</strong> a un problème matériel empêchant les VM de fonctionner. Je vais restaurer les VM critique vers l'<strong>ESXi 172.16.0.101</strong> via Instant Recovery.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- screen40 — sélection Instant Recovery -->
+                <div class="step-block">
+                    <div class="step-header">
+                        <span class="step-badge">2</span>
+                        <h4 class="step-title">Sélection de la fonctionnalité — Instant Recovery VM</h4>
+                    </div>
+                    <div class="content-img-side">
+                        <figure class="image-card image-wide">
+                            <img src="screen40.png" alt="Sélection Instant Recovery VM dans Veeam" class="image-card__img">
+                            <figcaption class="image-card__caption">Sélection de la fonctionnalité — Instant Recovery VM</figcaption>
+                        </figure>
+                        <div class="side-notes">
+                            <div class="test-note">
+                                <p>Je choisis la fonctionnalité <strong>Instant Recovery VM</strong> depuis le backup de la VM.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- screen41 — paramètres du wizard -->
+                <div class="step-block">
+                    <div class="step-header">
+                        <span class="step-badge">3</span>
+                        <h4 class="step-title">Résumé du wizard — Paramètres Instant Recovery</h4>
+                    </div>
+                    <div class="content-img-side">
+                        <figure class="image-card image-wide">
+                            <img src="screen41.png" alt="Résumé des paramètres Instant Recovery" class="image-card__img">
+                            <figcaption class="image-card__caption">Résumé du wizard — Paramètres Instant Recovery</figcaption>
+                        </figure>
+                        <div class="side-notes">
+                            <div class="test-note test-note--params">
+                                <p>VM renommée <strong>SRV-AD-RECOVERY</strong>, point de restauration spécifique sélectionné, hôte cible <strong>ESXi 172.16.0.101</strong>, placement dans le datastore <strong>DatastoreVM</strong>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- screen42 — VM déjà démarrée, migration en attente -->
+                <div class="step-block">
+                    <div class="step-header">
+                        <span class="step-badge">4</span>
+                        <h4 class="step-title">Restauration instantanée de la VM</h4>
+                    </div>
+                    <div class="content-img-side">
+                        <figure class="image-card image-wide">
+                            <img src="screen42.png" alt="Session Instant Recovery — VM démarrée, migration en attente" class="image-card__img">
+                            <figcaption class="image-card__caption">Session Instant Recovery — VM déjà opérationnelle, migration en arrière-plan</figcaption>
+                        </figure>
+                        <div class="side-notes">
+                            <div class="test-note">
+                                <p>Ici on voit que la VM <strong>SRV-AD-RECOVERY</strong> est déjà démarrée alors que la restauration complète n'est pas encore faite.</p>
+                                <p>Veeam affiche <strong>« Waiting for user to start migration »</strong> — la machine tourne directement depuis le backup.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- screen43 — datastore NFS temporaire -->
+                <div class="step-block">
+                    <div class="step-header">
+                        <span class="step-badge">5</span>
+                        <h4 class="step-title">Datastore NFS</h4>
+                    </div>
+                    <div class="content-img-side">
+                        <figure class="image-card image-wide">
+                            <img src="screen43.png" alt="Datastore NFS VeeamBackup temporaire" class="image-card__img">
+                            <figcaption class="image-card__caption">Datastore NFS — VeeamBackup (stockage temporaire Veeam)</figcaption>
+                        </figure>
+                        <div class="side-notes">
+                            <div class="test-note">
+                                <p>Le datastore <strong>VeeamBackup en NFS</strong> est un stockage temporaire créé par Veeam. Il sert uniquement à faire tourner la VM pendant l'urgence — les performances sont correctes mais ce n'est pas fait pour rester comme ça.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="sub-intro">Le service est revenu avant même la fin de la restauration complète.</p>
+
+                <!-- screen44 — Fin de l'Instant Recovery -->
+                <div class="step-block">
+                    <div class="step-header">
+                        <span class="step-badge">6</span>
+                        <h4 class="step-title">Fin de l'Instant Recovery</h4>
+                    </div>
+                    <div class="content-img-side">
+                        <figure class="image-card image-wide">
+                            <img src="screen44.png" alt="Menu contextuel Instant Recovery — Migrate to production / Stop publishing" class="image-card__img">
+                            <figcaption class="image-card__caption">Options de fin — Migrate to production ou Stop publishing</figcaption>
+                        </figure>
+                        <div class="side-notes">
+                            <div class="test-note">
+                                <p>Deux options sont disponibles pour terminer l'Instant Recovery :</p>
+                                <p><strong>Migrate to production</strong> — transfert propre de la VM vers le stockage définitif, les modifications sont conservées.</p>
+                                <p><strong>Stop publishing</strong> — arrêt immédiat sans migration, les données sont perdues.</p>
+                                <p>J'utilise <strong>Migrate to production</strong> pour récupérer la VM sans perte de données.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- screen45 — Paramètre Quick Migration -->
+                <div class="step-block">
+                    <div class="step-header">
+                        <span class="step-badge">7</span>
+                        <h4 class="step-title">Paramètre Quick Migration</h4>
+                    </div>
+                    <div class="content-img-side">
+                        <figure class="image-card image-wide">
+                            <img src="screen45.png" alt="Assistant Quick Migration — destination ESXi source, datastore DatastoreVM" class="image-card__img">
+                            <figcaption class="image-card__caption">Quick Migration — destination : ESXi source (172.16.0.100), DatastoreVM</figcaption>
+                        </figure>
+                        <div class="side-notes">
+                            <div class="test-note test-note--params">
+                                <p>Je restaure la VM sur l'hôte ESXi source (<strong>172.16.0.100</strong>). Toutes les modifications effectuées pendant l'Instant Recovery sont conservées et renvoyées vers le datastore source.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- screen46 — VM restaurée complètement -->
+                <div class="step-block">
+                    <div class="step-header">
+                        <span class="step-badge">8</span>
+                        <h4 class="step-title">VM restaurée complètement</h4>
+                    </div>
+                    <div class="content-img-side">
+                        <figure class="image-card image-wide">
+                            <img src="screen46.png" alt="vCenter — SRV-AD de retour sur l'hôte ESXi source" class="image-card__img">
+                            <figcaption class="image-card__caption">SRV-AD restaurée sur l'hôte source — Instant Recovery terminé</figcaption>
+                        </figure>
+                        <div class="side-notes">
+                            <div class="test-note">
+                                <p>La VM <strong>SRV-AD</strong> est de retour sur l'hôte source. L'Instant Recovery a bien été arrêté et la session temporaire supprimée.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Résultat du scénario -->
+                <div class="scenario-result">
+                    <p><strong>Résultat :</strong> En cas de panne d'hyperviseur, je peux remettre les VM critiques en service en quelques secondes via Instant Recovery.</p>
+                </div>
+
+            </div>
+
+            <!-- C. Restore Application Items (AD) -->
+            <div class="config-subsection">
+                <h4 class="config-label">C. Restore Application Items (AD)</h4>
+
+                <p class="sub-intro">
+                    Ce scénario cible la restauration d'un objet Active Directory supprimé accidentellement, sans avoir à restaurer la VM entière.
+                </p>
+
+                <p class="table-caption">Tableau technique du Restore Application Items (AD)</p>
+
+                <div class="table-wrapper">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Élément</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Incident</td>
+                                <td>Suppression accidentelle d'un objet Active Directory (utilisateur, groupe, OU, mot de passe…)</td>
+                            </tr>
+                            <tr>
+                                <td>Impact</td>
+                                <td>Problème d'accès aux ressources, comptes bloqués ou droits perdus</td>
+                            </tr>
+                            <tr>
+                                <td>Objectif</td>
+                                <td>Restaurer uniquement l'objet AD sans restaurer toute la VM</td>
+                            </tr>
+                            <tr>
+                                <td>RTO visé</td>
+                                <td>Quelques secondes</td>
+                            </tr>
+                            <tr>
+                                <td>Solution utilisée</td>
+                                <td>Restore Application Items (AD)</td>
+                            </tr>
+                            <tr>
+                                <td>Principe</td>
+                                <td>Le Mount Server monte le backup du serveur AD et l'envoie au Backup Server, qui ouvre la base AD (<strong>NTDS.dit</strong>) via <strong>Veeam Explorer for AD</strong>. On peut alors naviguer dans l'annuaire et restaurer les objets individuellement.</td>
+                            </tr>
+                            <tr>
+                                <td>Type de restauration</td>
+                                <td>Restauration granulaire d'objets Active Directory</td>
+                            </tr>
+                            <tr>
+                                <td>Avantage</td>
+                                <td>Pas besoin de restaurer la VM entière, pas d'interruption du contrôleur de domaine, très rapide</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- a. Topologie -->
+                <h6 class="tertiary-label">a. Topologie — Restore Application Items (AD)</h6>
+
+                <p class="sub-intro">
+                    Voici la topologie du Restore Application Items. Le Mount Server monte le backup de SRV-AD et expose la base NTDS.dit au Backup Server via Veeam Explorer for AD, qui permet de restaurer les objets directement dans l'annuaire.
+                </p>
+
+                <div class="topology-wrapper">
+                    <div class="topology-img-container" onclick="openLightbox('restauration-ad')">
+                        <img src="Schema-restauration-ad.jpg" alt="Topologie Restore Application Items (AD)" class="topology-img">
+                        <div class="zoom-hint">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <path d="M21 21l-4.35-4.35M11 8v6M8 11h6"></path>
+                            </svg>
+                            Zoom
+                        </div>
+                    </div>
+                </div>
+                <p class="table-caption">Topologie — Restore Application Items (AD)</p>
+
+                <!-- b. Test — Restore Application Items (AD) -->
+                <h6 class="tertiary-label">b. Test — Restore Application Items (AD)</h6>
+
+                <!-- screen47 — Suppression des groupes AD -->
+                <div class="step-block">
+                    <div class="step-header">
+                        <span class="step-badge">1</span>
+                        <h4 class="step-title">Suppression des groupes COMPTABLE-GROUPS, DIRECTION-GROUPS, DSI-GROUPS…</h4>
+                    </div>
+                    <div class="content-img-side">
+                        <figure class="image-card image-wide">
+                            <img src="screen47.png" alt="Suppression de groupes AD dans Active Directory" class="image-card__img">
+                            <figcaption class="image-card__caption">Suppression des groupes COMPTABLE-GROUPS, DIRECTION-GROUPS, DSI-GROUPS…</figcaption>
+                        </figure>
+                        <div class="side-notes">
+                            <div class="test-note test-note--incident">
+                                <p>Je supprime plusieurs groupes AD pour simuler une suppression accidentelle.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- screen48 — Restore application items dans Veeam -->
+                <div class="step-block">
+                    <div class="step-header">
+                        <span class="step-badge">2</span>
+                        <h4 class="step-title">Restore application items → Microsoft Active Directory objects</h4>
+                    </div>
+                    <div class="content-img-side">
+                        <figure class="image-card image-wide">
+                            <img src="screen48.png" alt="Menu Veeam — Restore application items → Microsoft Active Directory objects" class="image-card__img">
+                            <figcaption class="image-card__caption">Restore application items → Microsoft Active Directory objects</figcaption>
+                        </figure>
+                        <div class="side-notes">
+                            <div class="test-note">
+                                <p>Je sélectionne <strong>Restore application items</strong> sur le backup de SRV-AD, puis <strong>Microsoft Active Directory objects</strong>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- screen49 — Paramètre du point de restauration -->
+                <div class="step-block">
+                    <div class="step-header">
+                        <span class="step-badge">3</span>
+                        <h4 class="step-title">Point de restauration sélectionné — SRV-AD 2 days ago</h4>
+                    </div>
+                    <div class="content-img-side">
+                        <figure class="image-card image-wide">
+                            <img src="screen49.png" alt="Summary — Restore Point SRV-AD 2 jours avant" class="image-card__img">
+                            <figcaption class="image-card__caption">Point de restauration sélectionné — SRV-AD 2 days ago</figcaption>
+                        </figure>
+                        <div class="side-notes">
+                            <div class="test-note test-note--params">
+                                <p>Je choisis un point de restauration antérieur à la suppression des groupes AD.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- screen50 — Veeam Explorer for AD -->
+                <div class="step-block">
+                    <div class="step-header">
+                        <span class="step-badge">4</span>
+                        <h4 class="step-title">Navigation sur l'AD offline via Veeam Explorer</h4>
+                    </div>
+                    <div class="content-img-side">
+                        <figure class="image-card image-wide">
+                            <img src="screen50.png" alt="Veeam Explorer for AD — groupes supprimés visibles dans l'arborescence" class="image-card__img">
+                            <figcaption class="image-card__caption">Veeam Explorer for AD — sélection des groupes à restaurer</figcaption>
+                        </figure>
+                        <div class="side-notes">
+                            <div class="test-note">
+                                <p>Veeam restaure une version hors ligne de l'AD depuis le backup. Je retrouve les groupes supprimés et je les sélectionne pour les restaurer sur le serveur de production.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- screen51 — Résultat de la restauration (1/2) -->
+                <div class="step-block">
+                    <div class="step-header">
+                        <span class="step-badge">5</span>
+                        <h4 class="step-title">Résultat de la restauration — Restore summary</h4>
+                    </div>
+                    <div class="content-img-side">
+                        <figure class="image-card image-wide">
+                            <img src="screen51.png" alt="Restore summary — 1 object restored, DIRECTION-GROUPS Successfully restored" class="image-card__img">
+                            <figcaption class="image-card__caption">Restore summary — DIRECTION-GROUPS restauré avec succès</figcaption>
+                        </figure>
+                        <div class="side-notes">
+                            <div class="test-note">
+                                <p>La restauration s'est effectuée correctement. <strong>DIRECTION-GROUPS</strong> et tous les groupes supprimés sont de retour dans l'annuaire Active Directory.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- screen52 — Résultat de la restauration (2/2) -->
+                <div class="step-block">
+                    <div class="step-header">
+                        <span class="step-badge">6</span>
+                        <h4 class="step-title">AD Users and Computers — groupes de retour dans l'annuaire</h4>
+                    </div>
+                    <div class="content-img-side">
+                        <figure class="image-card image-wide">
+                            <img src="screen52.png" alt="Active Directory — tous les groupes restaurés" class="image-card__img">
+                            <figcaption class="image-card__caption">AD Users and Computers — groupes de retour dans l'annuaire</figcaption>
+                        </figure>
+                        <div class="side-notes">
+                            <div class="test-note">
+                                <p>Tous les groupes supprimés sont bien de retour dans l'annuaire Active Directory.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Résultat du scénario -->
+                <div class="scenario-result">
+                    <p><strong>Résultat :</strong> Le Restore Application Items (AD) fonctionne correctement. Les objets AD supprimés accidentellement peuvent être restaurés en quelques secondes sans interruption du contrôleur de domaine.</p>
+                </div>
+
+            </div>
+
+            <!-- D. File Level Restore Linux -->
+            <div class="config-subsection">
+                <h4 class="config-label">D. File Level Restore Linux</h4>
+
+                <p class="sub-intro">
+                    Ce scénario cible la restauration de fichiers supprimés accidentellement sur un serveur Linux, sans restaurer la VM entière.
+                </p>
+
+                <p class="table-caption">Tableau technique du File Level Restore Linux</p>
+
+                <div class="table-wrapper">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Élément</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Incident</td>
+                                <td>Suppression accidentelle d'un dossier sur le serveur GLPI</td>
+                            </tr>
+                            <tr>
+                                <td>Impact</td>
+                                <td>Perte de données applicatives, scripts, fichiers de configuration</td>
+                            </tr>
+                            <tr>
+                                <td>Objectif</td>
+                                <td>Restaurer uniquement les fichiers nécessaires sans restaurer toute la VM</td>
+                            </tr>
+                            <tr>
+                                <td>RTO visé</td>
+                                <td>Quelques secondes</td>
+                            </tr>
+                            <tr>
+                                <td>Solution utilisée</td>
+                                <td>File Level Restore (Linux)</td>
+                            </tr>
+                            <tr>
+                                <td>Principe</td>
+                                <td>Veeam déploie une <strong>helper appliance Linux</strong> temporaire sur l'hyperviseur. Elle monte le disque du backup en lecture seule et expose le système de fichiers. On peut ainsi parcourir l'arborescence Linux et restaurer les fichiers vers la VM source ou une autre destination.</td>
+                            </tr>
+                            <tr>
+                                <td>Type de restauration</td>
+                                <td>Restauration granulaire de fichiers et dossiers</td>
+                            </tr>
+                            <tr>
+                                <td>Cas d'usage</td>
+                                <td>Suppression d'un fichier, erreur de configuration, récupération rapide de données</td>
+                            </tr>
+                            <tr>
+                                <td>Avantage</td>
+                                <td>Rapide, ciblé, pas d'arrêt de la VM, très peu d'impact utilisateur</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- a. Topologie -->
+                <h6 class="tertiary-label">a. Topologie — File Level Restore Linux</h6>
+
+                <p class="sub-intro">
+                    Veeam déploie une appliance Linux temporaire sur SRV-HYPERV. Elle monte le backup de SRV-GLPI depuis NAS-02 et expose le système de fichiers via SSH pour permettre la restauration directe sur la VM source.
+                </p>
+
+                <div class="topology-wrapper">
+                    <div class="topology-img-container" onclick="openLightbox('restauration-linux')">
+                        <img src="Schema-restauration-linux.jpg" alt="Topologie File Level Restore Linux" class="topology-img">
+                        <div class="zoom-hint">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <path d="M21 21l-4.35-4.35M11 8v6M8 11h6"></path>
+                            </svg>
+                            Zoom
+                        </div>
+                    </div>
+                </div>
+                <p class="table-caption">Topologie — File Level Restore Linux</p>
+
+                <!-- b. Test — File Level Restore -->
+                <h6 class="tertiary-label">b. Test — File Level Restore</h6>
+
+                <!-- screen53 — Suppression du dossier -->
+                <div class="step-block">
+                    <div class="step-header">
+                        <span class="step-badge">1</span>
+                        <h4 class="step-title">Suppression du dossier</h4>
+                    </div>
+                    <div class="content-img-side">
+                        <figure class="image-card image-wide">
+                            <img src="screen53.png" alt="Terminal Linux — rm -R testVEAM" class="image-card__img">
+                            <figcaption class="image-card__caption">Terminal SRV-GLPI — suppression du dossier testVEAM</figcaption>
+                        </figure>
+                        <div class="side-notes">
+                            <div class="test-note test-note--incident">
+                                <p>Je supprime le dossier <strong>testVEAM</strong> via <code>rm -R</code> pour simuler une suppression accidentelle.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- screen54 — Restore guest files -->
+                <div class="step-block">
+                    <div class="step-header">
+                        <span class="step-badge">2</span>
+                        <h4 class="step-title">Lancement de la restauration</h4>
+                    </div>
+                    <div class="content-img-side">
+                        <figure class="image-card image-wide">
+                            <img src="screen54.png" alt="Veeam — Restore guest files sur SRV-GLPI" class="image-card__img">
+                            <figcaption class="image-card__caption">Menu Veeam — Restore guest files</figcaption>
+                        </figure>
+                        <div class="side-notes">
+                            <div class="test-note">
+                                <p>Je sélectionne <strong>Restore guest files</strong> sur le backup de SRV-GLPI pour accéder à l'arborescence Linux.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- screen55 — Paramètre de l'appliance -->
+                <div class="step-block">
+                    <div class="step-header">
+                        <span class="step-badge">3</span>
+                        <h4 class="step-title">Paramètres réseaux de l'appliance</h4>
+                    </div>
+                    <div class="content-img-side">
+                        <figure class="image-card image-wide">
+                            <img src="screen55.png" alt="Helper Appliance — configuration réseau IP fixe 192.168.200.59" class="image-card__img">
+                            <figcaption class="image-card__caption">Helper Appliance</figcaption>
+                        </figure>
+                        <div class="side-notes">
+                            <div class="test-note test-note--params">
+                                <p>Configuration de la helper appliance Linux :</p>
+                                <ul style="margin: 0.4rem 0 0 1rem; list-style: disc;">
+                                    <li>Hyperviseur hôte : <strong>SRV-HYPERV (192.168.200.200)</strong></li>
+                                    <li>IP fixe : <strong>192.168.200.59</strong> — masque, passerelle et DNS configurés</li>
+                                    <li>L'appliance monte le disque du backup et expose l'arborescence Linux</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- screen56 — Appliance créée sur Hyper-V -->
+                <div class="step-block">
+                    <div class="step-header">
+                        <span class="step-badge">4</span>
+                        <h4 class="step-title">Hyper-V — VeeamFLR_SRV-GLPI déployée aux côtés de SRV-GLPI</h4>
+                    </div>
+                    <div class="content-img-side">
+                        <figure class="image-card image-wide">
+                            <img src="screen56.png" alt="Gestionnaire Hyper-V — VeeamFLR_SRV-GLPI créée" class="image-card__img">
+                            <figcaption class="image-card__caption">Hyper-V — VeeamFLR_SRV-GLPI déployée aux côtés de SRV-GLPI</figcaption>
+                        </figure>
+                        <div class="side-notes">
+                            <div class="test-note">
+                                <p>L'appliance <strong>VeeamFLR_SRV-GLPI</strong> a bien été créée sur l'hyperviseur.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- screen57 — Arborescence Linux via Veeam -->
+                <div class="step-block">
+                    <div class="step-header">
+                        <span class="step-badge">5</span>
+                        <h4 class="step-title">Navigation dans l'arborescence Linux</h4>
+                    </div>
+                    <div class="content-img-side">
+                        <figure class="image-card image-wide">
+                            <img src="screen57.png" alt="Veeam File Browser — dossier testVEAM visible dans /home/tisma" class="image-card__img">
+                            <figcaption class="image-card__caption">Veeam file browser — testVEAM visible dans l'arborescence du backup</figcaption>
+                        </figure>
+                        <div class="side-notes">
+                            <div class="test-note">
+                                <p>Je navigue dans l'arborescence Linux depuis le backup. Le dossier <strong>testVEAM</strong> est visible et sélectionnable pour la restauration.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- screen58 — Restauration vers Windows (1/2) -->
+                <div class="step-block">
+                    <div class="step-header">
+                        <span class="step-badge">6</span>
+                        <h4 class="step-title">Restauration vers une machine Windows — destination</h4>
+                    </div>
+                    <div class="content-img-side">
+                        <figure class="image-card image-wide">
+                            <img src="screen58.png" alt="Choose Directory — C:\Users\Administrateur\Downloads" class="image-card__img">
+                            <figcaption class="image-card__caption">Destination de restauration — dossier Downloads sur TEST-RESTORE</figcaption>
+                        </figure>
+                        <div class="side-notes">
+                            <div class="test-note">
+                                <p>Je restaure le dossier <strong>testVEAM</strong> vers un répertoire Windows sur une autre machine.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- screen59 — Restauration vers Windows (2/2) -->
+                <div class="step-block">
+                    <div class="step-header">
+                        <span class="step-badge">7</span>
+                        <h4 class="step-title">Restauration vers une machine Windows — résultat</h4>
+                    </div>
+                    <div class="content-img-side">
+                        <figure class="image-card image-wide">
+                            <img src="screen59.png" alt="Explorateur Windows — dossier testVEAM restauré dans Téléchargements" class="image-card__img">
+                            <figcaption class="image-card__caption">testVEAM restauré dans les Téléchargements</figcaption>
+                        </figure>
+                        <div class="side-notes">
+                            <div class="test-note">
+                                <p>Le dossier <strong>testVEAM</strong> apparaît bien dans l'Explorateur Windows.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Résultat du scénario -->
+                <div class="scenario-result">
+                    <p><strong>Résultat :</strong> Le File Level Restore Linux fonctionne correctement. Les fichiers supprimés peuvent être récupérés depuis le backup sans redémarrer la VM.</p>
+                </div>
+
+            </div>
+
+            <!-- E. Virtual disk restore -->
+            <div class="config-subsection">
+                <h4 class="config-label">E. Virtual disk restore</h4>
+
+                <p class="sub-intro">
+                    Ce scénario cible la restauration d'un disque virtuel corrompu sans avoir à restaurer la VM entière.
+                </p>
+
+                <p class="table-caption">Tableau technique du Virtual disk restore</p>
+
+                <div class="table-wrapper">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Élément</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Incident</td>
+                                <td>Corruption du disque virtuel pour le RDSHOST01</td>
+                            </tr>
+                            <tr>
+                                <td>Impact</td>
+                                <td>Perte de données sur un volume précis, application inutilisable</td>
+                            </tr>
+                            <tr>
+                                <td>Objectif</td>
+                                <td>Restaurer uniquement le disque virtuel sans restaurer toute la VM et brancher le disque sur une autre VM</td>
+                            </tr>
+                            <tr>
+                                <td>RTO visé</td>
+                                <td>Quelques dizaines de minutes</td>
+                            </tr>
+                            <tr>
+                                <td>Solution utilisée</td>
+                                <td>Virtual disk restore</td>
+                            </tr>
+                            <tr>
+                                <td>Principe</td>
+                                <td>Veeam extrait un disque virtuel depuis le backup et le restaure sur un datastore et une VM utilisable</td>
+                            </tr>
+                            <tr>
+                                <td>Type de restauration</td>
+                                <td>Restauration ciblée d'un disque virtuel (VMDK)</td>
+                            </tr>
+                            <tr>
+                                <td>Cas d'usage</td>
+                                <td>Disque de données corrompu, besoin de récupérer un volume précis</td>
+                            </tr>
+                            <tr>
+                                <td>Avantage</td>
+                                <td>Pas de restauration complète de la VM, plus rapide et plus flexible</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- a. Topologie -->
+                <h6 class="tertiary-label">a. Topologie — Virtual disk restore</h6>
+
+                <p class="sub-intro">
+                    Veeam extrait le VMDK corrompu de SRV-RDSHOST2 depuis le backup sur REPO-01, puis le restaure sur un datastore VMware et l'attache à une VM cible.
+                </p>
+
+                <div class="topology-wrapper">
+                    <div class="topology-img-container" onclick="openLightbox('restauration-disk')">
+                        <img src="Schema-restauration-disk.jpg" alt="Topologie Virtual disk restore" class="topology-img">
+                        <div class="zoom-hint">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <path d="M21 21l-4.35-4.35M11 8v6M8 11h6"></path>
+                            </svg>
+                            Zoom
+                        </div>
+                    </div>
+                </div>
+                <p class="table-caption">Topologie — Virtual disk restore</p>
+
+                <!-- b. Test — Virtual Disk Restore -->
+                <h6 class="tertiary-label">b. Test — Virtual Disk Restore</h6>
+
+                <!-- screen60 — Disque corrompu -->
+                <div class="step-block">
+                    <div class="step-header">
+                        <span class="step-badge">1</span>
+                        <h4 class="step-title">Disque virtuel corrompu</h4>
+                    </div>
+                    <div class="content-img-side">
+                        <figure class="image-card image-wide">
+                            <img src="screen60.png" alt="Datastore vCenter — RDSHOST1 vmdk corrompu" class="image-card__img">
+                            <figcaption class="image-card__caption">Datastore DATASTORE-VM01 — RDSHOST1 vmdk corrompu</figcaption>
+                        </figure>
+                        <div class="side-notes">
+                            <div class="test-note test-note--incident">
+                                <p>Le disque virtuel du <strong>RDSHOST1</strong> est corrompu.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- screen61 — Disk Mapping et paramètres -->
+                <div class="step-block">
+                    <div class="step-header">
+                        <span class="step-badge">2</span>
+                        <h4 class="step-title">Disk Mapping — RDSHOST1.vmdk attaché à SRV-FILE en SCSI 0:1</h4>
+                    </div>
+                    <div class="content-img-side">
+                        <figure class="image-card image-wide">
+                            <img src="screen61.png" alt="Disk Mapping — SRV-FILE cible, SCSI 0:1, DATASTORE-VM01" class="image-card__img">
+                            <figcaption class="image-card__caption">Disk Mapping — RDSHOST1.vmdk attaché à SRV-FILE en SCSI 0:1</figcaption>
+                        </figure>
+                        <div class="side-notes">
+                            <div class="test-note test-note--params">
+                                <p>Je sélectionne <strong>SRV-FILE</strong> comme VM cible. Le disque est attaché en tant que disque secondaire (<strong>SCSI 0:1</strong>), sans écraser le disque système. Il est stocké sur <strong>DATASTORE-VM01</strong> pour permettre la récupération des données.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- screen62 — Log de restauration -->
+                <div class="step-block">
+                    <div class="step-header">
+                        <span class="step-badge">3</span>
+                        <h4 class="step-title">Résultat de la restauration</h4>
+                    </div>
+                    <div class="content-img-side">
+                        <figure class="image-card image-wide">
+                            <img src="screen62.png" alt="Veeam log — Restore completed successfully pour RDSHOST1" class="image-card__img">
+                            <figcaption class="image-card__caption">Log Veeam — Restore completed successfully</figcaption>
+                        </figure>
+                        <div class="side-notes">
+                            <div class="test-note">
+                                <p>La restauration s'est bien exécutée avec un <strong>RTO de 4 minutes</strong>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- screen63 — Disque attaché à SRV-FILE -->
+                <div class="step-block">
+                    <div class="step-header">
+                        <span class="step-badge">4</span>
+                        <h4 class="step-title">SRV-FILE — Disque dur 2 : RDSHOST1.vmdk récupéré du backup</h4>
+                    </div>
+                    <div class="content-img-side">
+                        <figure class="image-card image-wide">
+                            <img src="screen63.png" alt="vSphere — SRV-FILE avec Disque dur 2 RDSHOST1.vmdk (60 Go)" class="image-card__img">
+                            <figcaption class="image-card__caption">SRV-FILE — Disque dur 2 : RDSHOST1.vmdk récupéré du backup</figcaption>
+                        </figure>
+                        <div class="side-notes">
+                            <div class="test-note">
+                                <p>SRV-FILE a bien récupéré le disque restauré de <strong>SRV-RDSHOST01</strong>. Il apparaît en tant que <strong>Disque dur 2 (60 Go)</strong> dans les paramètres de la VM.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Résultat du scénario -->
+                <div class="scenario-result">
+                    <p><strong>Résultat :</strong> Le Virtual disk restore fonctionne correctement. Un disque virtuel corrompu peut être extrait du backup et rattaché à une VM en quelques minutes.</p>
+                </div>
+
+            </div>
+
+            <!-- F. Bare Metal Recovery -->
+            <div class="config-subsection">
+                <h4 class="config-label">F. Bare Metal Recovery</h4>
+
+                <p class="sub-intro">
+                    Ce scénario couvre la restauration complète d'un hyperviseur physique détruit, sur un nouveau matériel, sans aucune réinstallation manuelle.
+                </p>
+
+                <p class="table-caption">Tableau technique du Bare Metal Recovery</p>
+
+                <div class="table-wrapper">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Élément</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Incident</td>
+                                <td>L'hyperviseur Hyper-V01 a brûlé et n'est plus du tout utilisable</td>
+                            </tr>
+                            <tr>
+                                <td>Impact</td>
+                                <td>Serveur totalement inutilisable, arrêt complet des services</td>
+                            </tr>
+                            <tr>
+                                <td>Objectif</td>
+                                <td>Restaurer intégralement le serveur sur une nouvelle machine physique</td>
+                            </tr>
+                            <tr>
+                                <td>RTO visé</td>
+                                <td>Minutes à quelques heures</td>
+                            </tr>
+                            <tr>
+                                <td>Solution utilisée</td>
+                                <td>Bare Metal Recovery</td>
+                            </tr>
+                            <tr>
+                                <td>Principe</td>
+                                <td>Un ISO de recovery est généré. La nouvelle machine démarre sur cet ISO, permettant de sélectionner un point de restauration et de restaurer l'intégralité du système</td>
+                            </tr>
+                            <tr>
+                                <td>Type de restauration</td>
+                                <td>Restauration complète du serveur (OS, configurations, pilotes, données, applications)</td>
+                            </tr>
+                            <tr>
+                                <td>Cas d'usage</td>
+                                <td>Serveur physique détruit, panne matérielle grave, remplacement complet de machine</td>
+                            </tr>
+                            <tr>
+                                <td>Avantage</td>
+                                <td>Restauration fidèle du serveur sur un nouveau matériel, aucune réinstallation manuelle</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- a. Topologie -->
+                <h6 class="tertiary-label">a. Topologie — Bare Metal Recovery</h6>
+
+                <p class="sub-intro">
+                    L'ISO de recovery est stocké sur NAS-02. La nouvelle machine (SRV-HYPERV-RECOVERY) démarre sur cet ISO pour restaurer l'intégralité du système depuis le point de sauvegarde.
+                </p>
+
+                <div class="topology-wrapper">
+                    <div class="topology-img-container" onclick="openLightbox('iso-recovery')">
+                        <img src="schema-iso-recovery.png" alt="Topologie Bare Metal Recovery" class="topology-img">
+                        <div class="zoom-hint">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <path d="M21 21l-4.35-4.35M11 8v6M8 11h6"></path>
+                            </svg>
+                            Zoom
+                        </div>
+                    </div>
+                </div>
+                <p class="table-caption">Topologie — Bare Metal Recovery</p>
+
+                <!-- b. Test — Bare Metal Recovery -->
+                <h6 class="tertiary-label">b. Test — Bare Metal Recovery</h6>
+
+                <!-- screen64 — Création de l'ISO -->
+                <div class="step-block">
+                    <div class="step-header">
+                        <span class="step-badge">1</span>
+                        <h4 class="step-title">Création de l'ISO de restauration</h4>
+                    </div>
+                    <div class="content-img-side">
+                        <figure class="image-card image-wide">
+                            <img src="screen64.png" alt="Create Recovery Media — ISO image file, options réseau et pilotes" class="image-card__img">
+                            <figcaption class="image-card__caption">Create Recovery Media — paramètres de création de l'ISO</figcaption>
+                        </figure>
+                        <div class="side-notes">
+                            <div class="test-note test-note--params">
+                                <ul style="margin: 0; padding-left: 1.1rem; list-style: disc;">
+                                    <li style="margin-bottom: 0.5rem;"><strong>ISO image file</strong> : format universel pour booter sur n'importe quelle machine physique.</li>
+                                    <li style="margin-bottom: 0.5rem;"><strong>Include network connection settings</strong> : intègre la config réseau (IP, DNS) pour accéder au repository dès le démarrage.</li>
+                                    <li style="margin-bottom: 0.5rem;"><strong>Include hardware drivers from this computer</strong> : embarque les pilotes réseau et stockage pour garantir la détection du matériel.</li>
+                                    <li><strong>Include additional storage and network drivers</strong> : j'ajoute <code>DriverStore\FileRepository</code> pour maximiser la compatibilité sur un matériel différent.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- screen65 — ISO créée -->
+                <div class="step-block">
+                    <div class="step-header">
+                        <span class="step-badge">2</span>
+                        <h4 class="step-title">ISO créée</h4>
+                    </div>
+                    <div class="content-img-side">
+                        <figure class="image-card image-wide">
+                            <img src="screen65.png" alt="Explorateur — VeeamRecoveryMedia_SRV-HYPERV-01.iso créé" class="image-card__img">
+                            <figcaption class="image-card__caption">VeeamRecoveryMedia_SRV-HYPERV-01.iso généré avec succès</figcaption>
+                        </figure>
+                        <div class="side-notes">
+                            <div class="test-note">
+                                <p>L'ISO de restauration <strong>VeeamRecoveryMedia_SRV-HYPERV-01</strong> a bien été créée.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- screen66 + screen67 — Comparaison Hyperviseur HS vs Restauré -->
+                <div class="step-block">
+                    <div class="step-header">
+                        <span class="step-badge">3</span>
+                        <h4 class="step-title">Nouvelle machine — configuration identique</h4>
+                    </div>
+                    <div class="screens-row">
+                        <div>
+                            <p class="subsub-title">Hyperviseur HS</p>
+                            <figure class="image-card image-wide">
+                                <img src="screen66.png" alt="SRV-HYPERV01 — configuration de l'hyperviseur HS" class="image-card__img">
+                                <figcaption class="image-card__caption">SRV-HYPERV01 — machine hors service</figcaption>
+                            </figure>
+                        </div>
+                        <div>
+                            <p class="subsub-title">Hyperviseur Restauré</p>
+                            <figure class="image-card image-wide">
+                                <img src="screen67.png" alt="SRV-HYPERV-RECOVERY — nouvelle machine avec specs identiques" class="image-card__img">
+                                <figcaption class="image-card__caption">SRV-HYPERV-RECOVERY — nouvelle machine</figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                    <div class="test-note" style="margin-top: 1rem;">
+                        <p>La nouvelle machine offre des performances similaires à l'ancienne pour garantir la compatibilité lors de la restauration.</p>
+                    </div>
+                </div>
+
+                <!-- screen68 — Boot sur Veeam Recovery Media -->
+                <div class="step-block">
+                    <div class="step-header">
+                        <span class="step-badge">4</span>
+                        <h4 class="step-title">Boot sur Veeam Recovery Media</h4>
+                    </div>
+                    <div class="content-img-side">
+                        <figure class="image-card image-wide">
+                            <img src="screen68.png" alt="Veeam Recovery Media 13.0.1 — Bare Metal Recovery sélectionné" class="image-card__img">
+                            <figcaption class="image-card__caption">Veeam Recovery Media — sélection de Bare Metal Recovery</figcaption>
+                        </figure>
+                        <div class="side-notes">
+                            <div class="test-note">
+                                <p>Dans un scénario de machine physique HS, je vais faire un <strong>Bare Metal Recovery</strong>, car elle permet une restauration complète depuis le repository Veeam.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- screen69 — Emplacement du backup -->
+                <div class="step-block">
+                    <div class="step-header">
+                        <span class="step-badge">5</span>
+                        <h4 class="step-title">Emplacement du backup</h4>
+                    </div>
+                    <div class="content-img-side">
+                        <figure class="image-card image-wide">
+                            <img src="screen69.png" alt="Backup Location — Network storage sélectionné" class="image-card__img">
+                            <figcaption class="image-card__caption">Backup Location — sélection du stockage réseau</figcaption>
+                        </figure>
+                        <div class="side-notes">
+                            <div class="test-note test-note--params">
+                                <p>La restauration s'effectue depuis un <strong>repository distant</strong>. Je sélectionne <strong>Network storage</strong> pour pointer vers le repository Veeam.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- screen70 — Connexion au Backup Server -->
+                <div class="step-block">
+                    <div class="step-header">
+                        <span class="step-badge">6</span>
+                        <h4 class="step-title">Connexion au Backup Server</h4>
+                    </div>
+                    <div class="content-img-side">
+                        <figure class="image-card image-wide">
+                            <img src="screen70.png" alt="Backup Server — IP 172.16.0.10, credentials veeamadm" class="image-card__img">
+                            <figcaption class="image-card__caption">Backup Server — IP 172.16.0.10 avec le compte veeamadm</figcaption>
+                        </figure>
+                        <div class="side-notes">
+                            <div class="test-note test-note--params">
+                                <p>J'indique l'<strong>IP du Backup Server (172.16.0.10)</strong> ainsi que le compte de service <strong>veeamadm</strong>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- screen71 — Sélection du backup (1/2) -->
+                <div class="step-block">
+                    <div class="step-header">
+                        <span class="step-badge">7</span>
+                        <h4 class="step-title">Sélection du backup — BackupJob3 / Host-HyperV_To_REPO-02</h4>
+                    </div>
+                    <div class="content-img-side">
+                        <figure class="image-card image-wide">
+                            <img src="screen71.png" alt="Backup — SRV-HYPERV-01 dans BackupJob3_To_NAS-03 OFF-SITE" class="image-card__img">
+                            <figcaption class="image-card__caption">Sélection du backup — BackupJob3 / Host-HyperV_To_REPO-02</figcaption>
+                        </figure>
+                        <div class="side-notes">
+                            <div class="test-note">
+                                <p>Je choisis le backup issu de mon <strong>Backup Job 3</strong>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- screen72 — Sélection du point de restauration (2/2) -->
+                <div class="step-block">
+                    <div class="step-header">
+                        <span class="step-badge">8</span>
+                        <h4 class="step-title">Points de restauration disponibles — SRV-HYPERV-01</h4>
+                    </div>
+                    <div class="content-img-side">
+                        <figure class="image-card image-wide">
+                            <img src="screen72.png" alt="Restore points — SRV-HYPERV-01, Windows Server 2022, points disponibles" class="image-card__img">
+                            <figcaption class="image-card__caption">Points de restauration disponibles — SRV-HYPERV-01</figcaption>
+                        </figure>
+                        <div class="side-notes">
+                            <div class="test-note">
+                                <p>Je sélectionne le point de restauration souhaité.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="sub-intro-center">Je choisis le backup issu de mon <strong>Backup Job 3</strong> ainsi que le point de restauration souhaité.</p>
+
+                <!-- screen73 — Disk Mapping -->
+                <div class="step-block">
+                    <div class="step-header">
+                        <span class="step-badge">9</span>
+                        <h4 class="step-title">Configuration du mapping de disque</h4>
+                    </div>
+                    <div class="content-img-side">
+                        <figure class="image-card image-wide">
+                            <img src="screen73.png" alt="Disk Mapping — partitions EFI, C:, données sur disques séparés" class="image-card__img">
+                            <figcaption class="image-card__caption">Disk Mapping — partitions système et données mappées manuellement</figcaption>
+                        </figure>
+                        <div class="side-notes">
+                            <div class="test-note test-note--params">
+                                <p>Je réalise un mapping manuel des disques : les partitions système (EFI et C:) sont restaurées sur le disque de <strong>60 Go</strong>, et le volume de données sur le disque séparé de <strong>150 Go</strong>, assurant un démarrage correct sur le nouveau matériel.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- screen74 — Log de restauration -->
+                <div class="step-block">
+                    <div class="step-header">
+                        <span class="step-badge">10</span>
+                        <h4 class="step-title">Restauration en cours</h4>
+                    </div>
+                    <div class="content-img-side">
+                        <figure class="image-card image-wide">
+                            <img src="screen74.png" alt="Log Veeam — Restore process finished at 06/02/2026 16:44:44" class="image-card__img">
+                            <figcaption class="image-card__caption">Log — Restore process finished at 06/02/2026 16:44:44</figcaption>
+                        </figure>
+                        <div class="side-notes">
+                            <div class="test-note">
+                                <p>La restauration s'est effectuée correctement. Toutes les étapes sont validées avec succès.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- screen75 — Système opérationnel -->
+                <div class="step-block">
+                    <div class="step-header">
+                        <span class="step-badge">11</span>
+                        <h4 class="step-title">Système opérationnel</h4>
+                    </div>
+                    <div class="content-img-side">
+                        <figure class="image-card image-wide">
+                            <img src="screen75.png" alt="Écran de verrouillage Windows — vendredi 6 février 16:54" class="image-card__img">
+                            <figcaption class="image-card__caption">Nouvelle machine Hyper-V — démarrage et connexion opérationnels</figcaption>
+                        </figure>
+                        <div class="side-notes">
+                            <div class="test-note">
+                                <p>La nouvelle machine Hyper-V est opérationnelle et peut être utilisée avec les mêmes configurations que l'ancienne.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Résultat du scénario -->
+                <div class="scenario-result">
+                    <p><strong>Résultat :</strong> Le Bare Metal Recovery fonctionne correctement. En cas de destruction totale du serveur physique, l'intégralité du système peut être restaurée sur un nouveau matériel sans aucune réinstallation manuelle.</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+    
+</section>
+
+
+    <hr class="section-separator">
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION — IX. Conclusion
+    ═══════════════════════════════════════════════════════ -->
+    <section id="conclusion" class="content-section">
+        <div class="container">
+            <h2 class="chapter-title">IX. Conclusion</h2>
+            <div class="content-block">
+                <p class="sub-intro">
+                    Ce projet m'a permis de mettre en place une solution complète de sauvegarde et de restauration basée sur Veeam Backup &amp; Replication, en m'appuyant sur une infrastructure segmentée (LAN VMware, LAN Hyper-V, LAN Off-Site) et sur une stratégie conforme aux bonnes pratiques de résilience (3-2-1-1 avec copie off-site et immutabilité).
+                </p>
+            </div>
+        </div>
+    </section>
+
+     <!-- ─── Lightbox ───────────────────────────────────────── -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+        <img src="Schema-veeam.jpg" alt="Topologie Veeam" onclick="event.stopPropagation()">
+    </div>
+
+    <div class="lightbox" id="lightbox-backup1" onclick="closeLightbox('backup1')">
+    <button class="lightbox-close" onclick="closeLightbox('backup1')">✕</button>
+    <img src="Schema-backup-1.jpg" alt="Topologie Backup 1" onclick="event.stopPropagation()">
+</div>
+
+    <div class="lightbox" id="lightbox-backup2" onclick="closeLightbox('backup2')">
+    <button class="lightbox-close" onclick="closeLightbox('backup2')">✕</button>
+    <img src="Schema-backup-2.png" alt="Topologie Backup 2" onclick="event.stopPropagation()">
+</div>
+
+<div class="lightbox" id="lightbox-backup3" onclick="closeLightbox('backup3')">
+    <button class="lightbox-close" onclick="closeLightbox('backup3')">✕</button>
+    <img src="Schema-backup-3.jpg" alt="Topologie Backup 3" onclick="event.stopPropagation()">
+</div>
+
+<div class="lightbox" id="lightbox-restauration-standard" onclick="closeLightbox('restauration-standard')">
+    <button class="lightbox-close" onclick="closeLightbox('restauration-standard')">✕</button>
+    <img src="Schema-restauration-standard.jpg" alt="Topologie Restore Entire VM" onclick="event.stopPropagation()">
+</div>
+
+<div class="lightbox" id="lightbox-instant-recovery" onclick="closeLightbox('instant-recovery')">
+    <button class="lightbox-close" onclick="closeLightbox('instant-recovery')">✕</button>
+    <img src="Schema-instante-recovery.jpg" alt="Topologie Instant Recovery" onclick="event.stopPropagation()">
+</div>
+
+<div class="lightbox" id="lightbox-restauration-ad" onclick="closeLightbox('restauration-ad')">
+    <button class="lightbox-close" onclick="closeLightbox('restauration-ad')">✕</button>
+    <img src="Schema-restauration-ad.jpg" alt="Topologie Restore Application Items (AD)" onclick="event.stopPropagation()">
+</div>
+
+<div class="lightbox" id="lightbox-restauration-linux" onclick="closeLightbox('restauration-linux')">
+    <button class="lightbox-close" onclick="closeLightbox('restauration-linux')">✕</button>
+    <img src="Schema-restauration-linux.jpg" alt="Topologie File Level Restore Linux" onclick="event.stopPropagation()">
+</div>
+
+<div class="lightbox" id="lightbox-restauration-disk" onclick="closeLightbox('restauration-disk')">
+    <button class="lightbox-close" onclick="closeLightbox('restauration-disk')">✕</button>
+    <img src="Schema-restauration-disk.jpg" alt="Topologie Virtual disk restore" onclick="event.stopPropagation()">
+</div>
+
+<div class="lightbox" id="lightbox-iso-recovery" onclick="closeLightbox('iso-recovery')">
+    <button class="lightbox-close" onclick="closeLightbox('iso-recovery')">✕</button>
+    <img src="schema-iso-recovery.png" alt="Topologie Bare Metal Recovery" onclick="event.stopPropagation()">
+</div>
+
+
+
+
+
+    <!-- ─── Footer ──────────────────────────────────────────── -->
+    <footer>
+        <p>© 2026 LAPULY Matthis — Tous droits réservés</p>
+    </footer>
+
+    <script src="projet-veeam.js"></script>
+
+</body>
+</html>

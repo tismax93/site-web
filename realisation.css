@@ -1,0 +1,305 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #0F0F0F;
+    color: #EAEAEA;
+    line-height: 1.6;
+}
+
+/* ─── Navigation ─────────────────────────────────────────── */
+nav {
+    background-color: #1A1A1A;
+    border-bottom: 1px solid #2A2A2A;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-links a {
+    color: #B0B0B0;
+    text-decoration: none;
+    padding: 0.5rem 1.5rem;
+    border: 2px solid transparent;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.nav-links a:hover {
+    color: #EAEAEA;
+    border-color: #2A2A2A;
+    background-color: #1E1E1E;
+}
+
+.nav-links a.active {
+    color: #EAEAEA;
+    border-color: #4A90E2;
+}
+
+.nav-name {
+    border: 2px solid #2A2A2A;
+}
+
+.ml-button {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 2px solid #2A2A2A;
+    background-color: #1A1A1A;
+    color: #EAEAEA;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.ml-button:hover {
+    border-color: #4A90E2;
+    background-color: #1E1E1E;
+}
+
+/* ─── Animations d'entrée ──────────────────────────── */
+@keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-24px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.container h1 { animation: fadeDown 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.05s both; }
+
+.project-card:nth-child(1) { animation: fadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.20s both; }
+.project-card:nth-child(2) { animation: fadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.35s both; }
+.project-card:nth-child(3) { animation: fadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.50s both; }
+
+/* ─── Container ──────────────────────────────────────────── */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+}
+
+/* ─── Section Présentation ───────────────────────────────── */
+.presentation {
+    background-color: #1A1A1A;
+    border: 2px solid #2A2A2A;
+    border-radius: 8px;
+    padding: 3rem;
+    margin-bottom: 4rem;
+    text-align: center;
+}
+
+.presentation h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #EAEAEA;
+    border-bottom: 2px solid #4A90E2;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+}
+
+.presentation p {
+    color: #B0B0B0;
+    max-width: 900px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+/* ─── Section Projets ────────────────────────────────────── */
+.projects-section {
+    margin-top: 4rem;
+}
+
+.projects-section h2 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #EAEAEA;
+    border-bottom: 2px solid #4A90E2;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* ─── Filtres ─────────────────────────────────────────────── */
+.filters {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+    padding: 0 1rem;
+}
+
+.filter-btn {
+    padding: 0.75rem 2rem;
+    background-color: transparent;
+    border: 2px solid #2A2A2A;
+    color: #B0B0B0;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+    background-color: #1E1E1E;
+    border-color: #4A90E2;
+    color: #EAEAEA;
+}
+
+.filter-btn.active {
+    background-color: #4A90E2;
+    border-color: #4A90E2;
+    color: #FFFFFF;
+}
+
+/* ─── Grille de projets ──────────────────────────────────── */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.project-card {
+    background-color: #1A1A1A;
+    border: 2px solid #2A2A2A;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    animation: fadeIn 0.5s ease forwards;
+    transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #4A90E2, transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.project-card:hover {
+    border-color: #4A90E2;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(74, 144, 226, 0.2);
+}
+
+.project-card:hover::before {
+    transform: translateX(100%);
+}
+
+.card-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 140px;
+    background-color: #141414;
+    border-bottom: 1px solid #2A2A2A;
+    padding: 1.5rem;
+}
+
+.card-logo img {
+    max-height: 90px;
+    max-width: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover .card-logo img {
+    transform: scale(1.08);
+}
+
+.card-body {
+    padding: 1.25rem 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.card-body h3 {
+    font-size: 1.2rem;
+    color: #EAEAEA;
+    font-weight: 600;
+}
+
+.card-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #4A90E2;
+    background-color: rgba(74, 144, 226, 0.1);
+    border: 1px solid rgba(74, 144, 226, 0.3);
+    border-radius: 4px;
+    padding: 0.25rem 0.6rem;
+    width: fit-content;
+}
+
+.project-card.hidden {
+    display: none;
+}
+
+/* ─── Animation ──────────────────────────────────────────── */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ─── Responsive ──────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .nav-links {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .presentation h1 {
+        font-size: 1.8rem;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .filters {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filter-btn {
+        width: 100%;
+    }
+}

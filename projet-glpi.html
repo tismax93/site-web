@@ -1,0 +1,1447 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpeg" href="icon.jpeg">
+    <title>LAPULY Matthis - Projet GLPI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="projet-glpi.css">
+</head>
+<body>
+
+    <!-- ─── Sidebar TOC ─────────────────────────────────────── -->
+    <aside class="sidenav" id="sidenav" aria-label="Sommaire">
+        <div class="sidenav__scroll">
+            <p class="sidenav__heading">Sommaire</p>
+            <ul class="sidenav__list" id="sidenav-list"></ul>
+        </div>
+    </aside>
+
+    <!-- ─── Navigation ─────────────────────────────────────── -->
+    <nav>
+        <div class="nav-links">
+            <a href="index.html" class="nav-name">LAPULY Matthis</a>
+            <a href="realisation.html" class="active">Mes projets IT</a>
+        </div>
+        <button class="ml-button">ML</button>
+    </nav>
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION 1 — En-tête projet
+    ═══════════════════════════════════════════════════════ -->
+    <section id="projet-header">
+        <div class="container">
+            <h1 class="projet-title">Déploiement d'une infrastructure GLPI sécurisée</h1>
+
+            <div class="projet-grid">
+                <!-- Logo -->
+                <div class="projet-logo-wrapper">
+                    <div class="projet-logo">
+                        <img src="GLPI.png" alt="GLPI">
+                    </div>
+                </div>
+
+                <!-- Description -->
+                <div class="projet-desc">
+                    <p>
+                        Ce projet présente le déploiement d'une infrastructure <strong>GLPI</strong> sécurisée,
+                        reposant sur une séparation des rôles entre un serveur web et un serveur de base de données
+                        isolé, conformément aux bonnes pratiques d'administration systèmes et réseaux.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-separator">
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION 2 — Technologies utilisées
+    ═══════════════════════════════════════════════════════ -->
+    <section id="technologies">
+        <div class="container">
+            <h2 class="section-title">Technologies utilisées</h2>
+
+            <div class="skills-carousel-outer">
+                <button class="carousel-btn" id="prevBtn">&#8249;</button>
+                <div class="skills-carousel-wrapper">
+                    <div class="skills-carousel" id="carousel">
+                        <div class="skill-card">
+                            <div class="skill-logo">
+                                <img src="GLPI.png" alt="GLPI">
+                            </div>
+                            <span class="skill-name">GLPI 10</span>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-logo">
+                                <img src="Apache2.png" alt="Apache 2.4">
+                            </div>
+                            <span class="skill-name">Apache 2.4</span>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-logo">
+                                <img src="PHP.png" alt="PHP 8.3">
+                            </div>
+                            <span class="skill-name">PHP 8.3</span>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-logo">
+                                <img src="PHP-FPM.png" alt="PHP-FPM">
+                            </div>
+                            <span class="skill-name">PHP-FPM</span>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-logo">
+                                <img src="maria-db.png" alt="MariaDB 11.x">
+                            </div>
+                            <span class="skill-name">MariaDB 11.x</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-btn" id="nextBtn">&#8250;</button>
+            </div>
+
+            <div class="tech-grid">
+
+                <div class="tech-item">
+                    <div class="tech-item__logo">
+                        <img src="GLPI.png" alt="GLPI">
+                    </div>
+                    <div class="tech-item__body">
+                        <h4 class="tech-item__name">GLPI 10</h4>
+                        <p class="tech-item__desc">
+                            Solution de gestion de parc informatique et de tickets. Elle centralise les équipements,
+                            les utilisateurs, les incidents et les demandes dans une interface unique.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="tech-item">
+                    <div class="tech-item__logo">
+                        <img src="Apache2.png" alt="Apache 2.4">
+                    </div>
+                    <div class="tech-item__body">
+                        <h4 class="tech-item__name">Apache 2.4</h4>
+                        <p class="tech-item__desc">
+                            Serveur web qui héberge l'application GLPI. Il reçoit les requêtes des utilisateurs
+                            via le navigateur et transmet les pages générées par l'application.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="tech-item">
+                    <div class="tech-item__logo">
+                        <img src="PHP.png" alt="PHP 8.3">
+                    </div>
+                    <div class="tech-item__body">
+                        <h4 class="tech-item__name">PHP 8.3</h4>
+                        <p class="tech-item__desc">
+                            Langage utilisé par GLPI pour fonctionner. Il exécute le code de l'application
+                            et génère dynamiquement les pages web affichées aux utilisateurs.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="tech-item">
+                    <div class="tech-item__logo">
+                        <img src="PHP-FPM.png" alt="PHP-FPM">
+                    </div>
+                    <div class="tech-item__body">
+                        <h4 class="tech-item__name">PHP-FPM</h4>
+                        <p class="tech-item__desc">
+                            Gestionnaire de processus qui exécute les scripts PHP de manière optimisée.
+                            Il améliore les performances et assure une communication efficace entre Apache et le moteur PHP.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="tech-item">
+                    <div class="tech-item__logo">
+                        <img src="maria-db.png" alt="MariaDB 11.x">
+                    </div>
+                    <div class="tech-item__body">
+                        <h4 class="tech-item__name">MariaDB 11.x</h4>
+                        <p class="tech-item__desc">
+                            Système de gestion de base de données utilisé pour stocker toutes les données de GLPI
+                            (utilisateurs, tickets, équipements, etc.). Il centralise et sécurise les données de l'application.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-separator">
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION 3 — Sommaire
+    ═══════════════════════════════════════════════════════ -->
+    <section id="sommaire">
+        <div class="container">
+            <h2 class="section-title">Sommaire</h2>
+
+            <div class="toc">
+
+                <div class="toc-item">
+                    <span class="toc-leaf">I. Objectif du projet</span>
+                </div>
+
+                <div class="toc-item">
+                    <span class="toc-leaf">II. Inventaire de l'infrastructure</span>
+                </div>
+
+                <div class="toc-item">
+                    <span class="toc-leaf">III. Topologie de l'infrastructure GLPI</span>
+                </div>
+
+                <div class="toc-item">
+                    <span class="toc-leaf">IV. Technologie utilisée</span>
+                </div>
+
+                <div class="toc-item expandable">
+                    <button class="toc-toggle">
+                        <span class="toc-arrow">▶</span>
+                        V. Configuration du serveur GLPI
+                    </button>
+                    <ul class="toc-sub">
+                        <li>A. Installation de GLPI</li>
+                        <li>B. Sécurisation et cloisonnement des répertoires applicatifs</li>
+                        <li>C. Configuration et sécurisation du VirtualHost Apache</li>
+                        <li>D. Intégration et configuration du moteur PHP-FPM</li>
+                        <li>E. Validation applicative et contrôle des journaux</li>
+                    </ul>
+                </div>
+
+                <div class="toc-item expandable">
+                    <button class="toc-toggle">
+                        <span class="toc-arrow">▶</span>
+                        VI. Configuration de la base de données
+                    </button>
+                    <ul class="toc-sub">
+                        <li>A. Installation et validation du moteur MariaDB</li>
+                        <li>B. Durcissement des comptes système et contrôle des accès</li>
+                        <li>C. Création et gestion des ressources dédiées à GLPI</li>
+                        <li>D. Configuration réseau et validation de la communication inter-serveurs</li>
+                    </ul>
+                </div>
+
+                <div class="toc-item expandable">
+                    <button class="toc-toggle">
+                        <span class="toc-arrow">▶</span>
+                        VII. Configuration supplémentaire
+                    </button>
+                    <ul class="toc-sub">
+                        <li>A. Intégration LDAP et authentification Active Directory</li>
+                        <li>B. Déploiement automatisé de l'agent GLPI via GPO</li>
+                    </ul>
+                </div>
+
+                <div class="toc-item expandable">
+                    <button class="toc-toggle">
+                        <span class="toc-arrow">▶</span>
+                        VIII. Test de fonctionnement
+                    </button>
+                    <ul class="toc-sub">
+                        <li>A. Test d'authentification via Active Directory</li>
+                        <li>B. Validation du cycle complet d'un ticket (Front-end ↔ BDD)</li>
+                        <li>C. Validation du déploiement de l'agent et remontée d'inventaire</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-separator">
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION 4 — I. Objectif du projet
+    ═══════════════════════════════════════════════════════ -->
+    <section id="objectif" class="content-section">
+        <div class="container">
+            <h2 class="chapter-title">I. Objectif du projet</h2>
+            <div class="content-block">
+                <p class="sub-intro">
+                    L'objectif de ce projet est de concevoir et de déployer une infrastructure
+                    <strong>GLPI</strong> sécurisée, en appliquant de bonnes pratiques d'administration
+                    systèmes et réseaux.
+                </p>
+                <p class="sub-intro">
+                    L'architecture repose sur une <strong>séparation des rôles</strong> entre deux serveurs
+                    distincts : un serveur GLPI hébergeant l'interface web (Apache / PHP), accessible aux
+                    utilisateurs, et un serveur de base de données dédié, situé sur un réseau interne,
+                    accessible uniquement depuis le serveur GLPI. Cette séparation permet d'isoler les
+                    données sensibles et de renforcer la robustesse de l'ensemble.
+                </p>
+                <p class="sub-intro">
+                    Au cours de ce projet, les éléments suivants ont été mis en place :
+                </p>
+
+                <ul class="sub-intro-list">
+                    <li>Installation et configuration du serveur GLPI</li>
+                    <li>Mise en place de l'environnement web (Apache, PHP)</li>
+                    <li>Déploiement et sécurisation du serveur de base de données</li>
+                    <li>Configuration des communications entre les serveurs</li>
+                    <li>Vérification du bon fonctionnement et de la conformité de l'infrastructure</li>
+                </ul>
+
+                <p class="sub-intro">
+                    Ce projet a pour but de démontrer ma capacité à concevoir, configurer et valider une
+                    infrastructure applicative dans un contexte professionnel, en mettant l'accent sur la
+                    <strong>sécurité</strong>, la clarté de l'architecture et la cohérence des choix techniques.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-separator">
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION 5 — II. Inventaire de l'infrastructure
+    ═══════════════════════════════════════════════════════ -->
+    <section id="inventaire" class="content-section">
+        <div class="container">
+            <h2 class="chapter-title">II. Inventaire de l'infrastructure</h2>
+            <div class="content-block">
+                <p class="sub-intro">
+                    L'infrastructure repose sur deux réseaux distincts : un <strong>réseau LAN interne</strong>
+                    hébergeant les hyperviseurs et les serveurs sensibles, et une <strong>zone DMZ</strong>
+                    exposant uniquement le serveur web GLPI accessible aux utilisateurs.
+                </p>
+            </div>
+
+            <!-- ── A. LAN 01 ── -->
+            <div class="sub-section">
+                <p class="inventory-label">A. LAN 01 : 172.16.0.0</p>
+
+                <div class="table-wrapper">
+                    <table class="scenario-table">
+                        <thead>
+                            <tr>
+                                <th>Machine</th>
+                                <th>Adresse IP</th>
+                                <th>Masque</th>
+                                <th>Passerelle</th>
+                                <th>Rôles</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>ESXi</td>
+                                <td>172.16.0.100</td>
+                                <td>255.255.255.0</td>
+                                <td>172.16.0.254</td>
+                                <td>Hyperviseur type 1</td>
+                            </tr>
+                            <tr>
+                                <td>SRV-AD</td>
+                                <td>172.16.0.1</td>
+                                <td>255.255.255.0</td>
+                                <td>172.16.0.254</td>
+                                <td>Annuaire Active Directory</td>
+                            </tr>
+                            <tr>
+                                <td>SRV-BDD-GLPI</td>
+                                <td>172.16.0.7</td>
+                                <td>255.255.255.0</td>
+                                <td>172.16.0.254</td>
+                                <td>Base de données GLPI</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="table-caption">Tableau — Inventaire LAN 01 : 172.16.0.0</p>
+            </div>
+
+            <!-- ── B. LAN DMZ ── -->
+            <div class="sub-section">
+                <p class="inventory-label">B. LAN 02  : 192.168.200.0</p>
+
+                <div class="table-wrapper">
+                    <table class="scenario-table">
+                        <thead>
+                            <tr>
+                                <th>Machine</th>
+                                <th>Adresse IP</th>
+                                <th>Masque</th>
+                                <th>Passerelle</th>
+                                <th>Rôles</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Hyper-V</td>
+                                <td>192.168.200.200</td>
+                                <td>255.255.255.0</td>
+                                <td>192.168.200.254</td>
+                                <td>Hyperviseur de type 1</td>
+                            </tr>
+                            <tr>
+                                <td>SRV-WEB (GLPI)</td>
+                                <td>192.168.200.1</td>
+                                <td>255.255.255.0</td>
+                                <td>192.168.200.254</td>
+                                <td>Serveur Apache et PHP</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="table-caption">Tableau — Inventaire LAN 02 : 192.168.200.0</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION 6 — III. Topologie de l'infrastructure GLPI
+    ═══════════════════════════════════════════════════════ -->
+    <section id="topologie" class="content-section">
+        <div class="container">
+            <h2 class="chapter-title">III. Topologie de l'infrastructure GLPI</h2>
+            <div class="content-block">
+                <p class="sub-intro">
+                    Le schéma ci-dessous représente l'architecture globale de l'infrastructure GLPI déployée,
+                    avec la séparation entre le réseau LAN interne et la zone DMZ. Cliquez sur l'image pour l'agrandir.
+                </p>
+            </div>
+
+            <div class="topology-wrapper">
+                <div class="topology-img-container" onclick="openLightbox('topologie')">
+                    <img src="Schema-GLPI.jpg" alt="Topologie Infrastructure GLPI" class="topology-img">
+                    <div class="zoom-hint">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35M11 8v6M8 11h6"/>
+                        </svg>
+                        Zoom
+                    </div>
+                </div>
+            </div>
+            <p class="table-caption">Schéma — Topologie Infrastructure GLPI multi-serveurs</p>
+        </div>
+    </section>
+
+    <hr class="section-separator">
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION 7 — IV. Technologie utilisée
+    ═══════════════════════════════════════════════════════ -->
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION — V. Configuration du serveur GLPI
+    ═══════════════════════════════════════════════════════ -->
+    <section id="config-glpi" class="content-section">
+        <div class="container">
+            <h2 class="chapter-title">V. Configuration du serveur GLPI</h2>
+            <div class="content-block">
+                <p class="sub-intro">
+                    Dans cette section, je configure le serveur applicatif destiné à héberger GLPI.
+                    Je mets en place l'environnement web (Apache et PHP), je déploie l'application et je
+                    sécurise les répertoires sensibles en appliquant une séparation entre les fichiers
+                    publics et les fichiers internes.
+                </p>
+                <p class="sub-intro">
+                    Je vérifie également le bon fonctionnement de l'intégration entre Apache et PHP-FPM
+                    afin de garantir une exécution correcte et sécurisée de l'application.
+                </p>
+            </div>
+
+            <p class="table-caption">Serveur GLPI</p>
+            <figure class="image-card image-wide">
+                <img src="screen-glpi-0101.png" alt="Serveur GLPI — ip a" class="image-card__img">
+            </figure>
+            <p class="table-caption">Les configurations suivantes concerneront le serveur 192.168.200.1</p>
+
+            <!-- ── A. Mise en place de l'environnement applicatif ── -->
+            <div class="sub-section">
+                <h3 class="sub-title">A.&nbsp; Mise en place de l'environnement applicatif</h3>
+
+                <h5 class="subsub-title">Vérification de l'installation du serveur Apache</h5>
+
+                <figure class="image-card image-wide">
+                    <img src="screen-glpi-01.png" alt="Vérification installation Apache" class="image-card__img">
+                </figure>
+
+                <div class="config-note">
+                    <p>Je vérifie que le serveur Apache est bien installé sur le système. La
+                    présence du paquet <em>Apache HTTP Server</em> confirme que le service
+                    web nécessaire à l'hébergement de GLPI est correctement déployé
+                    et opérationnel.</p>
+                </div>
+
+                <p class="note-tag">Apache permet de traiter les requêtes HTTP et de fournir l'interface web de GLPI aux utilisateurs.</p>
+
+                <h5 class="subsub-title">Vérification de la version et du fonctionnement de PHP</h5>
+
+                <figure class="image-card image-wide">
+                    <img src="screen-glpi-02.png" alt="Vérification version PHP" class="image-card__img">
+                </figure>
+
+                <p class="sub-intro">
+                    L'utilisation d'une version récente et stable garantit le bon fonctionnement et les
+                    performances de l'application.
+                </p>
+
+                <div class="config-note">
+                    <p>Je vérifie la version de PHP installée sur le serveur afin de m'assurer
+                    de sa compatibilité avec GLPI. Apache permet de traiter les requêtes
+                    HTTP et de fournir l'interface web de GLPI aux utilisateurs.</p>
+                </div>
+
+                <p class="note-tag">PHP est le moteur d'exécution de l'application : il interprète le code dynamique et génère les pages web affichées dans le navigateur.</p>
+
+                <h5 class="subsub-title">Validation des extensions PHP nécessaires à GLPI</h5>
+
+                <figure class="image-card image-wide">
+                    <img src="screen-glpi-03.png" alt="Extensions PHP installées" class="image-card__img">
+                </figure>
+
+                <div class="config-note">
+                    <p>Je vérifie que l'ensemble des extensions PHP requises par GLPI sont bien installées.</p>
+                </div>
+
+                <p class="sub-intro">Ces modules permettent notamment :</p>
+                <ul class="sub-intro-list">
+                    <li>la communication avec la base de données,</li>
+                    <li>la gestion des fichiers et des images,</li>
+                    <li>la compression et la mise en cache,</li>
+                    <li>l'authentification via LDAP / Active Directory.</li>
+                </ul>
+
+                <p class="note-tag">Cette validation confirme que l'environnement PHP est complet et que GLPI peut interagir correctement avec les différents composants de l'infrastructure.</p>
+
+                <h5 class="subsub-title">GLPI téléchargé + déployé dans /var/www</h5>
+
+                <div class="freq-row">
+                    <div class="freq-col is-large">
+                        <figure class="image-card image-wide">
+                            <img src="screen-glpi-04.png" alt="Déploiement GLPI dans /var/www" class="image-card__img">
+                        </figure>
+                    </div>
+                    <div class="freq-col is-small" style="justify-content: center;">
+                        <div class="config-note">
+                            <p>L'application GLPI est correctement déployée dans le répertoire /var/www/glpi.</p>
+                            <p style="margin-top:0.75rem;">La structure complète des fichiers et dossiers de l'application est présente, ce qui confirme que le déploiement a été effectué correctement.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h5 class="subsub-title">Utilisation du répertoire public comme point d'entrée</h5>
+
+                <figure class="image-card image-wide">
+                    <img src="screen-glpi-05.png" alt="Répertoire public GLPI" class="image-card__img">
+                </figure>
+
+                <div class="config-note">
+                    <p>Le répertoire public est bien utilisé comme point d'entrée de l'application.</p>
+                </div>
+
+                <p class="note-tag">Ce choix permet de limiter l'exposition des fichiers sensibles en ne rendant accessibles via le navigateur que les éléments strictement nécessaires au fonctionnement de l'interface web.</p>
+
+                <h5 class="subsub-title">Vérification des droits et du propriétaire des fichiers</h5>
+
+                <figure class="image-card image-wide">
+                    <img src="screen-glpi-06.png" alt="Droits et propriétaire /var/www/glpi" class="image-card__img">
+                </figure>
+
+                <div class="config-note">
+                    <p>Les répertoires /var/www/glpi et /var/www/glpi/public appartiennent à l'utilisateur
+                    et au groupe www-data, utilisés par Apache.</p>
+                </div>
+
+                <div class="config-note">
+                    <p>Les permissions appliquées permettent au serveur web d'accéder aux fichiers
+                    nécessaires tout en évitant l'attribution de droits excessifs.</p>
+                </div>
+            </div>
+
+            <!-- ── B. Sécurisation et cloisonnement des répertoires applicatifs ── -->
+            <div class="sub-section">
+                <h3 class="sub-title">B.&nbsp; Sécurisation et cloisonnement des répertoires applicatifs</h3>
+
+                <h5 class="subsub-title">Séparation des répertoires sensibles</h5>
+
+                <figure class="image-card image-wide">
+                    <img src="screen-glpi-07.png" alt="Séparation des répertoires sensibles" class="image-card__img">
+                </figure>
+
+                <div class="config-note">
+                    <p>Je vérifie que les répertoires dédiés à la configuration, aux données et aux journaux
+                    de GLPI existent en dehors du répertoire web principal.</p>
+                </div>
+
+                <ul class="sub-intro-list">
+                    <li>/etc/glpi pour les fichiers de configuration</li>
+                    <li>/var/lib/glpi pour les données applicatives</li>
+                    <li>/var/log/glpi pour les journaux</li>
+                </ul>
+
+                <p class="note-tag">Cette organisation permet de séparer les fichiers sensibles des fichiers
+                    accessibles via le serveur web.</p>
+
+                <h5 class="subsub-title">Déplacement des dossiers de configuration et de données</h5>
+
+                <div class="freq-row">
+                    <div class="freq-col is-large">
+                        <figure class="image-card image-wide">
+                            <img src="screen-glpi-08.png" alt="Déplacement dossiers config et données" class="image-card__img">
+                        </figure>
+                    </div>
+                    <div class="freq-col is-small" style="justify-content: center;">
+                        <div class="config-note">
+                            <p>Les dossiers config et files ont bien été déplacés vers leurs nouveaux emplacements sécurisés.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="config-note">
+                    <p>Le dossier de configuration est désormais situé dans /etc/glpi et le dossier
+                    contenant les fichiers applicatifs est stocké dans /var/lib/glpi/files. Ils ne sont
+                    plus présents dans /var/www/glpi, ce qui empêche toute exposition directe via
+                    le serveur web.</p>
+                </div>
+
+                <h5 class="subsub-title">Redirection des chemins de configuration GLPI</h5>
+
+                <div class="freq-row">
+                    <div class="freq-col is-large">
+                        <figure class="image-card image-wide">
+                            <img src="screen-glpi-09.png" alt="Redirection chemins downstream.php et local_define.php" class="image-card__img">
+                        </figure>
+                    </div>
+                    <div class="freq-col is-small" style="justify-content: center;">
+                        <div class="config-note">
+                            <p>Je configure GLPI pour utiliser un répertoire de configuration situé
+                            en dehors du dossier web principal.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="config-note">
+                    <p>Le fichier downstream.php définit le chemin /etc/glpi comme répertoire de
+                    configuration principal étant donné que j'ai déplacé les fichiers sensibles
+                    précédemment. Cette redirection permet à l'application de ne plus utiliser le
+                    dossier config situé dans /var/www/glpi.</p>
+                </div>
+
+                <p class="note-tag">Cette approche évite que les fichiers de configuration sensibles soient exposés
+                    via le serveur web.</p>
+
+                <h5 class="subsub-title">Définition des répertoires de données et de logs</h5>
+
+                <figure class="image-card image-wide">
+                    <img src="screen-glpi-10.png" alt="Définition répertoires de données et logs" class="image-card__img">
+                </figure>
+
+                <div class="config-note">
+                    <p>Je définis explicitement les emplacements des données applicatives et des
+                    journaux dans le fichier local_define.php.</p>
+                </div>
+
+                <div class="config-note">
+                    <p>Les constantes internes de GLPI (GLPI_CONFIG_DIR, GLPI_VAR_DIR,
+                    GLPI_LOG_DIR) pointent correctement vers les nouveaux emplacements
+                    définis.</p>
+                </div>
+
+                <p class="note-tag">Cette validation confirme que l'application utilise bien les chemins sécurisés
+                    configurés et que la séparation des répertoires est pleinement opérationnelle.</p>
+            </div>
+
+            <!-- ── C. Configuration et sécurisation du VirtualHost Apache ── -->
+            <div class="sub-section">
+                <h3 class="sub-title">C.&nbsp; Configuration et sécurisation du VirtualHost Apache</h3>
+
+                <h5 class="subsub-title">Validation du VirtualHost Apache</h5>
+
+                <div class="freq-row">
+                    <div class="freq-col is-large">
+                        <figure class="image-card image-wide">
+                            <img src="screen-glpi-11.png" alt="Validation VirtualHost Apache" class="image-card__img">
+                        </figure>
+                    </div>
+                    <div class="freq-col is-small" style="justify-content: center;">
+                        <div class="config-note">
+                            <p>Je vérifie que le <strong>VirtualHost</strong> dédié à GLPI est bien chargé par Apache.
+                            La configuration active montre que le site glpi-lab est correctement
+                            activé et associé au port 80.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h5 class="subsub-title">DocumentRoot sécurisé</h5>
+
+                <div class="freq-row">
+                    <div class="freq-col is-large">
+                        <figure class="image-card image-wide">
+                            <img src="screen-glpi-12.png" alt="DocumentRoot VirtualHost sécurisé" class="image-card__img">
+                        </figure>
+                    </div>
+                    <div class="freq-col is-small" style="justify-content: center;">
+                        <div class="config-note">
+                            <p>Je configure le <strong>VirtualHost</strong> pour que le répertoire exposé
+                            publiquement soit /var/www/glpi/public.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="config-note">
+                    <p>Ce choix permet de limiter l'accès aux seuls fichiers nécessaires à l'exécution de
+                    l'application et d'éviter l'exposition directe de l'ensemble du dossier GLPI.</p>
+                </div>
+            </div>
+
+            <!-- Sub-section D -->
+            <div class="sub-section">
+                <h3 class="sub-title">D.&nbsp; Intégration et configuration du moteur PHP-FPM</h3>
+
+                <!-- Service PHP-FPM — screen 14 -->
+                <h5 class="subsub-title">Service PHP-FPM</h5>
+                <div class="freq-row">
+                    <div class="freq-col is-large">
+                        <figure class="image-card image-wide">
+                            <img src="screen-glpi-14.png" alt="Statut du service php8.3-fpm" class="image-card__img">
+                        </figure>
+                    </div>
+                    <div class="freq-col is-small" style="justify-content: center;">
+                        <div class="config-note">
+                            <p>Le service <strong>PHP-FPM</strong> est bien actif et configuré pour démarrer
+                            automatiquement avec le système.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Socket PHP-FPM — screen 14(1) -->
+                <h5 class="subsub-title">Socket PHP-FPM</h5>
+                <figure class="image-card image-wide">
+                    <img src="screen-glpi-14 (1).png" alt="Fichier socket php8.3-fpm.sock dans /run/php/" class="image-card__img">
+                </figure>
+                <div class="config-note">
+                    <p>Le fichier <strong>socket php8.3-fpm.sock</strong> est bien dans le répertoire /run/php/.
+                    La présence de ce fichier confirme que PHP-FPM fonctionne correctement et qu'il est prêt
+                    à recevoir les requêtes envoyées par le serveur web.</p>
+                </div>
+                <p class="note-tag">Ce socket permet la communication entre Apache et PHP-FPM.</p>
+
+                <!-- Liaison Apache / PHP-FPM — screen 15 -->
+                <h5 class="subsub-title">Liaison entre Apache et PHP-FPM</h5>
+                <div class="freq-row">
+                    <div class="freq-col is-large">
+                        <figure class="image-card image-wide">
+                            <img src="screen-glpi-15.png" alt="Configuration FileMatch SetHandler dans glpi-lab.conf" class="image-card__img">
+                        </figure>
+                    </div>
+                    <div class="freq-col is-small" style="justify-content: center;">
+                        <div class="config-note">
+                            <p>Le <strong>VirtualHost</strong> Apache est configuré pour transmettre les fichiers
+                            <strong>.php</strong> au moteur PHP-FPM via le socket Unix.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="config-note">
+                    <p>La directive <strong>SetHandler</strong> confirme que toute requête concernant un fichier
+                    PHP est redirigée vers PHP-FPM pour exécution.</p>
+                </div>
+
+                <!-- Modules Apache — screen 15(1) -->
+                <h5 class="subsub-title">Modules Apache nécessaires à PHP-FPM</h5>
+                <figure class="image-card image-wide">
+                    <img src="screen-glpi-15 (1).png" alt="Modules proxy, proxy_fcgi et setenvif activés dans Apache" class="image-card__img">
+                </figure>
+                <div class="config-note">
+                    <p>Je vérifie que les modules Apache requis pour la communication avec PHP-FPM sont bien
+                    activés.</p>
+                </div>
+                <div class="config-note">
+                    <p>La présence des modules <strong>proxy</strong>, <strong>proxy_fcgi</strong> et
+                    <strong>setenvif</strong> confirme que le serveur web est capable de transmettre les
+                    requêtes PHP au moteur <strong>FastCGI</strong>.</p>
+                </div>
+
+                <!-- Test phpinfo — screen 16 -->
+                <h5 class="subsub-title">Test d'exécution PHP via Apache</h5>
+                <p class="sub-intro">Je réalise un test d'exécution en créant temporairement un fichier
+                <strong>phpinfo()</strong> accessible via le navigateur. Ce test montre concrètement que le
+                moteur PHP est bien interprété via Apache.</p>
+                <figure class="image-card image-wide">
+                    <img src="screen-glpi-16.png" alt="Test phpinfo() affiché dans le navigateur via Apache" class="image-card__img">
+                </figure>
+                <ul class="sub-intro" style="margin-bottom: 1.25rem; padding-left: 1.5rem;">
+                    <li>Apache traite la requête HTTP,</li>
+                    <li>La requête est transmise à PHP-FPM,</li>
+                    <li>Le moteur PHP exécute correctement le code.</li>
+                </ul>
+                <div class="config-note">
+                    <p>Ce test valide le bon fonctionnement de la chaîne complète : navigateur → Apache →
+                    PHP-FPM.</p>
+                </div>
+
+                <!-- Suppression fichier de test — screen 17 -->
+                <h5 class="subsub-title">Suppression du fichier de test et contrôle d'accès</h5>
+                <figure class="image-card image-wide">
+                    <img src="screen-glpi-17.png" alt="Suppression de info.php et erreur 403 dans le navigateur" class="image-card__img">
+                </figure>
+                <div class="config-note">
+                    <p>Après validation, je supprime le fichier de test <strong>info.php</strong> montrant que
+                    la tentative d'accès ultérieure retourne une erreur <strong>403</strong>, ce qui confirme
+                    que le fichier n'est plus accessible et que le serveur applique correctement les règles
+                    de sécurité.</p>
+                </div>
+
+            </div><!-- /sub-section D -->
+
+            <!-- Sub-section E -->
+            <div class="sub-section">
+                <h3 class="sub-title">E.&nbsp; Validation applicative et contrôle des journaux</h3>
+
+                <!-- Vérification comportement HTTP — screen 18 -->
+                <h5 class="subsub-title">Vérification du comportement HTTP</h5>
+                <figure class="image-card image-wide">
+                    <img src="screen-glpi-18.png" alt="wget --spider retournant 403 Forbidden après suppression de info.php" class="image-card__img">
+                </figure>
+                <div class="config-note">
+                    <p>Je réalise un test HTTP en local afin de vérifier la réponse du serveur web après
+                    suppression du fichier de test.</p>
+                </div>
+                <p class="note-tag">La réponse 403 Forbidden confirme que l'accès au fichier n'est plus autorisé, ce qui valide le bon fonctionnement des règles de sécurité côté Apache.</p>
+
+                <!-- Vérification logs Apache — screen 18(1) -->
+                <h5 class="subsub-title">Vérification des logs Apache</h5>
+                <figure class="image-card image-wide">
+                    <img src="screen-glpi-18 (1).png" alt="tail des logs access.log et error.log d'Apache" class="image-card__img">
+                </figure>
+                <div class="config-note">
+                    <p>Je consulte ensuite les journaux Apache afin de contrôler le comportement du service.
+                    Le serveur fonctionne normalement et aucune erreur critique n'est détectée.</p>
+                </div>
+                <p class="note-tag">Cette vérification démontre que le serveur web répond correctement aux
+                requêtes et applique les restrictions prévues.</p>
+
+                <!-- Journaux applicatifs GLPI — screen 19 -->
+                <h5 class="subsub-title">Journaux applicatifs GLPI</h5>
+                <figure class="image-card image-wide">
+                    <img src="screen-glpi-19.png" alt="ls -la /var/log/glpi montrant les fichiers de journaux GLPI" class="image-card__img">
+                </figure>
+                <div class="config-note">
+                    <p>Je vérifie la présence des journaux applicatifs dans le répertoire /var/log/glpi.
+                    Les fichiers de logs liés aux accès, aux erreurs PHP, aux événements et aux tâches
+                    planifiées sont bien présents.</p>
+                </div>
+                <p class="note-tag">Cette validation confirme que GLPI enregistre correctement ses activités
+                et que la redirection des journaux vers un répertoire dédié fonctionne comme prévu.</p>
+
+            </div><!-- /sub-section E -->
+        </div>
+    </section>
+
+    <hr class="section-separator">
+
+    <section id="config-bdd" class="content-section">
+        <div class="container">
+            <h2 class="chapter-title">VI. Configuration de la base de données</h2>
+            <div class="content-block">
+                <p class="sub-intro">Dans cette section, je mets en place le serveur de base de données dédié à GLPI.
+                Je configure <strong>MariaDB</strong>, je sécurise les comptes administrateur et je crée une base
+                ainsi qu'un utilisateur spécifique pour l'application.</p>
+                <p class="sub-intro">Je vérifie également la communication entre le serveur GLPI et le serveur de
+                base de données afin de garantir un fonctionnement correct dans une architecture
+                <strong>multi-serveurs</strong>.</p>
+            </div>
+
+            <p class="table-caption">Serveur Base de données MariaDB</p>
+            <figure class="image-card image-wide">
+                <img src="screen-glpi-bdd.png" alt="ss -ltnp et ip a sur le serveur MariaDB — 172.16.0.7" class="image-card__img">
+            </figure>
+            <p class="table-caption">Les configurations suivantes concerneront le serveur 172.16.0.1</p>
+
+            <!-- Sub-section A -->
+            <div class="sub-section">
+                <h3 class="sub-title">A.&nbsp; Installation et validation du moteur MariaDB</h3>
+
+                <h5 class="subsub-title">Vérification de l'installation et du service MariaDB</h5>
+                <figure class="image-card image-wide">
+                    <img src="screen-glpi-20.png" alt="dpkg -l | grep mariadb listant les paquets installés" class="image-card__img">
+                </figure>
+                <div class="config-note">
+                    <p>Les paquets <strong>MariaDB</strong> nécessaires au fonctionnement du serveur de base
+                    de données sont correctement installés.</p>
+                </div>
+
+                <figure class="image-card image-wide">
+                    <img src="screen-glpi-21.png" alt="systemctl status mariadb montrant active (running) et enabled" class="image-card__img">
+                </figure>
+                <div class="config-note">
+                    <p>Le statut indique que le service est actif (running) et activé (<strong>enabled</strong>),
+                    ce qui confirme que le moteur de base de données fonctionne correctement et est prêt à
+                    traiter les requêtes SQL provenant du serveur GLPI.</p>
+                </div>
+
+            </div><!-- /sub-section A -->
+
+            <!-- Sub-section B -->
+            <div class="sub-section">
+                <h3 class="sub-title">B.&nbsp; Durcissement des comptes système et contrôle des accès</h3>
+
+                <h5 class="subsub-title">Comptes MariaDB</h5>
+                <div class="freq-row">
+                    <div class="freq-col is-large">
+                        <figure class="image-card image-wide">
+                            <img src="screen-glpi-22.png" alt="Table mysql.user listant glpi_adm, mariadb.sys, mysql, root" class="image-card__img">
+                        </figure>
+                    </div>
+                    <div class="freq-col is-small" style="justify-content: center;">
+                        <div class="config-note">
+                            <p>Je vérifie la liste des comptes présents dans la table système
+                            <strong>mysql.user</strong>.</p>
+                        </div>
+                    </div>
+                </div>
+                <ul class="sub-intro" style="margin-bottom: 1.25rem; padding-left: 1.5rem;">
+                    <li>L'utilisateur applicatif <strong>glpi_adm</strong> est configuré pour se connecter
+                    depuis n'importe quelle adresse (%),</li>
+                    <li>Les comptes système internes (mariadb.sys, mysql) sont limités à localhost,</li>
+                    <li>Le compte administrateur root est restreint à localhost.</li>
+                </ul>
+                <div class="config-note">
+                    <p>Cette configuration démontre que l'accès administrateur distant est désactivé et que
+                    l'application GLPI utilise un compte dédié distinct du compte root.</p>
+                </div>
+
+                <h5 class="subsub-title">Restriction du compte root à localhost</h5>
+                <div class="freq-row">
+                    <div class="freq-col is-large">
+                        <figure class="image-card image-wide">
+                            <img src="screen-glpi-23.png" alt="Erreur 1045 Access denied en distant + root | localhost en local" class="image-card__img">
+                        </figure>
+                    </div>
+                    <div class="freq-col is-small" style="justify-content: center;">
+                        <div class="config-note">
+                            <p>Je vérifie spécifiquement que le compte root est autorisé uniquement depuis
+                            localhost.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="config-note">
+                    <p>Cette restriction empêche toute connexion distante au compte administrateur de la base
+                    de données, ce qui constitue une mesure de sécurité essentielle.</p>
+                </div>
+
+            </div><!-- /sub-section B -->
+
+            <!-- Sub-section C -->
+            <div class="sub-section">
+                <h3 class="sub-title">C.&nbsp; Création et gestion des ressources dédiées à GLPI</h3>
+
+                <!-- Base de données GLPI — screen 24 -->
+                <h5 class="subsub-title">Base de données GLPI</h5>
+                <div class="freq-row">
+                    <div class="freq-col is-large">
+                        <figure class="image-card image-wide">
+                            <img src="screen-glpi-24.png" alt="SHOW DATABASES listant db_glpi" class="image-card__img">
+                        </figure>
+                    </div>
+                    <div class="freq-col is-small" style="justify-content: center;">
+                        <div class="config-note">
+                            <p>La présence de la base <strong>db_glpi</strong> dans la liste des bases confirme
+                            que l'environnement est prêt à accueillir les tables et les données de
+                            l'application.</p>
+                        </div>
+                    </div>
+                </div>
+                <p class="note-tag">Cette séparation permet d'isoler les données GLPI des bases système
+                internes, renforçant l'organisation et la sécurité de l'infrastructure.</p>
+
+                <!-- Utilisateur GLPI — screen 25 -->
+                <h5 class="subsub-title">Utilisateur GLPI</h5>
+                <div class="freq-row">
+                    <div class="freq-col is-large">
+                        <figure class="image-card image-wide">
+                            <img src="screen-glpi-25.png" alt="SELECT User Host montrant glpi_adm avec hôte %" class="image-card__img">
+                        </figure>
+                    </div>
+                    <div class="freq-col is-small" style="justify-content: center;">
+                        <div class="config-note">
+                            <p>L'utilisateur <strong>glpi_adm</strong> est bien présent dans la table des
+                            utilisateurs <strong>MariaDB</strong>.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="config-note">
+                    <p>Cet utilisateur est configuré pour se connecter depuis n'importe quelle adresse (%),
+                    ce qui permet au serveur GLPI de communiquer avec le serveur de base de données situé
+                    sur un autre réseau.</p>
+                </div>
+
+                <!-- Privilèges utilisateur GLPI — screen 26 -->
+                <h5 class="subsub-title">Privilèges de l'utilisateur GLPI</h5>
+                <figure class="image-card image-wide">
+                    <img src="screen-glpi-26.png" alt="SHOW GRANTS FOR glpi_adm@% montrant GRANT ALL PRIVILEGES ON db_glpi" class="image-card__img">
+                </figure>
+                <div class="config-note">
+                    <p>La configuration montre que cet utilisateur dispose de l'ensemble des droits sur la
+                    base <strong>db_glpi</strong>, tout en restant limité à cette base uniquement.</p>
+                </div>
+
+            </div><!-- /sub-section C -->
+
+            <!-- Sub-section D -->
+            <div class="sub-section">
+                <h3 class="sub-title">D.&nbsp; Configuration réseau et validation de la communication inter-serveurs</h3>
+
+                <!-- bind-address — screen 27 -->
+                <h5 class="subsub-title">Configuration de l'écoute réseau MariaDB</h5>
+                <figure class="image-card image-wide">
+                    <img src="screen-glpi-27.png" alt="grep bind-address montrant 0.0.0.0 dans la configuration MariaDB" class="image-card__img">
+                </figure>
+                <div class="config-note">
+                    <p>Le paramètre <strong>bind-address</strong> est configuré sur 0.0.0.0 ce qui permet au
+                    serveur <strong>MariaDB</strong> d'écouter sur toutes les interfaces réseau, et non
+                    uniquement sur localhost — rendant possible la connexion distante depuis le serveur GLPI.</p>
+                </div>
+
+                <!-- Port 3306 — screen 28 -->
+                <h5 class="subsub-title">Vérification de l'écoute du port 3306</h5>
+                <figure class="image-card image-wide">
+                    <img src="screen-glpi-28.png" alt="ss -ltnp | grep 3306 montrant LISTEN sur 0.0.0.0:3306" class="image-card__img">
+                </figure>
+                <div class="config-note">
+                    <p>La présence de l'état LISTEN sur l'adresse 0.0.0.0:3306 confirme que le service accepte
+                    les connexions réseau et que le moteur <strong>MariaDB</strong> est prêt à traiter les
+                    requêtes provenant du serveur applicatif.</p>
+                </div>
+
+                <!-- Test connexion distante — screen 29 -->
+                <h5 class="subsub-title">Test de connexion distante entre le serveur GLPI et le serveur MariaDB</h5>
+                <div class="freq-row">
+                    <div class="freq-col is-large">
+                        <figure class="image-card image-wide">
+                            <img src="screen-glpi-29.png" alt="mysql -h 172.16.0.7 -u glpi_adm -p depuis le serveur GLPI" class="image-card__img">
+                        </figure>
+                    </div>
+                    <div class="freq-col is-small" style="justify-content: center; gap: 0.75rem;">
+                        <div class="config-note">
+                            <p>Je teste la connexion distante à la base de données depuis le serveur GLPI en
+                            utilisant l'utilisateur applicatif <strong>glpi_adm</strong>.</p>
+                        </div>
+                        <div class="config-note">
+                            <p>Cela confirme les configurations précédentes : accès sur le réseau, port 3306
+                            ouvert, les privilèges de l'utilisateur <strong>glpi_adm</strong>.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- /sub-section D -->
+        </div>
+    </section>
+
+    <hr class="section-separator">
+
+    <section id="config-supplementaire" class="content-section">
+        <div class="container">
+            <h2 class="chapter-title">VII. Configuration supplémentaire</h2>
+
+            <!-- Sub-section A -->
+            <div class="sub-section">
+                <h3 class="sub-title">A.&nbsp; Intégration LDAP et authentification Active Directory</h3>
+
+                <!-- Compte ldap-glpi — screen 30 -->
+                <h5 class="subsub-title">Compte de liaison LDAP dans Active Directory</h5>
+                <div class="freq-row">
+                    <div class="freq-col is-large">
+                        <figure class="image-card image-wide">
+                            <img src="screen-glpi-30.png" alt="Propriétés du compte ldap-glpi dans Active Directory" class="image-card__img">
+                        </figure>
+                    </div>
+                    <div class="freq-col is-small" style="justify-content: center;">
+                        <div class="config-note">
+                            <p>Ce compte est utilisé exclusivement pour permettre à GLPI d'interroger
+                            l'annuaire Active Directory.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Configuration LDAP dans GLPI — screen 31 -->
+                <h5 class="subsub-title">Configuration de l'annuaire LDAP dans GLPI</h5>
+                <div class="freq-row">
+                    <div class="freq-col is-large">
+                        <figure class="image-card image-wide">
+                            <img src="screen-glpi-31.png" alt="Interface de configuration LDAP dans GLPI" class="image-card__img">
+                        </figure>
+                    </div>
+                    <div class="freq-col is-small" style="justify-content: center;">
+                        <div class="config-note">
+                            <p>Je configure un nouvel annuaire LDAP dans GLPI afin d'intégrer
+                            l'authentification Active Directory.</p>
+                        </div>
+                    </div>
+                </div>
+                <p class="sub-intro">Je renseigne</p>
+                <ul class="sub-intro" style="margin-bottom: 1.25rem; padding-left: 1.5rem;">
+                    <li>Le nom du serveur Active Directory,</li>
+                    <li>L'adresse IP du contrôleur de domaine,</li>
+                    <li>Le port LDAP (389),</li>
+                    <li>La base DN correspondant au domaine,</li>
+                    <li>Le compte de liaison <strong>ldap-glpi</strong>,</li>
+                    <li>Ainsi que les paramètres de synchronisation des utilisateurs.</li>
+                </ul>
+                <p class="note-tag">Cette configuration permet à GLPI de se connecter à l'annuaire Active
+                Directory pour authentifier les utilisateurs et synchroniser leurs informations.</p>
+
+            </div><!-- /sub-section A -->
+
+            <!-- Sub-section B -->
+            <div class="sub-section">
+                <h3 class="sub-title">B.&nbsp; Déploiement automatisé de l'agent GLPI via GPO</h3>
+
+                <p class="sub-intro">J'ai stocké l'agent GLPI dans un dossier partagé afin de le partager
+                sur le réseau.</p>
+
+                <!-- Droits partage — screen 32 -->
+                <h5 class="subsub-title">Droit sur le partage réseau</h5>
+                <div class="freq-row">
+                    <div class="freq-col is-large">
+                        <figure class="image-card image-wide">
+                            <img src="screen-glpi-32.png" alt="Autorisations de partage réseau — Utilisateurs authentifiés en lecture" class="image-card__img">
+                        </figure>
+                    </div>
+                    <div class="freq-col is-small" style="justify-content: center;">
+                        <div class="config-note">
+                            <p>Le groupe <strong>Utilisateurs authentifiés</strong> est autorisé en lecture,
+                            ce qui permet aux postes clients membres du domaine d'accéder au partage sans
+                            donner de privilèges excessifs.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Autorisations NTFS — screen 33 -->
+                <h5 class="subsub-title">Autorisations NTFS</h5>
+                <div class="freq-row">
+                    <div class="freq-col is-large">
+                        <figure class="image-card image-wide">
+                            <img src="screen-glpi-33.png" alt="Permissions NTFS — Utilisateurs authentifiés en lecture et exécution" class="image-card__img">
+                        </figure>
+                    </div>
+                    <div class="freq-col is-small" style="justify-content: center;">
+                        <div class="config-note">
+                            <p>Le groupe <strong>Utilisateurs authentifiés</strong> dispose des permissions
+                            de lecture et d'exécution, ainsi que de l'affichage du contenu du dossier.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Déploiement package GPO — screen 34 -->
+                <h5 class="subsub-title">Déploiement du package GLPI Agent via GPO</h5>
+                <figure class="image-card image-wide">
+                    <img src="screen-glpi-34.png" alt="GPO Installation de logiciel — GLPI Agent 1.5 attribué" class="image-card__img">
+                </figure>
+                <div class="config-note">
+                    <p>J'ai configuré une stratégie de groupe afin de déployer automatiquement le package
+                    <strong>GLPI Agent 1.5</strong> sur les postes du domaine.</p>
+                </div>
+                <div class="config-note">
+                    <p>Le logiciel est attribué aux ordinateurs via les paramètres d'installation logicielle,
+                    ce qui permet un déploiement automatique lors du démarrage des machines.</p>
+                </div>
+
+                <!-- Préférences de registre GPO — screen 35 -->
+                <h5 class="subsub-title">Configuration des préférences de registre dans la GPO</h5>
+                <div class="freq-row">
+                    <div class="freq-col is-large">
+                        <figure class="image-card image-wide">
+                            <img src="screen-glpi-35.png" alt="GPO — Préférences > Paramètres Windows > Registre" class="image-card__img">
+                        </figure>
+                    </div>
+                    <div class="freq-col is-small" style="justify-content: center; gap: 0.75rem;">
+                        <div class="config-note">
+                            <p>Je configure des paramètres de registre via les préférences de la stratégie
+                            de groupe.</p>
+                        </div>
+                        <div class="config-note">
+                            <p>Cette configuration permet de définir automatiquement les paramètres de l'agent
+                            GLPI sur les postes clients, notamment l'adresse du serveur et les informations
+                            d'identification du domaine.</p>
+                        </div>
+                    </div>
+                </div>
+                <p class="note-tag">L'utilisation des préférences de registre assure une configuration
+                homogène et contrôlée sur l'ensemble du parc.</p>
+
+                <!-- Adresse serveur GLPI — screen 36 -->
+                <h5 class="subsub-title">Configuration de l'adresse du serveur GLPI</h5>
+                <div class="freq-row">
+                    <div class="freq-col is-large">
+                        <figure class="image-card image-wide">
+                            <img src="screen-glpi-36.png" alt="Propriété de registre SOFTWARE\GLPI-Agent — clé server pointant vers l'URL GLPI" class="image-card__img">
+                        </figure>
+                    </div>
+                    <div class="freq-col is-small" style="justify-content: center;">
+                        <div class="config-note">
+                            <p>Je définis dans le registre la clé <strong>SOFTWARE\GLPI-Agent</strong> afin
+                            d'indiquer à l'agent l'adresse du serveur GLPI.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="config-note">
+                    <p>La valeur configurée pointe vers l'URL du serveur, permettant aux agents installés
+                    sur les postes clients d'envoyer leurs informations d'inventaire vers la plateforme GLPI.</p>
+                </div>
+
+                <!-- Tag d'identification — screen 37 -->
+                <h5 class="subsub-title">Configuration du tag d'identification</h5>
+                <div class="freq-row">
+                    <div class="freq-col is-large">
+                        <figure class="image-card image-wide">
+                            <img src="screen-glpi-37.png" alt="Propriété de registre SOFTWARE\GLPI-Agent — clé tag avec valeur LAPULY.local" class="image-card__img">
+                        </figure>
+                    </div>
+                    <div class="freq-col is-small" style="justify-content: center;">
+                        <div class="config-note">
+                            <p>Je configure un paramètre supplémentaire dans le registre afin d'attribuer un
+                            <strong>tag d'identification</strong> aux machines.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="config-note">
+                    <p>Ce tag permet d'identifier et de classer les équipements dans GLPI selon le domaine
+                    ou l'environnement concerné.</p>
+                </div>
+
+            </div><!-- /sub-section B -->
+        </div>
+    </section>
+
+    <hr class="section-separator">
+
+    <section id="tests-fonctionnement" class="content-section">
+        <div class="container">
+            <h2 class="chapter-title">VIII. Test de fonctionnement</h2>
+            <div class="content-block">
+                <p class="sub-intro">Dans cette section, j'effectue des tests de fonctionnement afin de
+                valider l'ensemble des configurations ci-dessus.</p>
+            </div>
+
+            <!-- Sub-section A -->
+            <div class="sub-section">
+                <h3 class="sub-title">A.&nbsp; Test d'authentification via Active Directory</h3>
+
+                <div class="steps-flow">
+
+                    <!-- Étape 1 -->
+                    <div class="step-block">
+                        <div class="step-header">
+                            <span class="step-badge">1</span>
+                            <h4 class="step-title">Connexion utilisateur AD</h4>
+                        </div>
+                        <div class="content-img-side">
+                            <figure class="image-card image-medium">
+                                <img src="screen-glpi-38.png" alt="Page de connexion GLPI avec utilisateur direction1 via SRV-AD.LAPULY.local" class="image-card__img">
+                                <figcaption class="image-card__caption">Connexion à GLPI avec un compte du domaine Active Directory — source SRV-AD.LAPULY.local</figcaption>
+                            </figure>
+                            <div class="side-notes">
+                                <div class="step-note">
+                                    <p>Je me connecte avec un utilisateur de mon domaine via <strong>LDAP</strong>.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Étape 2 -->
+                    <div class="step-block">
+                        <div class="step-header">
+                            <span class="step-badge">2</span>
+                            <h4 class="step-title">Interface GLPI</h4>
+                        </div>
+                        <div class="content-img-side">
+                            <figure class="image-card image-wide">
+                                <img src="screen-glpi-39.png" alt="Tableau de bord GLPI après connexion réussie" class="image-card__img">
+                                <figcaption class="image-card__caption">Résultat — Accès à l'interface GLPI avec le compte Active Directory</figcaption>
+                            </figure>
+                            <div class="side-notes"></div>
+                        </div>
+                        <p class="result-note">La connexion a réussi. L'authentification <strong>LDAP</strong> fonctionne correctement.</p>
+                    </div>
+
+                </div>
+            </div><!-- /sub-section A -->
+
+            <!-- Sub-section B -->
+            <div class="sub-section">
+                <h3 class="sub-title">B.&nbsp; Validation du cycle complet d'un ticket (Front-end ↔ BDD)</h3>
+
+                <div class="steps-flow">
+
+                    <!-- Étape 1 -->
+                    <div class="step-block">
+                        <div class="step-header">
+                            <span class="step-badge">1</span>
+                            <h4 class="step-title">Création de ticket</h4>
+                        </div>
+                        <div class="content-img-side">
+                            <figure class="image-card image-medium">
+                                <img src="screen-glpi-40.png" alt="Ticket TEST-BDD créé dans GLPI avec pièce jointe" class="image-card__img">
+                                <figcaption class="image-card__caption">Ticket créé depuis l'interface GLPI — titre unique TEST-BDD avec pièce jointe</figcaption>
+                            </figure>
+                            <div class="side-notes">
+                                <div class="step-note">
+                                    <p>Un ticket a été créé depuis l'interface GLPI avec un titre unique et une pièce jointe afin de valider le bon fonctionnement de l'application.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Étape 2 -->
+                    <div class="step-block">
+                        <div class="step-header">
+                            <span class="step-badge">2</span>
+                            <h4 class="step-title">Vérification de l'enregistrement du ticket dans la BDD (SRV-BDD-GLPI)</h4>
+                        </div>
+                        <div class="content-img-side">
+                            <figure class="image-card image-medium">
+                                <img src="screen-glpi-41.png" alt="Requête MySQL sur glpi_tickets — ticket TEST-BDD présent" class="image-card__img">
+                                <figcaption class="image-card__caption">Vérification côté base de données — ticket TEST-BDD enregistré dans la table glpi_tickets</figcaption>
+                            </figure>
+                            <div class="side-notes">
+                                <div class="step-note">
+                                    <p>Côté serveur de base de données (<strong>SRV-BDD-GLPI</strong>), le ticket est correctement enregistré dans la table <strong>glpi_tickets</strong> de la base MariaDB, confirmant l'écriture des données applicatives.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Étape 3 -->
+                    <div class="step-block">
+                        <div class="step-header">
+                            <span class="step-badge">3</span>
+                            <h4 class="step-title">Vérification du stockage de l'image sur le serveur GLPI</h4>
+                        </div>
+                        <div class="content-img-side">
+                            <figure class="image-card image-medium">
+                                <img src="screen-glpi-42.png" alt="find /var/lib/glpi montrant les fichiers créés par la pièce jointe" class="image-card__img">
+                                <figcaption class="image-card__caption">Côté SRV-GLPI — fichiers créés dans /var/lib/glpi/files suite à l'ajout de la pièce jointe</figcaption>
+                            </figure>
+                            <div class="side-notes">
+                                <div class="step-note">
+                                    <p>Côté serveur GLPI (<strong>SRV-GLPI</strong>), l'ajout de la pièce jointe entraîne bien la création de fichiers dans le répertoire applicatif <strong>/var/lib/glpi/files</strong>.</p>
+                                </div>
+                                <div class="step-note">
+                                    <p>Aucune donnée utilisateur n'est stockée dans le <strong>DocumentRoot</strong> (/var/www/glpi), ce qui confirme la séparation entre contenu web public et données sensibles, conformément à l'architecture définie.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="result-note">L'enregistrement dans la base de données et le stockage des pièces jointes sur le serveur GLPI fonctionnent correctement.</p>
+                    </div>
+
+                </div>
+            </div><!-- /sub-section B -->
+
+            <!-- Sub-section C -->
+            <div class="sub-section">
+                <h3 class="sub-title">C.&nbsp; Validation du déploiement de l'agent et remontée d'inventaire</h3>
+
+                <div class="steps-flow">
+
+                    <!-- Étape 1 -->
+                    <div class="step-block">
+                        <div class="step-header">
+                            <span class="step-badge">1</span>
+                            <h4 class="step-title">Exécution de gpupdate /force</h4>
+                        </div>
+                        <div class="content-img-side">
+                            <figure class="image-card image-medium">
+                                <img src="screen-glpi-43.png" alt="PowerShell — gpupdate /force sur le poste client" class="image-card__img">
+                                <figcaption class="image-card__caption">Exécution de gpupdate /force sur le poste client — application de la stratégie de groupe</figcaption>
+                            </figure>
+                            <div class="side-notes">
+                                <div class="step-note">
+                                    <p>La stratégie de groupe a été appliquée avec succès sur le poste client, confirmant le bon déploiement automatisé de l'agent GLPI via <strong>GPO</strong>.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Étape 2 -->
+                    <div class="step-block">
+                        <div class="step-header">
+                            <span class="step-badge">2</span>
+                            <h4 class="step-title">L'agent est bien installé sur les postes</h4>
+                        </div>
+                        <div class="content-img-side">
+                            <figure class="image-card image-medium">
+                                <img src="screen-glpi-44.png" alt="Programmes et fonctionnalités — GLPI Agent 1.5 installé" class="image-card__img">
+                                <figcaption class="image-card__caption">Panneau de configuration — GLPI Agent 1.5 présent dans les programmes installés du poste client</figcaption>
+                            </figure>
+                            <div class="side-notes">
+                                <div class="step-note">
+                                    <p>L'agent GLPI est correctement installé sur le poste client, comme confirmé dans les programmes installés du système.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Étape 3 -->
+                    <div class="step-block">
+                        <div class="step-header">
+                            <span class="step-badge">3</span>
+                            <h4 class="step-title">GLPI récupère les données des postes</h4>
+                        </div>
+                        <div class="content-img-side">
+                            <figure class="image-card image-wide">
+                                <img src="screen-glpi-45.png" alt="Interface GLPI — ordinateur CLIENT-01 avec inventaire logiciel" class="image-card__img">
+                                <figcaption class="image-card__caption">Fiche inventaire CLIENT-01 dans GLPI — logiciels et matériel remontés automatiquement</figcaption>
+                            </figure>
+                            <div class="side-notes">
+                                <div class="step-note">
+                                    <p>Le poste client remonte bien dans l'interface GLPI, avec un inventaire matériel et logiciel visible et à jour, attestant de la communication entre le client et le serveur GLPI.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="result-note">L'agent GLPI se déploie correctement au sein de l'infrastructure. Les ressources remontent dans le dashboard <strong>GLPI</strong>.</p>
+                    </div>
+
+                </div>
+            </div><!-- /sub-section C -->
+        </div>
+    </section>
+
+    <hr class="section-separator">
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION — Conclusion
+    ═══════════════════════════════════════════════════════ -->
+    <section id="conclusion" class="content-section">
+        <div class="container">
+            <h2 class="chapter-title">IX. Conclusion</h2>
+            <div class="content-block">
+                <p class="sub-intro">
+                    Ce projet m'a permis de déployer une infrastructure <strong>GLPI</strong> complète et sécurisée,
+                    en appliquant une architecture multi-serveurs avec cloisonnement réseau entre le serveur web
+                    et la base de données.
+                </p>
+                <p class="sub-intro">
+                    Au-delà de l'installation, j'ai mis en place des mesures de sécurisation concrètes —
+                    séparation des répertoires sensibles, restriction des accès <strong>MariaDB</strong>,
+                    configuration de <strong>PHP-FPM</strong> — et j'ai intégré l'authentification
+                    <strong>Active Directory</strong> via <strong>LDAP</strong> ainsi qu'un déploiement
+                    automatisé de l'agent par <strong>GPO</strong>.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-separator">
+
+    <!-- ─── Lightbox — Topologie ──────────────────────────── -->
+    <div class="lightbox" id="lightbox-topologie" onclick="closeLightbox('topologie')">
+        <button class="lightbox-close" onclick="closeLightbox('topologie')">✕</button>
+        <img src="Schema-GLPI.jpg" alt="Topologie Infrastructure GLPI" onclick="event.stopPropagation()">
+    </div>
+
+    <!-- ─── Footer ──────────────────────────────────────────── -->
+    <footer>
+        <p>© 2026 LAPULY Matthis — Tous droits réservés</p>
+    </footer>
+
+    <script src="projet-glpi.js"></script>
+
+</body>
+</html>
