@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpeg" href="icon.jpeg">
+    <title>LAPULY Matthis - Projet Synology Active Backup M365</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="projet-synology.css">
+</head>
+<body>
+
+    <!-- ─── Sidebar TOC ─────────────────────────────────────── -->
+    <aside class="sidenav" id="sidenav" aria-label="Sommaire">
+        <div class="sidenav__scroll">
+            <p class="sidenav__heading">Sommaire</p>
+            <ul class="sidenav__list" id="sidenav-list"></ul>
+        </div>
+    </aside>
+
+    <!-- ─── Navigation ─────────────────────────────────────── -->
+    <nav>
+        <div class="nav-links">
+            <a href="index.html" class="nav-name">LAPULY Matthis</a>
+            <a href="realisation.html" class="active">Mes projets IT</a>
+        </div>
+        <button class="ml-button">ML</button>
+    </nav>
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION 1 — En-tête projet
+    ═══════════════════════════════════════════════════════ -->
+    <section id="projet-header">
+        <div class="container">
+            <h1 class="projet-title">Sauvegarde & Restauration d'un tenant Microsoft 365 avec Synology Active Backup</h1>
+
+            <div class="projet-grid">
+                <!-- Logo -->
+                <div class="projet-logo-wrapper">
+                    <div class="projet-logo">
+                        <img src="Activebackup.png" alt="Synology Active Backup for Microsoft 365">
+                    </div>
+                </div>
+
+                <!-- Description -->
+                <div class="projet-desc">
+                    <p>
+                        Ce projet présente la mise en place d'une solution de sauvegarde et de restauration
+                        d'un tenant <strong>Microsoft 365</strong> via <strong>Active Backup for Microsoft 365</strong>
+                        sur NAS Synology, sans licence supplémentaire, avec des options de restauration granulaires.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-separator">
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION 2 — Technologies utilisées
+    ═══════════════════════════════════════════════════════ -->
+    <section id="technologies">
+        <div class="container">
+            <h2 class="section-title">Technologies utilisées</h2>
+
+            <div class="skills-carousel-outer">
+                <button class="carousel-btn" id="prevBtn">&#8249;</button>
+                <div class="skills-carousel-wrapper">
+                    <div class="skills-carousel" id="carousel">
+                        <div class="skill-card">
+                            <div class="skill-logo">
+                                <img src="Activebackup.png" alt="Active Backup for M365">
+                            </div>
+                            <span class="skill-name">Active Backup M365</span>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-logo">
+                                <img src="active.png" alt="Active Backup for M365">
+                            </div>
+                            <span class="skill-name">Active Backup M365 <Portal></Portal></span>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-logo">
+                                <img src="Dsm.png" alt="Synology DSM">
+                            </div>
+                            <span class="skill-name">Synology DSM</span>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-logo">
+                                <img src="ondrive.png" alt="Microsoft 365">
+                            </div>
+                            <span class="skill-name">One Drive</span>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-logo">
+                                <img src="sharepoint1.png" alt="Microsoft 365">
+                            </div>
+                            <span class="skill-name">SharePoint</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-btn" id="nextBtn">&#8250;</button>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-separator">
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION 3 — Sommaire
+    ═══════════════════════════════════════════════════════ -->
+    <section id="sommaire">
+        <div class="container">
+            <h2 class="section-title">Sommaire</h2>
+
+            <div class="toc">
+
+                <div class="toc-item">
+                    <span class="toc-leaf">I. Objectif</span>
+                </div>
+
+                <div class="toc-item">
+                    <span class="toc-leaf">II. Topologie</span>
+                </div>
+
+                <div class="toc-item expandable">
+                    <button class="toc-toggle">
+                        <span class="toc-arrow">▶</span>
+                        III. Présentation de la tâche de sauvegarde
+                    </button>
+                    <ul class="toc-sub">
+                        <li>1. Paramètre utilisateur de la tâche</li>
+                        <li>2. Paramètre des groupes de la tâche</li>
+                        <li>3. Paramètre SharePoint de la tâche</li>
+                        <li>4. Paramètre Teams de la tâche</li>
+                        <li>5. Paramètre de la stratégie de sauvegarde</li>
+                    </ul>
+                </div>
+
+                <div class="toc-item expandable">
+                    <button class="toc-toggle">
+                        <span class="toc-arrow">▶</span>
+                        IV. Test des restaurations
+                    </button>
+                    <ul class="toc-sub">
+                        <li>1. Restauration One Drive</li>
+                        <li>2. Restauration SharePoint</li>
+                    </ul>
+                </div>
+
+                <div class="toc-item">
+                    <span class="toc-leaf">V. Conclusion</span>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-separator">
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION 4 — I. Objectif
+    ═══════════════════════════════════════════════════════ -->
+    <section id="objectif" class="content-section">
+        <div class="container">
+            <h2 class="chapter-title">I. Objectif</h2>
+            <div class="content-block">
+                <p class="sub-intro">
+                    Dans cette partie, je présente la mise en place d'une solution de sauvegarde et de
+                    restauration d'un tenant <strong>Microsoft 365</strong> à l'aide d'un <strong>NAS Synology</strong>.
+                </p>
+                <p class="sub-intro">
+                    L'objectif est de montrer comment protéger les données Microsoft 365
+                    (OneDrive, SharePoint, Teams) et comment les restaurer en cas de suppression,
+                    d'erreur humaine ou d'incident.
+                </p>
+                <p class="sub-intro">
+                    <strong>Active Backup for Microsoft 365</strong> est une solution intégrée aux NAS Synology
+                    qui permet de sauvegarder automatiquement les données d'un tenant Microsoft 365.
+                    Elle permet de centraliser les sauvegardes de OneDrive, SharePoint et Teams, sans
+                    licence supplémentaire, tout en offrant des options de restauration granulaires
+                    (fichier, dossier, site, publication, etc.).
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-separator">
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION 5 — II. Topologie
+    ═══════════════════════════════════════════════════════ -->
+    <section id="topologie" class="content-section">
+        <div class="container">
+            <h2 class="chapter-title">II. Topologie</h2>
+            <div class="content-block">
+                <p class="sub-intro">
+                    Le schéma ci-dessous représente l'architecture globale de la solution de sauvegarde
+                    Microsoft 365 déployée sur le NAS Synology. Cliquez sur l'image pour l'agrandir.
+                </p>
+            </div>
+
+            <div class="topology-wrapper">
+                <div class="topology-img-container" onclick="openLightbox('topologie')">
+                    <img src="Schema-synology-o365.jpg" alt="Topologie Synology Active Backup M365" class="topology-img">
+                    <div class="zoom-hint">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35M11 8v6M8 11h6"/>
+                        </svg>
+                        Zoom
+                    </div>
+                </div>
+            </div>
+            <p class="table-caption">Schéma — Topologie Sauvegarde et Restauration Tenant O365</p>
+        </div>
+    </section>
+
+    <hr class="section-separator">
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION 6 — III. Présentation de la tâche de sauvegarde
+    ═══════════════════════════════════════════════════════ -->
+    <section id="tache-sauvegarde" class="content-section">
+        <div class="container">
+            <h2 class="chapter-title">III. Présentation de la tâche de sauvegarde</h2>
+            <div class="content-block">
+                <p class="sub-intro">
+                    Dans cette partie, je présente la configuration de la tâche de sauvegarde Microsoft 365
+                    nommée <strong>« BackupO365 »</strong>.
+                </p>
+                <p class="sub-intro">
+                    Je montre comment le tenant est ajouté à Synology, quels services sont sélectionnés
+                    (OneDrive, SharePoint, Teams) et quels paramètres sont utilisés afin d'assurer
+                    une sauvegarde régulière et fiable des données.
+                </p>
+            </div>
+
+            <!-- ── 1. Paramètre utilisateur ── -->
+            <div class="sub-section">
+                <h3 class="sub-title">1. Paramètre utilisateur de la tâche</h3>
+
+                <figure class="image-card image-wide">
+                    <img src="Screen-syno-1.png" alt="Paramètre utilisateur de la tâche BackupO365" class="image-card__img">
+                    <figcaption class="image-card__caption">Onglet Utilisateur — Tâche BackupO365</figcaption>
+                </figure>
+
+                <div class="param-blocks">
+                    <div class="param-block">
+                        <strong>Sélection des utilisateurs</strong>
+                        <p>Je sélectionne les utilisateurs Microsoft 365 à inclure dans la tâche de sauvegarde. J'ai créé un utilisateur de test pour cela.</p>
+                    </div>
+                    <div class="param-block">
+                        <strong>Services à sauvegarder</strong>
+                        <p>Pour chaque utilisateur, je coche les services à sauvegarder, notamment OneDrive, la messagerie, les contacts et le calendrier.</p>
+                    </div>
+                    <div class="param-block">
+                        <strong>Protection des données personnelles</strong>
+                        <p>Cela me permet de m'assurer que les données personnelles des utilisateurs sont bien protégées.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── 2. Paramètre des groupes ── -->
+            <div class="sub-section">
+                <h3 class="sub-title">2. Paramètre des groupes de la tâche</h3>
+
+                <div class="content-img-side">
+                    <figure class="image-card image-medium">
+                        <img src="Screen-syno-2.png" alt="Paramètre des groupes de la tâche BackupO365" class="image-card__img">
+                        <figcaption class="image-card__caption">Onglet Groupe — Tâche BackupO365</figcaption>
+                    </figure>
+
+                    <div class="side-notes">
+                        <div class="config-note">
+                            <p>Je sélectionne les groupes concernés et j'active la sauvegarde des services associés aux membres du groupe, comme la messagerie, les contacts et le calendrier.</p>
+                        </div>
+                        <div class="config-note">
+                            <p>Cette configuration permet de sauvegarder les données collaboratives liées aux groupes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── 3. Paramètre SharePoint ── -->
+            <div class="sub-section">
+                <h3 class="sub-title">3. Paramètre SharePoint de la tâche</h3>
+
+                <div class="content-img-side">
+                    <figure class="image-card image-medium">
+                        <img src="Screen-syno-3.png" alt="Paramètre SharePoint de la tâche BackupO365" class="image-card__img">
+                        <figcaption class="image-card__caption">Onglet SharePoint — Tâche BackupO365</figcaption>
+                    </figure>
+
+                    <div class="side-notes">
+                        <div class="config-note">
+                            <p>Je coche les sites concernés pour garantir la protection des documents et bibliothèques partagés.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── 4. Paramètre Teams ── -->
+            <div class="sub-section">
+                <h3 class="sub-title">4. Paramètre Teams de la tâche</h3>
+
+                <figure class="image-card image-wide">
+                    <img src="Screen-syno-4.png" alt="Paramètre Teams de la tâche BackupO365" class="image-card__img">
+                    <figcaption class="image-card__caption">Onglet Teams — Tâche BackupO365</figcaption>
+                </figure>
+
+                <div class="param-blocks">
+                    <div class="param-block">
+                        <strong>Sélection des équipes</strong>
+                        <p>Je choisis les équipes Microsoft Teams à sauvegarder. Chaque équipe sélectionnée inclut automatiquement les données associées, comme les fichiers partagés et les conversations.</p>
+                    </div>
+                    <div class="param-block">
+                        <strong>Données collaboratives</strong>
+                        <p>Cela me permet d'assurer la sauvegarde des données collaboratives utilisées au quotidien par les utilisateurs.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── 5. Paramètre stratégie de sauvegarde ── -->
+            <div class="sub-section">
+                <h3 class="sub-title">5. Paramètre de la stratégie de sauvegarde</h3>
+
+                <figure class="image-card image-medium">
+                    <img src="Screen-syno-5.png" alt="Stratégie de sauvegarde — Planification et rétention" class="image-card__img">
+                    <figcaption class="image-card__caption">Stratégie de sauvegarde — Planification de la tâche </figcaption>
+                </figure>
+
+                <figure class="image-card image-medium">
+                    <img src="Screen-syno-6.png" alt="Stratégie de sauvegarde — Planification et rétention" class="image-card__img">
+                    <figcaption class="image-card__caption">Stratégie de sauvegarde -  politique de conservation</figcaption>
+                </figure>
+
+                <div class="param-blocks">
+                    <div class="param-block">
+                        <strong>Planification quotidienne</strong>
+                        <p>La sauvegarde est exécutée quotidiennement à 22h30, un horaire choisi pour limiter l'impact sur l'activité des utilisateurs. Cette planification garantit une sauvegarde régulière et automatisée des données Microsoft 365.</p>
+                    </div>
+                    <div class="param-block">
+                        <strong>Politique de rétention</strong>
+                        <p>Je configure la conservation des versions précédentes sur une durée de 360 jours , ce qui permet de restaurer des données sur une longue période en cas de besoin.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION 7 — IV. Test des restaurations
+    ═══════════════════════════════════════════════════════ -->
+    <section id="test-restaurations" class="content-section">
+        <div class="container">
+            <h2 class="chapter-title">IV. Test des restaurations</h2>
+            <div class="content-block">
+                <p class="sub-intro">
+                    Dans cette partie, je réalise des tests concrets de restauration afin de valider
+                    l'efficacité de la solution <strong>Active Backup for Microsoft 365</strong>.
+                    Chaque scénario simule un incident réel (suppression accidentelle, perte de données)
+                    et documente les étapes de récupération depuis le portail Synology.
+                </p>
+            </div>
+
+            <!-- ── 1. Restauration OneDrive ── -->
+            <div class="sub-section" id="restauration-onedrive">
+                <h3 class="sub-title">1. Restauration OneDrive</h3>
+
+                <!-- Tableau de scénario -->
+                <div class="table-wrapper">
+                    <table class="scenario-table">
+                        <thead>
+                            <tr>
+                                <th>Scénario</th>
+                                <th>Contexte</th>
+                                <th>Besoin</th>
+                                <th>Objectif</th>
+                                <th>Outil / Solution</th>
+                                <th>Résultat attendu</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Restauration d'un dossier OneDrive supprimé</td>
+                                <td>Suppression accidentelle d'un dossier par un utilisateur</td>
+                                <td>Récupérer les fichiers supprimés sans passer par la corbeille</td>
+                                <td>Tester la restauration granulaire depuis Active Backup</td>
+                                <td>Active Backup for M365 + Active Backup Portal</td>
+                                <td>Dossier restauré intégralement dans OneDrive</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="table-caption">Tableau — Scénario de test : Restauration OneDrive</p>
+
+                <!-- Étapes -->
+                <div class="steps-flow">
+
+                    <!-- Étape 1 -->
+                    <div class="step-block">
+                        <div class="step-header">
+                            <span class="step-badge">1</span>
+                            <h4 class="step-title">Simulation de la suppression</h4>
+                        </div>
+                        <div class="content-img-side">
+                            <figure class="image-card image-medium">
+                                <img src="Screen-syno-7.png" alt="Suppression d'un dossier OneDrive" class="image-card__img">
+                                <figcaption class="image-card__caption">Suppression volontaire d'un dossier depuis OneDrive — simulation d'erreur utilisateur</figcaption>
+                            </figure>
+                            <div class="side-notes">
+                                <div class="step-note">
+                                    <p>Je supprime volontairement un dossier depuis l'interface <strong>OneDrive</strong> afin de simuler une erreur utilisateur. Le dossier est supprimé définitivement, sans passer par la corbeille.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Étape 2 -->
+                    <div class="step-block">
+                        <div class="step-header">
+                            <span class="step-badge">2</span>
+                            <h4 class="step-title">Accès au portail Active Backup et sélection de l'utilisateur</h4>
+                        </div>
+                        <div class="content-img-side">
+                            <figure class="image-card image-medium">
+                                <img src="Screen-syno-8.png" alt="Active Backup Portal — sélection utilisateur et navigation" class="image-card__img">
+                                <figcaption class="image-card__caption">Accès à Active Backup for Microsoft 365 — sélection de l'utilisateur TEST CNEH et navigation dans l'arborescence</figcaption>
+                            </figure>
+                            <div class="side-notes">
+                                <div class="step-note">
+                                    <p>Depuis le portail <strong>Active Backup</strong>, je sélectionne l'utilisateur <strong>TEST CNEH</strong> concerné par la suppression.</p>
+                                </div>
+                                <div class="step-note">
+                                    <p>Je navigue dans l'arborescence <strong>OneDrive</strong> sauvegardée pour localiser le dossier supprimé et le sélectionner pour restauration.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Étape 3 -->
+                    <div class="step-block">
+                        <div class="step-header">
+                            <span class="step-badge">3</span>
+                            <h4 class="step-title">Choix de la destination de restauration</h4>
+                        </div>
+                        <div class="content-img-side">
+                            <figure class="image-card image-medium">
+                                <img src="Screen-syno-9.png" alt="Options de restauration — nouveau dossier" class="image-card__img">
+                                <figcaption class="image-card__caption">Boîte de dialogue — Restauration dans un nouveau dossier avec conservation des autorisations de partage</figcaption>
+                            </figure>
+                            <div class="side-notes">
+                                <div class="step-note">
+                                    <p>Je choisis de restaurer le contenu dans un <strong>nouveau dossier</strong> afin d'éviter tout écrasement de données existantes.</p>
+                                </div>
+                                <div class="step-note">
+                                    <p>J'active l'option de restauration des <strong>autorisations de partage</strong> pour que les droits d'accès d'origine soient préservés après la restauration.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Étape 4 -->
+                    <div class="step-block">
+                        <div class="step-header">
+                            <span class="step-badge">4</span>
+                            <h4 class="step-title">Résultat — Données restaurées</h4>
+                        </div>
+                        <div class="content-img-side">
+                            <figure class="image-card image-medium">
+                                <img src="Screen-syno-10.png" alt="Résultat de la restauration OneDrive" class="image-card__img">
+                                <figcaption class="image-card__caption">Résultat — Données restaurées avec succès dans un dossier dédié sur OneDrive</figcaption>
+                            </figure>
+                            <div class="side-notes">
+                                <div class="step-note">
+                                    <p>Les données du dossier supprimé sont restaurées intégralement dans un <strong>dossier dédié</strong> sur le OneDrive de l'utilisateur, sans perte de contenu.</p>
+                                </div>
+                                <div class="step-note">
+                                    <p>Ce test confirme que <strong>Active Backup for M365</strong> permet une restauration granulaire fiable, même en dehors de la corbeille Microsoft 365.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- ── 2. Restauration SharePoint ── -->
+            <div class="sub-section" id="restauration-sharepoint">
+                <h3 class="sub-title">2. Restauration SharePoint</h3>
+
+                <!-- Tableau de scénario -->
+                <div class="table-wrapper">
+                    <table class="scenario-table">
+                        <thead>
+                            <tr>
+                                <th>Scénario</th>
+                                <th>Contexte</th>
+                                <th>Besoin</th>
+                                <th>Objectif</th>
+                                <th>Outil / Solution</th>
+                                <th>Résultat attendu</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Restauration d'un dossier SharePoint supprimé</td>
+                                <td>Suppression accidentelle d'un dossier sur le site SharePoint « Intervenant »</td>
+                                <td>Restaurer le dossier supprimé sans passer par la corbeille SharePoint</td>
+                                <td>Tester la restauration granulaire d'un site SharePoint via Active Backup</td>
+                                <td>Synology Active Backup for Microsoft 365</td>
+                                <td>Dossier restauré avec succès, données complètes et accessibles sur le site SharePoint</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="table-caption">Tableau — Scénario de test : Restauration SharePoint</p>
+
+                <!-- Étapes -->
+                <div class="steps-flow">
+
+                    <!-- Étape 1 -->
+                    <div class="step-block">
+                        <div class="step-header">
+                            <span class="step-badge">1</span>
+                            <h4 class="step-title">Simulation de la suppression sur SharePoint</h4>
+                        </div>
+                        <div class="content-img-side">
+                            <figure class="image-card image-medium">
+                                <img src="Screen-syno-11.png" alt="Suppression d'un dossier SharePoint" class="image-card__img">
+                                <figcaption class="image-card__caption">Suppression du dossier TEST depuis la bibliothèque de documents SharePoint « Intervenant »</figcaption>
+                            </figure>
+                            <div class="side-notes">
+                                <div class="step-note">
+                                    <p>Je supprime volontairement le dossier <strong>TEST</strong> depuis la bibliothèque de documents du site <strong>SharePoint Intervenant</strong>, afin de simuler une erreur utilisateur courante sur un site collaboratif.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Étape 2 -->
+                    <div class="step-block">
+                        <div class="step-header">
+                            <span class="step-badge">2</span>
+                            <h4 class="step-title">Navigation dans la sauvegarde et sélection du point de restauration</h4>
+                        </div>
+                        <div class="content-img-side">
+                            <figure class="image-card image-medium">
+                                <img src="Screen-syno-12.png" alt="Active Backup — navigation SharePoint" class="image-card__img">
+                                <figcaption class="image-card__caption">Active Backup for Microsoft 365 — navigation dans l'arborescence SharePoint sauvegardée</figcaption>
+                            </figure>
+                            <div class="side-notes">
+                                <div class="step-note">
+                                    <p>J'accède à <strong>Active Backup for Microsoft 365</strong> et je navigue dans l'arborescence sauvegardée du site <strong>SharePoint</strong>.</p>
+                                </div>
+                                <div class="step-note">
+                                    <p>Je retrouve le dossier <strong>TEST</strong> supprimé précédemment et je sélectionne le <strong>point de sauvegarde</strong> correspondant à la bonne date pour lancer la restauration.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Étape 3 -->
+                    <div class="step-block">
+                        <div class="step-header">
+                            <span class="step-badge">3</span>
+                            <h4 class="step-title">Vérification du résultat dans SharePoint</h4>
+                        </div>
+                        <div class="content-img-side">
+                            <figure class="image-card image-medium">
+                                <img src="Screen-syno-13.png" alt="Résultat restauration SharePoint" class="image-card__img">
+                                <figcaption class="image-card__caption">Résultat — Dossier TEST restauré et accessible dans la bibliothèque SharePoint</figcaption>
+                            </figure>
+                            <div class="side-notes">
+                                <div class="step-note">
+                                    <p>Je vérifie côté <strong>SharePoint</strong> que le dossier restauré est bien présent dans la bibliothèque de documents.</p>
+                                </div>
+                                <div class="step-note">
+                                    <p>Le dossier <strong>TEST</strong> apparaît dans le dossier de restauration, confirmant que l'opération s'est déroulée avec succès et que les données sont <strong>intactes</strong>.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Résultat final -->
+                <div class="scenario-result">
+                    <strong>Bilan des tests de restauration</strong><br>
+                    Les deux scénarios — OneDrive et SharePoint — ont été validés avec succès. La solution
+                    <strong>Active Backup for Microsoft 365</strong> permet une restauration granulaire fiable,
+                    rapide et sans perte de données, directement depuis l'interface Synology.
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <hr class="section-separator">
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION 8 — Conclusion
+    ═══════════════════════════════════════════════════════ -->
+    <section id="conclusion" class="content-section">
+        <div class="container">
+            <h2 class="chapter-title">V. Conclusion</h2>
+            <div class="content-block">
+                <p class="sub-intro">
+                    Ce projet m'a permis de mettre en œuvre une solution complète de sauvegarde et de
+                    restauration d'un tenant <strong>Microsoft 365</strong> à l'aide du <strong>NAS Synology</strong>
+                    et de l'application <strong>Active Backup for Microsoft 365</strong>.
+                </p>
+                <p class="sub-intro">
+                    À travers la configuration de la tâche de sauvegarde et les tests de restauration réalisés
+                    sur <strong>OneDrive</strong> et <strong>SharePoint</strong>, j'ai pu valider que la solution
+                    répond efficacement aux besoins de protection des données : restauration granulaire,
+                    conservation des autorisations, planification automatisée et politique de rétention adaptée.
+                </p>
+                <p class="sub-intro">
+                    Active Backup for Microsoft 365 se présente comme une alternative solide et sans coût de
+                    licence supplémentaire pour les organisations souhaitant sécuriser leur environnement
+                    cloud Microsoft 365 tout en conservant la maîtrise de leurs sauvegardes sur site.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-separator">
+
+
+
+    <!-- ─── Lightbox — Topologie ──────────────────────────── -->
+    <div class="lightbox" id="lightbox-topologie" onclick="closeLightbox('topologie')">
+        <button class="lightbox-close" onclick="closeLightbox('topologie')">✕</button>
+        <img src="Schema-synology-o365.jpg" alt="Topologie Synology Active Backup M365" onclick="event.stopPropagation()">
+    </div>
+
+    <!-- ─── Footer ──────────────────────────────────────────── -->
+    <footer>
+        <p>© 2026 LAPULY Matthis — Tous droits réservés</p>
+    </footer>
+
+    <script src="projet-synology.js"></script>
+
+</body>
+</html>
