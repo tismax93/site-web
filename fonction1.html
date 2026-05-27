@@ -1,0 +1,3037 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpeg" href="icon.jpeg">
+    <title>LAPULY Matthis - Projet Cisco</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="projet-cisco.css">
+</head>
+<body>
+
+    <!-- ─── Sidebar TOC ─────────────────────────────────────── -->
+    <aside class="sidenav" id="sidenav" aria-label="Sommaire">
+        <div class="sidenav__scroll">
+            <p class="sidenav__heading">Sommaire</p>
+            <ul class="sidenav__list" id="sidenav-list"></ul>
+        </div>
+    </aside>
+
+    <!-- ─── Navigation ─────────────────────────────────────── -->
+    <nav>
+        <div class="nav-links">
+            <a href="index.html" class="nav-name">LAPULY Matthis</a>
+            <a href="realisation.html" class="active">Mes projets IT</a>
+        </div>
+        <button class="ml-button">ML</button>
+    </nav>
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION 1 — En-tête projet
+    ═══════════════════════════════════════════════════════ -->
+    <section id="projet-header">
+        <div class="container">
+            <h1 class="projet-title">Architecture Réseau Redondante et Sécurisée</h1>
+
+            <div class="projet-grid">
+                <!-- Logo -->
+                <div class="projet-logo-wrapper">
+                    <div class="projet-logo">
+                        <img src="cisco.png" alt="Cisco">
+                    </div>
+                </div>
+
+                <!-- Description -->
+                <div class="projet-desc">
+                    <p>
+                        Ce projet présente la conception et la configuration complète d'une infrastructure
+                        réseau d'entreprise sur Cisco Packet Tracer, couvrant l'ensemble des couches 2 et 3 du
+                        modèle OSI : segmentation VLAN, redondance L2/L3, routage dynamique OSPF,
+                        sécurité ACL et accès Internet via NAT.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-separator">
+
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION 3 — Sommaire
+    ═══════════════════════════════════════════════════════ -->
+    <section id="sommaire">
+        <div class="container">
+            <h2 class="section-title">Sommaire</h2>
+
+            <div class="toc">
+
+                <div class="toc-item">
+                    <span class="toc-leaf">I. Objectifs du lab</span>
+                </div>
+
+                <div class="toc-item">
+                    <span class="toc-leaf">II. Tableau des technologies abordées</span>
+                </div>
+
+                <div class="toc-item">
+                    <span class="toc-leaf">III. Schéma de la topologie</span>
+                </div>
+
+                <div class="toc-item">
+                    <span class="toc-leaf">IV. Tableau des équipements et des VLANs</span>
+                </div>
+
+                <div class="toc-item expandable">
+                    <button class="toc-toggle">
+                        <span class="toc-arrow">▶</span>
+                        V. Configuration Couche 2
+                    </button>
+                    <ul class="toc-sub">
+                        <li>1. Ports trunk</li>
+                        <li>2. EtherChannel</li>
+                        <li>3. VTP + VLANs</li>
+                        <li>4. Ports access + Port Security</li>
+                        <li>5. Spanning Tree</li>
+                    </ul>
+                </div>
+
+                <div class="toc-item expandable">
+                    <button class="toc-toggle">
+                        <span class="toc-arrow">▶</span>
+                        VI. Configuration Couche 3
+                    </button>
+                    <ul class="toc-sub">
+                        <li>1. ip routing + SVIs</li>
+                        <li>2. Hot Standby Router Protocol</li>
+                        <li>3. Routed ports</li>
+                        <li>4. Adressage IP routeurs</li>
+                        <li>5. Open Shortest Path First</li>
+                        <li>6. Routes statiques + flottantes</li>
+                        <li>7. Network Address Translation (PAT)</li>
+                        <li>8. Access Control List</li>
+                        <li>9. DHCP + ip helper</li>
+                    </ul>
+                </div>
+
+                <div class="toc-item expandable">
+                    <button class="toc-toggle">
+                        <span class="toc-arrow">▶</span>
+                        VII. Tests &amp; Validation du lab
+                    </button>
+                    <ul class="toc-sub">
+                        <li>1. Tests couche 2</li>
+                        <li>2. Tests Couche 3</li>
+                    </ul>
+                </div>
+
+                <div class="toc-item">
+                    <span class="toc-leaf">VIII. Conclusion</span>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION — Technologie utilisée
+    ═══════════════════════════════════════════════════════ -->
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION 4 — I. Objectif
+    ═══════════════════════════════════════════════════════ -->
+    <section id="objectif" class="content-section">
+        <div class="container">
+            <h2 class="chapter-title">I. Objectifs du lab</h2>
+            <div class="content-block">
+                <p class="sub-intro">
+                    Ce lab a pour objectif de démontrer la maîtrise des fondamentaux réseau en configurant
+                    une infrastructure complète de A à Z sur Cisco Packet Tracer. Il couvre les deux grandes
+                    couches du modèle OSI utilisées en entreprise : la couche 2 (switching) et la couche 3
+                    (routing).
+                </p>
+                <p class="sub-intro">
+                    L'infrastructure est composée de switches de distribution Layer 3 (CD1 et CD2), de
+                    switches access (Acc3 et Acc4), de routeurs edge et de routeurs ISP, reproduisant une
+                    architecture réseau d'entreprise réaliste avec redondance, sécurité et segmentation.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-separator">
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION — II. Tableau des technologies abordées
+    ═══════════════════════════════════════════════════════ -->
+    <section id="technologies-abordees" class="content-section">
+        <div class="container">
+            <h2 class="chapter-title">II. Tableau des technologies abordées</h2>
+
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Domaine</th>
+                            <th>Technologie</th>
+                            <th>Objectif</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Couche 2</td><td>VLANs + VTP</td><td>Segmentation du réseau</td></tr>
+                        <tr><td>Couche 2</td><td>Ports trunk</td><td>Transport multi-VLAN</td></tr>
+                        <tr><td>Couche 2</td><td>EtherChannel LACP</td><td>Agrégation de liens + redondance</td></tr>
+                        <tr><td>Couche 2</td><td>Spanning Tree PVST+</td><td>Prévention des boucles L2</td></tr>
+                        <tr><td>Couche 2</td><td>Port Security</td><td>Sécurité des ports access</td></tr>
+                        <tr><td>Couche 3</td><td>SVIs + ip routing</td><td>Routage inter-VLAN</td></tr>
+                        <tr><td>Couche 3</td><td>HSRP</td><td>Redondance passerelle L3</td></tr>
+                        <tr><td>Couche 3</td><td>OSPF</td><td>Routage dynamique</td></tr>
+                        <tr><td>Couche 3</td><td>Routes statiques + flottantes</td><td>Routage manuel + backup</td></tr>
+                        <tr><td>Couche 3</td><td>NAT PAT</td><td>Accès Internet</td></tr>
+                        <tr><td>Couche 3</td><td>ACL</td><td>Filtrage et sécurité</td></tr>
+                        <tr><td>Couche 3</td><td>DHCP + ip helper</td><td>Attribution automatique d'IP</td></tr>
+                        <tr><td>Sécurité</td><td>DMZ VLAN 200</td><td>Isolation serveur WEB</td></tr>
+                        <tr><td>Haute dispo</td><td>Redondance L2/L3</td><td>Continuité de service</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-separator">
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION — III. Schéma de la topologie
+    ═══════════════════════════════════════════════════════ -->
+    <section id="topologie" class="content-section">
+        <div class="container">
+            <h2 class="chapter-title">III. Schéma de la topologie</h2>
+            <div class="content-block">
+                <p class="sub-intro">Le schéma ci-dessous représente l'architecture globale du réseau déployé sur Cisco Packet Tracer.
+                Cliquez sur l'image pour l'agrandir.</p>
+            </div>
+
+            <div class="topology-wrapper">
+                <div class="topology-img-container" onclick="openLightbox('cisco-topo')">
+                    <img src="Screen-cisco-1.png" alt="Schéma topologie Cisco" class="topology-img">
+                    <div class="zoom-hint">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35M11 8v6M8 11h6"/>
+                        </svg>
+                        Zoom
+                    </div>
+                </div>
+            </div>
+            <p class="table-caption">Schéma de la topologie réseau Cisco</p>
+        </div>
+    </section>
+
+    <hr class="section-separator">
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION — IV. Tableau des équipements et des VLANs
+    ═══════════════════════════════════════════════════════ -->
+    <section id="equipements-vlans" class="content-section">
+        <div class="container">
+            <h2 class="chapter-title">IV. Tableau des équipements et des VLANs</h2>
+
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Équipement</th>
+                            <th>Type</th>
+                            <th>Modèle</th>
+                            <th>Rôle</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="table-group-header">
+                            <td colspan="4">Switches de distribution (Layer 3)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>CD1</strong></td>
+                            <td><span class="badge badge--distrib">Distribution L3</span></td>
+                            <td>Cisco 3650</td>
+                            <td>Routage inter-VLAN, HSRP actif VLANs 10/30/100, root bridge STP, serveur VTP</td>
+                        </tr>
+                        <tr>
+                            <td><strong>CD2</strong></td>
+                            <td><span class="badge badge--distrib">Distribution L3</span></td>
+                            <td>Cisco 3650</td>
+                            <td>Routage inter-VLAN, HSRP actif VLANs 20/200, root bridge STP secondaire, client VTP</td>
+                        </tr>
+
+                        <tr class="table-group-header">
+                            <td colspan="4">Switches d'accès (Layer 2)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Acc3</strong></td>
+                            <td><span class="badge badge--access">Access L2</span></td>
+                            <td>Cisco 2960</td>
+                            <td>Connexion postes COMPTA (VLAN 10) et ADMIN (VLAN 30), port security, client VTP</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Acc4</strong></td>
+                            <td><span class="badge badge--access">Access L2</span></td>
+                            <td>Cisco 2960</td>
+                            <td>Connexion postes RH (VLAN 20), port security, client VTP</td>
+                        </tr>
+
+                        <tr class="table-group-header">
+                            <td colspan="4">Routeurs Edge</td>
+                        </tr>
+                        <tr>
+                            <td><strong>R1</strong></td>
+                            <td><span class="badge badge--edge">Routeur edge</span></td>
+                            <td>Cisco ISR</td>
+                            <td>NAT PAT, OSPF, route statique + flottante, lien vers CD1 et SP1</td>
+                        </tr>
+                        <tr>
+                            <td><strong>R2</strong></td>
+                            <td><span class="badge badge--edge">Routeur edge</span></td>
+                            <td>Cisco ISR</td>
+                            <td>NAT PAT, OSPF, route statique + flottante, lien vers CD2 et SP2</td>
+                        </tr>
+
+                        <tr class="table-group-header">
+                            <td colspan="4">Routeurs ISP</td>
+                        </tr>
+                        <tr>
+                            <td><strong>SP1</strong></td>
+                            <td><span class="badge badge--isp">Routeur ISP</span></td>
+                            <td>Cisco ISR</td>
+                            <td>Fournisseur Internet R1, default-information originate OSPF, lien inter-ISP vers SP2</td>
+                        </tr>
+                        <tr>
+                            <td><strong>SP2</strong></td>
+                            <td><span class="badge badge--isp">Routeur ISP</span></td>
+                            <td>Cisco ISR</td>
+                            <td>Fournisseur Internet R2, default-information originate OSPF, lien inter-ISP vers SP1</td>
+                        </tr>
+
+                        <tr class="table-group-header">
+                            <td colspan="4">VLANs</td>
+                        </tr>
+                        <tr>
+                            <td><strong>VLAN 10</strong></td>
+                            <td><span class="badge badge--vlan-user">VLAN utilisateur</span></td>
+                            <td>10.10.10.0/24</td>
+                            <td>Département Comptabilité — DHCP, passerelle HSRP 10.10.10.1</td>
+                        </tr>
+                        <tr>
+                            <td><strong>VLAN 20</strong></td>
+                            <td><span class="badge badge--vlan-user">VLAN utilisateur</span></td>
+                            <td>10.10.20.0/24</td>
+                            <td>Département RH — DHCP, passerelle HSRP 10.10.20.1</td>
+                        </tr>
+                        <tr>
+                            <td><strong>VLAN 30</strong></td>
+                            <td><span class="badge badge--vlan-user">VLAN utilisateur</span></td>
+                            <td>10.10.30.0/24</td>
+                            <td>Administration — IP statiques, passerelle HSRP 10.10.30.1</td>
+                        </tr>
+                        <tr>
+                            <td><strong>VLAN 100</strong></td>
+                            <td><span class="badge badge--vlan-srv">VLAN serveurs</span></td>
+                            <td>10.10.100.0/24</td>
+                            <td>Serveurs internes (DHCP, DNS) — IP statiques, isolé des VLANs utilisateurs</td>
+                        </tr>
+                        <tr>
+                            <td><strong>VLAN 200</strong></td>
+                            <td><span class="badge badge--vlan-dmz">VLAN DMZ</span></td>
+                            <td>10.10.200.0/24</td>
+                            <td>Serveurs exposés (WEB, MAIL, FTP) — isolés par ACL 110, accès externe uniquement</td>
+                        </tr>
+                        <tr>
+                            <td><strong>VLAN 99</strong></td>
+                            <td><span class="badge badge--vlan-mgmt">VLAN natif/mgmt</span></td>
+                            <td>10.10.99.0/24</td>
+                            <td>VLAN natif trunk + management des switches, remplace le VLAN 1 par défaut</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-separator">
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION — V. Configuration Couche 2
+    ═══════════════════════════════════════════════════════ -->
+    <section id="config-couche2" class="content-section">
+        <div class="container">
+            <h2 class="chapter-title">V. Configuration Couche 2</h2>
+            <div class="content-block">
+                <p class="sub-intro">
+                    Cette section détaille la configuration de la couche switching de l'infrastructure.
+                    Les mécanismes mis en place (trunks 802.1Q, EtherChannel, VTP, Spanning Tree et Port Security),
+                    constituent le socle L2 sur lequel repose l'ensemble du réseau.
+                </p>
+            </div>
+
+            <!-- ── 1. Ports trunk ── -->
+            <div class="sub-section">
+                <h3 class="sub-title">1. Ports trunk</h3>
+
+                <p class="sub-intro">
+                    Dans ce lab, les trunks sont indispensables car ils permettent aux VLANs créés sur CD1
+                    d'être accessibles sur CD2, Acc3 et Acc4, et de remonter jusqu'aux routeurs R1 et R2
+                    pour le routage inter-VLAN. Chaque lien entre switch sont configuré en mode trunk.
+                </p>
+                <p class="sub-intro">
+                    Un <strong>VLAN natif</strong> (VLAN 99) est défini sur chaque trunk. C'est le VLAN qui circule sans tag
+                    sur le lien. J'utilise un VLAN dédié (99) plutôt que le VLAN 1 par défaut pour des raisons
+                    de sécurité.
+                </p>
+
+                <div class="topology-wrapper">
+                    <div class="topology-img-container" onclick="openLightbox('cisco-trunk')">
+                        <img src="Screen-cisco-2.png" alt="Liens trunk CD1 CD2 Acc3 Acc4" class="topology-img">
+                        <div class="zoom-hint">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35M11 8v6M8 11h6"/>
+                            </svg>
+                            Zoom
+                        </div>
+                    </div>
+                </div>
+                <p class="table-caption">Liens trunk entre CD1, CD2, Acc3 et Acc4</p>
+
+                <!-- A. Tableau Liens trunk -->
+                <div class="config-subsection">
+                    <h4 class="config-label">A. Tableau Liens trunk</h4>
+
+                    <div class="table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>DE</th>
+                                    <th>PORT</th>
+                                    <th>VERS</th>
+                                    <th>PORT</th>
+                                    <th>VLANS AUTORISÉS</th>
+                                    <th>VLAN NATIF</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>CD1</td><td>G1/0/1</td><td>R1</td><td>G0/1</td><td>10,20,30,100,200</td><td>99</td></tr>
+                                <tr><td>CD2</td><td>G1/0/1</td><td>R2</td><td>G0/1</td><td>10,20,30,100,200</td><td>99</td></tr>
+                                <tr><td>CD1</td><td>Po1 (G1/0/2 + G1/0/3)</td><td>CD2</td><td>Po1 (G1/0/2 + G1/0/3)</td><td>10,20,30,100,200</td><td>99</td></tr>
+                                <tr><td>CD1</td><td>Gig1/0/24</td><td>Acc3</td><td>F0/24</td><td>10,20,30</td><td>99</td></tr>
+                                <tr><td>CD1</td><td>Gig1/0/21</td><td>Acc4</td><td>F0/21</td><td>10,20,30</td><td>99</td></tr>
+                                <tr><td>CD2</td><td>Gig1/0/21</td><td>Acc3</td><td>F0/21</td><td>10,20,30</td><td>99</td></tr>
+                                <tr><td>CD2</td><td>Gig1/0/24</td><td>Acc4</td><td>F0/24</td><td>10,20,30</td><td>99</td></tr>
+                            </tbody>
+                        </table>
+                        <p class="table-caption">Tableau — Liens trunk configurés</p>
+                    </div>
+                </div>
+
+                <!-- B. Vérification des configurations trunks 802.1Q -->
+                <div class="config-subsection">
+                    <h4 class="config-label">B. Vérification des configuration trunks 802.1Q</h4>
+
+                    <!-- CD1 et CD2 -->
+                    <div class="freq-row verif-row">
+                        <div class="freq-col">
+                            <p class="verif-label">CD1 et CD2</p>
+                            <figure class="image-card image-medium">
+                                <img src="Screen-cisco-3.png" alt="Vérification trunk CD1/CD2" class="image-card__img">
+                            </figure>
+                        </div>
+                        <div class="freq-col">
+                            <div class="config-note">
+                                <p>Lien inter-core Po1 : VLANs 10, 20, 30, <strong>99</strong>, 100, 200.</p>
+                            </div>
+                            <div class="config-note">
+                                <p>Liens vers Acc3/Acc4 : VLANs 10, 20, 30, 99 uniquement — les VLANs serveurs et DMZ ne descendent pas à la couche accès.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Acc3 -->
+                    <div class="freq-row verif-row">
+                        <div class="freq-col">
+                            <p class="verif-label">Acc3</p>
+                            <figure class="image-card image-medium">
+                                <img src="Screen-cisco-4.png" alt="Vérification trunk Acc3" class="image-card__img">
+                            </figure>
+                        </div>
+                        <div class="freq-col">
+                            <div class="config-note">
+                                <p>Deux trunks 802.1Q vers CD1 et CD2 — VLANs 10, 20, 30, 99 (natif).</p>
+                            </div>
+                            <div class="config-note">
+                                <p>Spanning Tree répartit les VLANs entre les deux liens pour éviter les boucles réseau : VLAN 20 → Fa0/21 &nbsp;|&nbsp; VLANs 10, 30, 99 → Fa0/24.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Acc4 -->
+                    <div class="freq-row verif-row">
+                        <div class="freq-col">
+                            <p class="verif-label">Acc4</p>
+                            <figure class="image-card image-medium">
+                                <img src="Screen-cisco-5.png" alt="Vérification trunk Acc4" class="image-card__img">
+                            </figure>
+                        </div>
+                        <div class="freq-col">
+                            <div class="config-note">
+                                <p>Deux trunks 802.1Q vers CD1 et CD2 — VLANs 10, 20, 30, 99 (natif).</p>
+                            </div>
+                            <div class="config-note">
+                                <p><strong>STP inverse d'Acc3 :</strong> VLANs 10, 30, 99 → Fa0/21 &nbsp;|&nbsp; VLAN 20 → Fa0/24.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- ── 2. EtherChannel ── -->
+            <div class="sub-section">
+                <h3 class="sub-title">2. EtherChannel</h3>
+
+                <p class="sub-intro">
+                    Le lien entre CD1 et CD2 est le lien le plus critique du lab — tout le trafic inter-VLAN
+                    entre les deux switches de distribution passe par là. Il est donc logique de le rendre
+                    redondant et plus performant avec un EtherChannel plutôt qu'un simple lien trunk.
+                </p>
+                <p class="sub-intro">
+                    Le choix de <strong>LACP</strong> plutôt que PAgP est une bonne pratique car LACP est
+                    compatible avec tous les constructeurs, pas uniquement Cisco.
+                </p>
+
+                <div class="topology-wrapper">
+                    <div class="topology-img-container" onclick="openLightbox('cisco-etherchannel')">
+                        <img src="screen-cisco-6.png" alt="EtherChannel CD1-CD2" class="topology-img">
+                        <div class="zoom-hint">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35M11 8v6M8 11h6"/>
+                            </svg>
+                            Zoom
+                        </div>
+                    </div>
+                </div>
+                <p class="table-caption">EtherChannel LACP entre CD1 et CD2 (G1/0/2 + G1/0/3)</p>
+
+                <!-- A. Tableau EtherChannel -->
+                <div class="config-subsection">
+                    <h4 class="config-label">A. Tableau EtherChannel (Port-Channel)</h4>
+
+                    <div class="table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>DE</th>
+                                    <th>PORT</th>
+                                    <th>VERS</th>
+                                    <th>PORT</th>
+                                    <th>PROTOCOLE</th>
+                                    <th>MODE</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>CD1</strong></td>
+                                    <td>G1/0/2 + G1/0/3</td>
+                                    <td><strong>CD2</strong></td>
+                                    <td>G1/0/2 + G1/0/3</td>
+                                    <td><strong>LACP</strong></td>
+                                    <td>Active / Active</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- B. Vérification EtherChannel LACP -->
+                <div class="config-subsection">
+                    <h4 class="config-label">B. Vérification des configuration EtherChannel LACP</h4>
+
+                    <div class="freq-row verif-row">
+                        <div class="freq-col">
+                            <figure class="image-card image-medium">
+                                <img src="screen-cisco-7.png" alt="show etherchannel summary" class="image-card__img">
+                            </figure>
+                        </div>
+                        <div class="freq-col">
+                            <div class="config-note">
+                                <p>Les interfaces Gi1/0/2 et Gi1/0/3 sont agrégées dans le Port-Channel et toutes les deux actives <strong>(P)</strong> dans le bundle.</p>
+                            </div>
+                            <div class="config-note">
+                                <p>Le statut <strong>SU</strong> indique que le Port-Channel fonctionne correctement en couche 2 <strong>(S)</strong> et est en utilisation <strong>(U)</strong>.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="summary-box">
+                        <p>Cette configuration permet d'augmenter la bande passante entre les switches tout en assurant la redondance en cas de panne d'un lien physique.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── 3. VTP + VLANs ── -->
+            <div class="sub-section">
+                <h3 class="sub-title">3. VTP + VLANs</h3>
+
+                <p class="sub-intro">
+                    Dans ce lab, CD1 est configuré en tant que serveur VTP. Il centralise et gère la base de
+                    données des VLANs du réseau. Les switches CD2, Acc3 et Acc4 sont configurés en clients VTP
+                    et récupèrent automatiquement les VLANs via les liens trunk, ce qui facilite l'administration
+                    et évite de devoir créer manuellement les VLANs sur chaque switch.
+                </p>
+                <p class="sub-intro">
+                    Plusieurs VLANs ont été créés afin de segmenter le réseau en différents départements.
+                    Cette segmentation améliore l'organisation du réseau, réduit les domaines de broadcast
+                    et renforce la sécurité en isolant notamment les serveurs et certains équipements sensibles
+                    du reste des utilisateurs.
+                </p>
+
+                <!-- A. Tableau des VLANs -->
+                <div class="config-subsection">
+                    <h4 class="config-label">A. Tableaux des VLANs</h4>
+
+                    <div class="table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>VLAN ID</th>
+                                    <th>NOM</th>
+                                    <th>RÉSEAU</th>
+                                    <th>PASSERELLE (HSRP VIP)</th>
+                                    <th>DHCP</th>
+                                    <th>ÉQUIPEMENTS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><span class="vlan-id vlan-user">VLAN 10</span></td><td>COMPTA</td><td>10.10.10.0/24</td><td>10.10.10.1</td><td>Pool DHCP R1/R2</td><td>PC COMPTA</td></tr>
+                                <tr><td><span class="vlan-id vlan-user">VLAN 20</span></td><td>RH</td><td>10.10.20.0/24</td><td>10.10.20.1</td><td>Pool DHCP R1/R2</td><td>PC RH</td></tr>
+                                <tr><td><span class="vlan-id vlan-admin">VLAN 30</span></td><td>ADMIN</td><td>10.10.30.0/24</td><td>10.10.30.1</td><td>IP statique</td><td>PC ADMIN</td></tr>
+                                <tr><td><span class="vlan-id vlan-srv">VLAN 100</span></td><td>SERVEURS</td><td>10.10.100.0/24</td><td>10.10.100.1</td><td>IP statique</td><td>SRV-DHCP, SRV-DNS</td></tr>
+                                <tr><td><span class="vlan-id vlan-dmz">VLAN 200</span></td><td>DMZ</td><td>10.10.200.0/24</td><td>10.10.200.1</td><td>IP statique</td><td>SRV-WEB, SRV-MAIL, SRV-FTP</td></tr>
+                                <tr><td><span class="vlan-id vlan-mgmt">VLAN 99</span></td><td>NATIVE / MGMT</td><td>10.10.99.0/24</td><td>—</td><td>IP statique</td><td>Interfaces management switches</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- B. Vérification des configuration VLAN -->
+                <div class="config-subsection">
+                    <h4 class="config-label">B. Vérification des configuration VLAN</h4>
+
+                    <figure class="image-card image-wide">
+                        <img src="Screen-cisco-8.png" alt="show vlan brief CD1" class="image-card__img">
+                    </figure>
+
+                    <div class="summary-box">
+                        <p>Tous les VLANs créés sur CD1 apparaissent automatiquement sur CD2, Acc3 et Acc4 grâce à la propagation VTP via les trunks.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── 4. Ports access + Port Security ── -->
+            <div class="sub-section">
+                <h3 class="sub-title">4. Ports access + Port Security</h3>
+
+                <p class="sub-intro">
+                    Les ports des switches Acc3 et Acc4 connectés aux PC ont été configurés en mode access
+                    et assignés à leur VLAN respectif. Les ports des switches CD1 et CD2 connectés aux serveurs
+                    ont également été configurés en access sur les VLANs 100 et 200.
+                </p>
+                <p class="sub-intro">
+                    Le Port Security a été activé sur chaque port access pour limiter à <strong>1 seule adresse MAC</strong>
+                    par port. En cas de violation, le port se met en <strong>shutdown</strong> pour les PC et en
+                    <strong>restrict</strong> pour les serveurs. Le mode <strong>sticky</strong> permet d'apprendre
+                    automatiquement la MAC de l'équipement connecté et de la mémoriser donc pas besoin de la saisir manuellement.
+                </p>
+
+                <div class="topology-wrapper">
+                    <div class="topology-img-container" onclick="openLightbox('cisco-access')">
+                        <img src="Screen-cisco-9.png" alt="Ports access topology" class="topology-img">
+                        <div class="zoom-hint">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35M11 8v6M8 11h6"/>
+                            </svg>
+                            Zoom
+                        </div>
+                    </div>
+                </div>
+                <p class="table-caption">Ports access sur Acc3, Acc4, CD1 et CD2</p>
+
+                <!-- A. Tableau des port access -->
+                <div class="config-subsection">
+                    <h4 class="config-label">A. Tableau des port access</h4>
+
+                    <div class="table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Switch</th>
+                                    <th>Port</th>
+                                    <th>VLAN</th>
+                                    <th>Équipement</th>
+                                    <th>Port Security</th>
+                                    <th>Violation</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Acc3</td><td>Fa0/1</td><td>10</td><td>PC COMPTA</td><td>Max 1 MAC</td><td><span class="violation-shutdown">Shutdown</span></td></tr>
+                                <tr><td>Acc3</td><td>Fa0/2</td><td>30</td><td>PC ADMIN</td><td>Max 1 MAC</td><td><span class="violation-shutdown">Shutdown</span></td></tr>
+                                <tr><td>Acc3</td><td>Fa0/3</td><td>10</td><td>PRINTER COMPTA</td><td>Max 1 MAC</td><td><span class="violation-shutdown">Shutdown</span></td></tr>
+                                <tr><td>Acc4</td><td>Fa0/1</td><td>20</td><td>PC RH</td><td>Max 1 MAC</td><td><span class="violation-shutdown">Shutdown</span></td></tr>
+                                <tr><td>Acc4</td><td>Fa0/2</td><td>20</td><td>PC RH 02</td><td>Max 1 MAC</td><td><span class="violation-shutdown">Shutdown</span></td></tr>
+                                <tr><td>CD1</td><td>G1/0/4</td><td>100</td><td>SRV-DHCP</td><td>Max 1 MAC</td><td><span class="violation-restrict">Restrict</span></td></tr>
+                                <tr><td>CD1</td><td>G1/0/5</td><td>100</td><td>SRV-DNS</td><td>Max 1 MAC</td><td><span class="violation-restrict">Restrict</span></td></tr>
+                                <tr><td>CD2</td><td>G1/0/4</td><td>200</td><td>SRV-WEB</td><td>Max 1 MAC</td><td><span class="violation-restrict">Restrict</span></td></tr>
+                                <tr><td>CD2</td><td>G1/0/5</td><td>200</td><td>SRV-MAIL</td><td>Max 1 MAC</td><td><span class="violation-restrict">Restrict</span></td></tr>
+                                <tr><td>CD2</td><td>G1/0/6</td><td>200</td><td>SRV-FTP</td><td>Max 1 MAC</td><td><span class="violation-restrict">Restrict</span></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- B. Vérification des configuration ports security -->
+                <div class="config-subsection">
+                    <h4 class="config-label">B. Vérification des configuration ports security</h4>
+
+                    <!-- Acc3 -->
+                    <div class="freq-row verif-row">
+                        <div class="freq-col">
+                            <p class="verif-label">Acc3</p>
+                            <figure class="image-card image-medium">
+                                <img src="Screen-cisco-10.png" alt="Port Security Acc3" class="image-card__img">
+                            </figure>
+                        </div>
+                        <div class="freq-col">
+                            <div class="config-note">
+                                <p>Port Security activé sur Fa0/1 — max <strong>1 adresse MAC</strong>. Mode violation : <strong>Shutdown</strong>.</p>
+                            </div>
+                            <div class="config-note">
+                                <p>Une adresse MAC a été apprise via le mode <strong>sticky</strong> — le port se désactive automatiquement si un équipement non autorisé est connecté.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CD1 -->
+                    <div class="freq-row verif-row">
+                        <div class="freq-col">
+                            <p class="verif-label">CD2</p>
+                            <figure class="image-card image-medium">
+                                <img src="Screen-cisco-11.png" alt="Port Security CD1" class="image-card__img">
+                            </figure>
+                        </div>
+                        <div class="freq-col">
+                            <div class="config-note">
+                                <p>Mode violation : <strong>Restrict</strong> — les adresses MAC non autorisées sont bloquées sans désactiver le port.</p>
+                            </div>
+                            <div class="config-note">
+                                <p>Les services réseau restent disponibles tout en sécurisant les ports connectés aux serveurs.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- ── 5. Spanning Tree ── -->
+            <div class="sub-section">
+                <h3 class="sub-title">5. Spanning Tree</h3>
+
+                <p class="sub-intro">
+                    Le Spanning Tree Protocol (STP) en mode PVST+ a été configuré pour éviter les boucles
+                    réseau au niveau couche 2. Puisque chaque PC et serveur est connecté à la fois à CD1
+                    et CD2 via Acc3/Acc4, il existe plusieurs chemins possibles donc sans STP, cela créerait
+                    des boucles infinies et paralyserait le réseau.
+                </p>
+                <p class="sub-intro">
+                    Pour optimiser le trafic, les rôles de root bridge ont été répartis entre CD1 et CD2 en
+                    fonction des VLANs, en cohérence avec la configuration HSRP — CD1 est root sur les VLANs
+                    où il est actif HSRP, CD2 pareil. Cela garantit que le trafic L2 et L3 prend toujours
+                    le même chemin optimal.
+                </p>
+                <p class="sub-intro">
+                    <strong>PortFast</strong> et <strong>BPDU Guard</strong> ont été activés sur les ports access
+                    vers les PC — PortFast permet au port de passer immédiatement en état forwarding sans attendre
+                    la convergence STP, et BPDU Guard bloque le port si un switch y est connecté par erreur.
+                </p>
+
+                <div class="topology-wrapper">
+                    <div class="topology-img-container" onclick="openLightbox('cisco-stp')">
+                        <img src="Screen-cisco-12.png" alt="Topologie Spanning Tree" class="topology-img">
+                        <div class="zoom-hint">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35M11 8v6M8 11h6"/>
+                            </svg>
+                            Zoom
+                        </div>
+                    </div>
+                </div>
+                <p class="table-caption">Topologie STP PVST+ — CD1, CD2, Acc3, Acc4</p>
+
+                <!-- A. Tableau Spanning Tree -->
+                <div class="config-subsection">
+                    <h4 class="config-label">A. Tableau Spanning Tree (PVST+)</h4>
+
+                    <div class="table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>VLAN</th>
+                                    <th>ROOT BRIDGE</th>
+                                    <th>ROOT SECONDAIRE</th>
+                                    <th>PORTFAST / BPDU GUARD</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>VLAN 10, <span class="vlan-admin">30</span>, 100</td>
+                                    <td><strong>CD1</strong></td>
+                                    <td>CD2</td>
+                                    <td>Acc3 F0/1, Acc3 F0/2</td>
+                                </tr>
+                                <tr>
+                                    <td>VLAN <span class="vlan-user">20</span>, <span class="vlan-dmz">200</span></td>
+                                    <td><strong>CD2</strong></td>
+                                    <td>CD1</td>
+                                    <td>Acc4 F0/1</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- B. Vérification Spanning Tree -->
+                <div class="config-subsection">
+                    <h4 class="config-label">B. Vérification des configuration Spanning Tree (PVST+)</h4>
+
+                    <!-- CD1 VLAN 10 -->
+                    <div class="freq-row verif-row">
+                        <div class="freq-col">
+                            <p class="verif-label">CD1 pour le VLAN 10</p>
+                            <figure class="image-card image-medium">
+                                <img src="Screen-cisco-13.png" alt="STP CD1 VLAN 10" class="image-card__img">
+                            </figure>
+                        </div>
+                        <div class="freq-col">
+                            <div class="config-note">
+                                <p><strong>CD1 est le Root Bridge</strong> pour le VLAN 10.</p>
+                            </div>
+                            <div class="config-note">
+                                <p>Les interfaces Gi1/0/21, Gi1/0/24 et Po1 sont en état <em>Designated Forwarding</em> — aucun port bloqué car le Root Bridge possède uniquement des ports désignés.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CD2 VLAN 20 -->
+                    <div class="freq-row verif-row">
+                        <div class="freq-col">
+                            <p class="verif-label">CD2 pour le VLAN 20</p>
+                            <figure class="image-card image-medium">
+                                <img src="Screen-cisco-14.png" alt="STP CD2 VLAN 20" class="image-card__img">
+                            </figure>
+                        </div>
+                        <div class="freq-col">
+                            <div class="config-note">
+                                <p><strong>CD2 est le Root Bridge</strong> pour le VLAN 20.</p>
+                            </div>
+                            <div class="config-note">
+                                <p>Les interfaces Gi1/0/21, Gi1/0/24 et Po1 sont également en état <em>Designated Forwarding</em>.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Acc3 VLAN 10 -->
+                    <div class="freq-row verif-row">
+                        <div class="freq-col">
+                            <p class="verif-label">Acc3 pour le VLAN 10</p>
+                            <figure class="image-card image-medium">
+                                <img src="Screen-cisco-15.png" alt="STP Acc3 VLAN 10" class="image-card__img">
+                            </figure>
+                        </div>
+                        <div class="freq-col">
+                            <div class="config-note">
+                                <p>Chemin vers le Root Bridge (CD1) via <strong>Fa0/24</strong> — état <em>Root Forwarding (Root FWD)</em>.</p>
+                            </div>
+                            <div class="config-note">
+                                <p><strong>Fa0/21</strong> en état <em>Alternate Blocking (Altn BLK)</em> pour éviter une boucle L2.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Acc4 VLAN 20 -->
+                    <div class="freq-row verif-row">
+                        <div class="freq-col">
+                            <p class="verif-label">Acc4 pour le VLAN 20</p>
+                            <figure class="image-card image-medium">
+                                <img src="Screen-cisco-16.png" alt="STP Acc4 VLAN 20" class="image-card__img">
+                            </figure>
+                        </div>
+                        <div class="freq-col">
+                            <div class="config-note">
+                                <p>Chemin vers le Root Bridge (CD2) via <strong>Fa0/24</strong> — état <em>Root Forwarding (Root FWD)</em>.</p>
+                            </div>
+                            <div class="config-note">
+                                <p>Comme Acc3, <strong>Fa0/21</strong> en état <em>Alternate Blocking</em> pour éviter une boucle L2.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <hr class="section-separator">
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION VI — Configuration Couche 3
+    ═══════════════════════════════════════════════════════ -->
+    <section id="config-couche3" class="content-section">
+        <div class="container">
+            <h2 class="chapter-title">VI. Configuration Couche 3</h2>
+            <div class="content-block">
+                <p class="sub-intro">
+                    Cette section couvre la configuration du routage et des services réseau. Les switches de distribution CD1 et CD2 jouent ici un rôle central en assurant le routage inter-VLAN directement au niveau de la distribution, sans dépendre des routeurs edge. HSRP, OSPF, NAT et ACL viennent compléter l'architecture pour garantir la redondance, l'accès Internet et la sécurité du trafic.
+                </p>
+            </div>
+
+            <!-- ── VI.1 ip routing + SVIs ── -->
+            <div class="sub-section">
+                <h3 class="sub-title">1. ip routing + SVIs</h3>
+
+                <p class="sub-intro">
+                    La commande <code>ip routing</code> a été activée sur CD1 et CD2 pour transformer ces switches de distribution en équipements Layer 3 capables de router le trafic entre les VLANs. Une interface SVI (Switch Virtual Interface) a été créée pour chaque VLAN sur CD1 et CD2 — chaque SVI possède une adresse IP qui servira de passerelle pour les équipements de ce VLAN.
+                </p>
+                <p class="sub-intro">
+                    Ce choix est plus performant que le router-on-a-stick car le routage inter-VLAN se fait directement dans les switches sans remonter jusqu'aux routeurs R1/R2, qui eux ne gèrent que le trafic WAN.
+                </p>
+
+                <div class="config-subsection">
+                    <figure class="image-card image-full clickable" onclick="openLightbox('cisco-svi')">
+                        <img src="screen-cisco-17.png" alt="Topologie ip routing SVIs" class="image-card__img">
+                        <figcaption class="image-card__caption">Topologie — Routage inter-VLAN via SVIs sur CD1 et CD2</figcaption>
+                    </figure>
+                </div>
+
+                <!-- A. Tableau des SVIs -->
+                <div class="config-subsection">
+                    <h4 class="config-label">A. Tableau des SVIs</h4>
+                    <div class="table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Interface SVI</th>
+                                    <th>VLAN</th>
+                                    <th>IP CD1</th>
+                                    <th>IP CD2</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>interface vlan 10</code></td>
+                                    <td><span class="vlan-id vlan-user">VLAN 10</span></td>
+                                    <td>10.10.10.2/24</td>
+                                    <td>10.10.10.3/24</td>
+                                </tr>
+                                <tr>
+                                    <td><code>interface vlan 20</code></td>
+                                    <td><span class="vlan-id vlan-user">VLAN 20</span></td>
+                                    <td>10.10.20.2/24</td>
+                                    <td>10.10.20.3/24</td>
+                                </tr>
+                                <tr>
+                                    <td><code>interface vlan 30</code></td>
+                                    <td><span class="vlan-id vlan-admin">VLAN 30</span></td>
+                                    <td>10.10.30.2/24</td>
+                                    <td>10.10.30.3/24</td>
+                                </tr>
+                                <tr>
+                                    <td><code>interface vlan 99</code></td>
+                                    <td><span class="vlan-id vlan-mgmt">VLAN 99</span></td>
+                                    <td>10.10.99.2/24</td>
+                                    <td>10.10.99.3/24</td>
+                                </tr>
+                                <tr>
+                                    <td><code>interface vlan 100</code></td>
+                                    <td><span class="vlan-id vlan-srv">VLAN 100</span></td>
+                                    <td>10.10.100.2/24</td>
+                                    <td>10.10.100.3/24</td>
+                                </tr>
+                                <tr>
+                                    <td><code>interface vlan 200</code></td>
+                                    <td><span class="vlan-id vlan-dmz">VLAN 200</span></td>
+                                    <td>10.10.200.2/24</td>
+                                    <td>10.10.200.3/24</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- B. Vérification des SVIs -->
+                <div class="config-subsection">
+                    <h4 class="config-label">B. Vérification des SVIs</h4>
+
+                    <div class="freq-row verif-row">
+                        <div class="freq-col">
+                            <p class="verif-label">Sur CD1</p>
+                            <figure class="image-card image-medium clickable" onclick="openLightbox('cisco-svi-cd1')">
+                                <img src="Screen-cisco-18.png" alt="Vérification SVIs CD1" class="image-card__img">
+                                <figcaption class="image-card__caption">show ip interface brief — CD1</figcaption>
+                            </figure>
+                        </div>
+                        <div class="freq-col">
+                            <div class="config-note">
+                                <p>Les interfaces <strong>VLAN 10, 20, 30, 99, 100 et 200</strong> sont toutes en état <em>up/up</em>, confirmant que les VLANs sont actifs et opérationnels.</p>
+                            </div>
+                            <div class="config-note">
+                                <p>CD1 peut ainsi assurer le routage inter-VLAN directement au niveau distribution.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="freq-row verif-row">
+                        <div class="freq-col">
+                            <p class="verif-label">Sur CD2</p>
+                            <figure class="image-card image-medium clickable" onclick="openLightbox('cisco-svi-cd2')">
+                                <img src="Screen-cisco-19.png" alt="Vérification SVIs CD2" class="image-card__img">
+                                <figcaption class="image-card__caption">show ip interface brief — CD2</figcaption>
+                            </figure>
+                        </div>
+                        <div class="freq-col">
+                            <div class="config-note">
+                                <p>Les interfaces <strong>VLAN 10, 20, 30, 99, 100 et 200</strong> sont toutes en état <em>up/up</em>, confirmant que les VLANs sont actifs et opérationnels.</p>
+                            </div>
+                            <div class="config-note">
+                                <p>CD2 peut ainsi assurer le routage entre les différents réseaux en cas de bascule HSRP.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ── VI.2 HSRP ── -->
+            <div class="sub-section">
+                <h3 class="sub-title">2. Hot Standby Router Protocol</h3>
+
+                <p class="sub-intro">
+                    HSRP (Hot Standby Router Protocol) a été configuré sur les SVIs de CD1 et CD2 pour assurer la redondance de la passerelle par défaut. Chaque VLAN possède une adresse IP virtuelle (VIP) qui est la passerelle utilisée par les PC et serveurs. Si CD1 tombe, CD2 prend automatiquement le relais sans aucune interruption visible pour les utilisateurs.
+                </p>
+                <p class="sub-intro">
+                    Les rôles actif/standby ont été répartis entre CD1 et CD2 selon les VLANs, en parfaite cohérence avec le Spanning Tree — CD1 est actif HSRP sur les VLANs où il est root bridge STP, et CD2 pareil. Cette cohérence évite le trafic asymétrique et garantit le chemin le plus court à chaque instant.
+                </p>
+                <p class="sub-intro">
+                    Le <strong><u>preempt</u></strong> a été activé sur le switch actif — si CD1 tombe puis revient, il reprend automatiquement son rôle actif sans intervention manuelle.
+                </p>
+
+                <div class="config-subsection">
+                    <figure class="image-card image-full clickable" onclick="openLightbox('cisco-hsrp')">
+                        <img src="screen-cisco-20.png" alt="Topologie HSRP" class="image-card__img">
+                        <figcaption class="image-card__caption">Topologie — Redondance passerelle HSRP sur CD1 et CD2</figcaption>
+                    </figure>
+                </div>
+
+                <!-- A. Tableau HSRP -->
+                <div class="config-subsection">
+                    <h4 class="config-label">A. Tableau HSRP</h4>
+                    <div class="table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>VLAN</th>
+                                    <th>VIP Passerelle</th>
+                                    <th>CD1 (IP / Priorité)</th>
+                                    <th>CD2 (IP / Priorité)</th>
+                                    <th>Switch Actif</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="vlan-id vlan-user">VLAN 10</span></td>
+                                    <td>10.10.10.1</td>
+                                    <td>10.10.10.2 / 110</td>
+                                    <td>10.10.10.3 / 100</td>
+                                    <td><strong>CD1</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="vlan-id vlan-user">VLAN 20</span></td>
+                                    <td>10.10.20.1</td>
+                                    <td>10.10.20.2 / 100</td>
+                                    <td>10.10.20.3 / 110</td>
+                                    <td><strong>CD2</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="vlan-id vlan-admin">VLAN 30</span></td>
+                                    <td>10.10.30.1</td>
+                                    <td>10.10.30.2 / 110</td>
+                                    <td>10.10.30.3 / 100</td>
+                                    <td><strong>CD1</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="vlan-id vlan-srv">VLAN 100</span></td>
+                                    <td>10.10.100.1</td>
+                                    <td>10.10.100.2 / 110</td>
+                                    <td>10.10.100.3 / 100</td>
+                                    <td><strong>CD1</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="vlan-id vlan-dmz">VLAN 200</span></td>
+                                    <td>10.10.200.1</td>
+                                    <td>10.10.200.2 / 100</td>
+                                    <td>10.10.200.3 / 110</td>
+                                    <td><strong>CD2</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- B. Vérification routed ports -->
+                <div class="config-subsection">
+                    <h4 class="config-label">B. Vérification du <span class="italic-underline">routed ports</span></h4>
+
+                    <div class="freq-row verif-row">
+                        <div class="freq-col">
+                            <p class="verif-label">Sur CD1</p>
+                            <figure class="image-card image-medium clickable" onclick="openLightbox('cisco-hsrp-cd1')">
+                                <img src="screen-cisco-21.png" alt="Ping CD1 vers R1" class="image-card__img">
+                                <figcaption class="image-card__caption">ping 10.10.1.2 — CD1 vers R1</figcaption>
+                            </figure>
+                        </div>
+                        <div class="freq-col">
+                            <div class="config-note">
+                                <p>Le test ICMP effectué depuis CD1 vers l'adresse <strong>10.10.1.2</strong> confirme le bon fonctionnement du lien Layer 3 point à point entre CD1 et R1.</p>
+                            </div>
+                            <div class="config-note">
+                                <p>Les cinq paquets ont été transmis avec succès, validant la connectivité IP sur le réseau <strong>/30</strong>.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="freq-row verif-row">
+                        <div class="freq-col">
+                            <p class="verif-label">Sur CD2</p>
+                            <figure class="image-card image-medium clickable" onclick="openLightbox('cisco-hsrp-cd2')">
+                                <img src="screen-cisco-22.png" alt="Ping CD2 vers R2" class="image-card__img">
+                                <figcaption class="image-card__caption">ping 10.10.1.6 — CD2 vers R2</figcaption>
+                            </figure>
+                        </div>
+                        <div class="freq-col">
+                            <div class="config-note">
+                                <p>Le test ICMP effectué depuis CD2 vers l'adresse <strong>10.10.1.6</strong> confirme le bon fonctionnement du lien Layer 3 entre CD2 et R2.</p>
+                            </div>
+                            <div class="config-note">
+                                <p>Cette vérification valide la configuration des interfaces routées et la communication entre les équipements Layer 3 du réseau.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ── 3. Routed ports ── -->
+            <div class="sub-section">
+                <h3 class="sub-title">3. <span class="italic-underline">Routed ports</span></h3>
+
+                <p class="sub-intro">
+                    Les ports G1/0/1 de CD1 et CD2 ont été convertis en interfaces Layer 3 pures avec la commande <code>no switchport</code>. Ces ports ne sont plus des ports switching — ils deviennent des interfaces routées avec leur propre adresse IP, exactement comme un port de routeur.
+                </p>
+                <p class="sub-intro">
+                    Ce choix est plus propre et plus réaliste qu'un trunk avec un VLAN dédié. Le lien entre CD1↔R1 et CD2↔R2 est un lien point à point <strong>/30</strong> — seules deux adresses IP sont nécessaires, pas besoin d'un VLAN supplémentaire.
+                </p>
+
+                <div class="config-subsection">
+                    <figure class="image-card image-full clickable" onclick="openLightbox('cisco-routedports')">
+                        <img src="screen-cisco-23.png" alt="Topologie routed ports" class="image-card__img">
+                        <figcaption class="image-card__caption">Topologie — Routed ports G1/0/1 sur CD1 et CD2</figcaption>
+                    </figure>
+                </div>
+
+                <!-- A. Tableau routed ports -->
+                <div class="config-subsection">
+                    <h4 class="config-label">A. Tableau des <span class="italic-underline">routed ports</span></h4>
+                    <div class="table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>De</th>
+                                    <th>Port</th>
+                                    <th>IP</th>
+                                    <th>Masque</th>
+                                    <th>Vers</th>
+                                    <th>Port</th>
+                                    <th>IP</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>CD1</td>
+                                    <td>G1/0/1</td>
+                                    <td>10.10.1.1</td>
+                                    <td>/30</td>
+                                    <td>R1</td>
+                                    <td>G0/1</td>
+                                    <td>10.10.1.2</td>
+                                </tr>
+                                <tr>
+                                    <td>CD2</td>
+                                    <td>G1/0/1</td>
+                                    <td>10.10.1.5</td>
+                                    <td>/30</td>
+                                    <td>R2</td>
+                                    <td>G0/1</td>
+                                    <td>10.10.1.6</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- B. Vérification routed ports -->
+                <div class="config-subsection">
+                    <h4 class="config-label">B. Vérification du <span class="italic-underline">routed ports</span></h4>
+
+                    <div class="freq-row verif-row">
+                        <div class="freq-col">
+                            <p class="verif-label">Sur CD1</p>
+                            <figure class="image-card image-medium clickable" onclick="openLightbox('cisco-routedports-cd1')">
+                                <img src="screen-cisco-24.png" alt="Ping CD1 vers R1" class="image-card__img">
+                                <figcaption class="image-card__caption">ping 10.10.1.2 — CD1 vers R1</figcaption>
+                            </figure>
+                        </div>
+                        <div class="freq-col">
+                            <div class="config-note">
+                                <p>Le test ICMP effectué depuis CD1 vers l'adresse <strong>10.10.1.2</strong> confirme le bon fonctionnement du lien Layer 3 point à point entre CD1 et R1.</p>
+                            </div>
+                            <div class="config-note">
+                                <p>Les cinq paquets ont été transmis avec succès, validant la connectivité IP sur le réseau <strong>/30</strong>.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="freq-row verif-row">
+                        <div class="freq-col">
+                            <p class="verif-label">Sur CD2</p>
+                            <figure class="image-card image-medium clickable" onclick="openLightbox('cisco-routedports-cd2')">
+                                <img src="screen-cisco-25.png" alt="Ping CD2 vers R2" class="image-card__img">
+                                <figcaption class="image-card__caption">ping 10.10.1.6 — CD2 vers R2</figcaption>
+                            </figure>
+                        </div>
+                        <div class="freq-col">
+                            <div class="config-note">
+                                <p>Le test ICMP effectué depuis CD2 vers l'adresse <strong>10.10.1.6</strong> confirme le bon fonctionnement du lien Layer 3 entre CD2 et R2.</p>
+                            </div>
+                            <div class="config-note">
+                                <p>Cette vérification valide la configuration des interfaces routées et la communication entre les équipements Layer 3 du réseau.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ── 4. Adressage IP routeurs ── -->
+            <div class="sub-section">
+                <h3 class="sub-title">4. Adressage IP routeurs</h3>
+
+                <p class="sub-intro">
+                    Toutes les interfaces des routeurs R1, R2, SP1 et SP2 ont été configurées avec leurs adresses IP. R1 et R2 ont trois interfaces chacun dont une vers l'ISP, une vers les switches de distribution et une pour le lien point à point entre eux (utilisé pour la redondance et les routes flottantes).
+                </p>
+                <p class="sub-intro">
+                    SP1 et SP2 ont deux interfaces chacun — une vers R1/R2 et une pour le lien entre les deux ISP.
+                </p>
+
+                <div class="config-subsection">
+                    <figure class="image-card image-full clickable" onclick="openLightbox('cisco-iprouteurs')">
+                        <img src="screen-cisco-26.png" alt="Adressage IP routeurs" class="image-card__img">
+                        <figcaption class="image-card__caption">Topologie — Adressage IP R1, R2, SP1, SP2</figcaption>
+                    </figure>
+                </div>
+
+                <!-- A. Tableau adressage IP -->
+                <div class="config-subsection">
+                    <h4 class="config-label">A. Tableau adressage IP routeurs</h4>
+                    <div class="table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Équipement</th>
+                                    <th>Interface</th>
+                                    <th>Adresse IP</th>
+                                    <th>Masque</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>SP1</td><td>G0/0</td><td>203.0.113.1</td><td>/30</td><td>Vers R1</td></tr>
+                                <tr><td>SP1</td><td>G0/1</td><td>203.0.113.9</td><td>/30</td><td>Vers SP2</td></tr>
+                                <tr><td>SP2</td><td>G0/0</td><td>203.0.113.5</td><td>/30</td><td>Vers R2</td></tr>
+                                <tr><td>SP2</td><td>G0/1</td><td>203.0.113.10</td><td>/30</td><td>Vers SP1</td></tr>
+                                <tr><td>R1</td><td>G0/0</td><td>203.0.113.2</td><td>/30</td><td>Vers SP1 — NAT <span class="italic-underline">outside</span></td></tr>
+                                <tr><td>R1</td><td>G0/1</td><td>10.10.1.2</td><td>/30</td><td><span class="italic-underline">Routed port</span> vers CD1</td></tr>
+                                <tr><td>R1</td><td>G0/2</td><td>10.10.20.1</td><td>/30</td><td>Lien P2P vers R2</td></tr>
+                                <tr><td>R2</td><td>G0/0</td><td>203.0.113.6</td><td>/30</td><td>Vers SP2 — NAT <span class="italic-underline">outside</span></td></tr>
+                                <tr><td>R2</td><td>G0/1</td><td>10.10.1.6</td><td>/30</td><td><span class="italic-underline">Routed port</span> vers CD2</td></tr>
+                                <tr><td>R2</td><td>G0/2</td><td>10.10.20.2</td><td>/30</td><td>Lien P2P vers R1</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- B. Vérification adressage IP -->
+                <div class="config-subsection">
+                    <h4 class="config-label">B. <span class="italic-underline">Vérification</span> adressage IP</h4>
+
+                    <div class="freq-row verif-row">
+                        <div class="freq-col">
+                            <p class="verif-label">Sur R1</p>
+                            <figure class="image-card image-medium clickable" onclick="openLightbox('cisco-iprouteurs-r1')">
+                                <img src="screen-cisco-27.png" alt="show ip interface brief R1" class="image-card__img">
+                                <figcaption class="image-card__caption">show ip interface brief — R1</figcaption>
+                            </figure>
+                        </div>
+                        <div class="freq-col">
+                            <div class="config-note">
+                                <p>Les interfaces <strong>G0/0</strong> (203.0.113.2), <strong>G0/1</strong> (10.10.1.2) et <strong>G0/2</strong> (10.10.20.1) sont toutes en état <em>up/up</em>.</p>
+                            </div>
+                            <div class="config-note">
+                                <p>R1 est correctement adressé vers SP1, CD1 et R2.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="freq-row verif-row">
+                        <div class="freq-col">
+                            <p class="verif-label">Sur R2</p>
+                            <figure class="image-card image-medium clickable" onclick="openLightbox('cisco-iprouteurs-r2')">
+                                <img src="screen-cisco-28.png" alt="show ip interface brief R2" class="image-card__img">
+                                <figcaption class="image-card__caption">show ip interface brief — R2</figcaption>
+                            </figure>
+                        </div>
+                        <div class="freq-col">
+                            <div class="config-note">
+                                <p>Les interfaces <strong>G0/0</strong> (203.0.113.6), <strong>G0/1</strong> (10.10.1.6) et <strong>G0/2</strong> (10.10.20.2) sont toutes en état <em>up/up</em>.</p>
+                            </div>
+                            <div class="config-note">
+                                <p>R2 est correctement adressé vers SP2, CD2 et R1.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="freq-row verif-row">
+                        <div class="freq-col">
+                            <p class="verif-label">Sur SP1</p>
+                            <figure class="image-card image-medium clickable" onclick="openLightbox('cisco-iprouteurs-sp1')">
+                                <img src="screen-cisco-29.png" alt="show ip interface brief SP1" class="image-card__img">
+                                <figcaption class="image-card__caption">show ip interface brief — SP1</figcaption>
+                            </figure>
+                        </div>
+                        <div class="freq-col">
+                            <div class="config-note">
+                                <p>Les interfaces <strong>G0/0</strong> (203.0.113.1) et <strong>G0/1</strong> (203.0.113.9) sont en état <em>up/up</em>.</p>
+                            </div>
+                            <div class="config-note">
+                                <p>SP1 est correctement adressé vers R1 et SP2.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="freq-row verif-row">
+                        <div class="freq-col">
+                            <p class="verif-label">Sur SP2</p>
+                            <figure class="image-card image-medium clickable" onclick="openLightbox('cisco-iprouteurs-sp2')">
+                                <img src="screen-cisco-30.png" alt="show ip interface brief SP2" class="image-card__img">
+                                <figcaption class="image-card__caption">show ip interface brief — SP2</figcaption>
+                            </figure>
+                        </div>
+                        <div class="freq-col">
+                            <div class="config-note">
+                                <p>Les interfaces <strong>G0/0</strong> (203.0.113.5) et <strong>G0/1</strong> (203.0.113.10) sont en état <em>up/up</em>.</p>
+                            </div>
+                            <div class="config-note">
+                                <p>SP2 est correctement adressé vers R2 et SP1.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ── 5. OSPF ── -->
+            <div class="sub-section">
+                <h3 class="sub-title">5. Open <span class="italic-underline">Shortest Path First</span></h3>
+
+                <p class="sub-intro">
+                    OSPF a été configuré sur tous les équipements : CD1, CD2, R1, R2, SP1 et SP2 en zone 0 (backbone).
+                </p>
+                <p class="sub-intro">
+                    CD1 et CD2 annoncent les réseaux VLAN dans OSPF pour que R1 et R2 les connaissent. R1 et R2 annoncent leurs liens WAN et redistribuent leur route statique par défaut dans OSPF pour que CD1 et CD2 sachent comment atteindre Internet.
+                </p>
+                <p class="sub-intro">
+                    SP1 et SP2 propagent la route par défaut vers R1/R2 via <span class="italic-underline">default-information originate</span>.
+                </p>
+                <p class="sub-intro">
+                    La commande <code>passive-interface</code> a été appliquée sur toutes les <span class="italic-underline">SVIs</span> de CD1 et CD2 — OSPF annonce ces réseaux mais n'envoie pas de paquets hello vers les PC et serveurs, ce qui est inutile et légèrement risqué.
+                </p>
+
+                <div class="config-subsection">
+                    <figure class="image-card image-full clickable" onclick="openLightbox('cisco-ospf')">
+                        <img src="screen-cisco-31.png" alt="Topologie OSPF" class="image-card__img">
+                        <figcaption class="image-card__caption">Topologie — OSPF zone 0 sur tous les équipements</figcaption>
+                    </figure>
+                </div>
+
+                <!-- A. Tableau OSPF -->
+                <div class="config-subsection">
+                    <h4 class="config-label">A. Tableau OSPF</h4>
+                    <div class="table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Routeur</th>
+                                    <th>Router-ID</th>
+                                    <th>Réseaux annoncés</th>
+                                    <th>Particularité</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>CD1</td>
+                                    <td>11.11.11.11</td>
+                                    <td>Tous les VLANs + 10.10.1.0/30</td>
+                                    <td><span class="italic-underline">passive-interface</span> sur <span class="italic-underline">SVIs</span></td>
+                                </tr>
+                                <tr>
+                                    <td>CD2</td>
+                                    <td>22.22.22.22</td>
+                                    <td>Tous les VLANs + 10.10.1.4/30</td>
+                                    <td><span class="italic-underline">passive-interface</span> sur <span class="italic-underline">SVIs</span></td>
+                                </tr>
+                                <tr>
+                                    <td>R1</td>
+                                    <td>1.1.1.1</td>
+                                    <td>10.10.1.0/30, 10.10.20.0/30, 203.0.113.0/30</td>
+                                    <td><span class="italic-underline">redistribute static</span></td>
+                                </tr>
+                                <tr>
+                                    <td>R2</td>
+                                    <td>2.2.2.2</td>
+                                    <td>10.10.1.4/30, 10.10.20.0/30, 203.0.113.4/30</td>
+                                    <td><span class="italic-underline">redistribute static</span></td>
+                                </tr>
+                                <tr>
+                                    <td>SP1</td>
+                                    <td>3.3.3.3</td>
+                                    <td>203.0.113.0/30, 203.0.113.8/30</td>
+                                    <td><span class="italic-underline">default</span>-information <span class="italic-underline">originate</span></td>
+                                </tr>
+                                <tr>
+                                    <td>SP2</td>
+                                    <td>4.4.4.4</td>
+                                    <td>203.0.113.4/30, 203.0.113.8/30</td>
+                                    <td><span class="italic-underline">default</span>-information <span class="italic-underline">originate</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- B. Vérification voisins OSPF -->
+                <div class="config-subsection">
+                    <h4 class="config-label">B. Vérification des voisins OSPF</h4>
+
+                    <div class="freq-row verif-row">
+                        <div class="freq-col">
+                            <p class="verif-label">Sur CD1</p>
+                            <figure class="image-card image-medium clickable" onclick="openLightbox('cisco-ospf-cd1')">
+                                <img src="screen-cisco-32.png" alt="OSPF neighbor CD1" class="image-card__img">
+                                <figcaption class="image-card__caption">show ip ospf neighbor — CD1</figcaption>
+                            </figure>
+                        </div>
+                        <div class="freq-col">
+                            <div class="config-note">
+                                <p>CD1 affiche R1 (<strong>1.1.1.1</strong>) comme voisin OSPF en état <em>FULL</em> — l'adjacence est bien établie via le routed port G1/0/1.</p>
+                            </div>
+                            <div class="config-note">
+                                <p>L'état FULL confirme que les deux équipements ont échangé leurs bases de données de routage complètes.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="freq-row verif-row">
+                        <div class="freq-col">
+                            <p class="verif-label">Sur CD2</p>
+                            <figure class="image-card image-medium clickable" onclick="openLightbox('cisco-ospf-cd2')">
+                                <img src="screen-cisco-33.png" alt="OSPF neighbor CD2" class="image-card__img">
+                                <figcaption class="image-card__caption">show ip ospf neighbor — CD2</figcaption>
+                            </figure>
+                        </div>
+                        <div class="freq-col">
+                            <div class="config-note">
+                                <p>CD2 affiche R2 (<strong>2.2.2.2</strong>) comme voisin OSPF en état <em>FULL</em> via G1/0/1 — même logique que CD1.</p>
+                            </div>
+                            <div class="config-note">
+                                <p>La redondance est bien en place des deux côtés.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="freq-row verif-row">
+                        <div class="freq-col">
+                            <p class="verif-label">Sur R1</p>
+                            <figure class="image-card image-medium clickable" onclick="openLightbox('cisco-ospf-r1')">
+                                <img src="screen-cisco-34.png" alt="OSPF neighbor R1" class="image-card__img">
+                                <figcaption class="image-card__caption">show ip ospf neighbor — R1</figcaption>
+                            </figure>
+                        </div>
+                        <div class="freq-col">
+                            <div class="config-note">
+                                <p>R1 affiche trois voisins OSPF en état <em>FULL</em> — CD1 (<strong>11.11.11.11</strong>) via G0/1, R2 (<strong>2.2.2.2</strong>) via G0/2 et SP1 (<strong>3.3.3.3</strong>) via G0/0.</p>
+                            </div>
+                            <div class="config-note">
+                                <p>R1 est bien au centre de la topologie et connecté à tous les équipements adjacents.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="freq-row verif-row">
+                        <div class="freq-col">
+                            <p class="verif-label">Sur R2</p>
+                            <figure class="image-card image-medium clickable" onclick="openLightbox('cisco-ospf-r2')">
+                                <img src="screen-cisco-35.png" alt="OSPF neighbor R2" class="image-card__img">
+                                <figcaption class="image-card__caption">show ip ospf neighbor — R2</figcaption>
+                            </figure>
+                        </div>
+                        <div class="freq-col">
+                            <div class="config-note">
+                                <p>R2 affiche trois voisins OSPF en état <em>FULL</em> — CD2 (<strong>22.22.22.22</strong>) via G0/1, R1 (<strong>1.1.1.1</strong>) via G0/2 et SP2 (<strong>4.4.4.4</strong>) via G0/0.</p>
+                            </div>
+                            <div class="config-note">
+                                <p>La redondance est symétrique avec R1.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- C. Vérification des tables de routage -->
+                <div class="config-subsection">
+                    <h4 class="config-label">C. Vérification des Table de routage</h4>
+
+                    <div class="freq-row verif-row">
+                        <div class="freq-col">
+                            <p class="verif-label">R1</p>
+                            <figure class="image-card image-medium clickable" onclick="openLightbox('cisco-ospf-route-r1')">
+                                <img src="screen-cisco-36.png" alt="Table de routage R1" class="image-card__img">
+                                <figcaption class="image-card__caption">show ip route — R1</figcaption>
+                            </figure>
+                        </div>
+                        <div class="freq-col">
+                            <div class="config-note">
+                                <p>La table de routage de R1 montre toutes les routes OSPF apprises dynamiquement — les réseaux VLANs appris via CD1, les réseaux ISP appris via SP1.</p>
+                            </div>
+                            <div class="config-note">
+                                <p>La route <strong>S* 0.0.0.0/0</strong> via 203.0.113.1 est la route statique par défaut vers Internet.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="freq-row verif-row">
+                        <div class="freq-col">
+                            <p class="verif-label">CD1</p>
+                            <figure class="image-card image-medium clickable" onclick="openLightbox('cisco-ospf-route-cd1')">
+                                <img src="screen-cisco-37.png" alt="Table de routage CD1" class="image-card__img">
+                                <figcaption class="image-card__caption">show ip route — CD1</figcaption>
+                            </figure>
+                        </div>
+                        <div class="freq-col">
+                            <div class="config-note">
+                                <p>CD1 affiche les routes O apprises via OSPF — notamment les réseaux distants 203.0.113.x et 10.10.1.4/30 (lien CD2↔R2).</p>
+                            </div>
+                            <div class="config-note">
+                                <p>La route par défaut <strong>S* 0.0.0.0/0</strong> via 10.10.1.2 (R1) est redistribuée dans OSPF et permet à CD1 d'atteindre Internet.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ── 6. Routes statiques + flottantes ── -->
+            <div class="sub-section">
+                <h3 class="sub-title">6. Routes statiques + flottantes</h3>
+
+                <p class="sub-intro">
+                    Des routes statiques par défaut ont été configurées sur R1, R2, CD1 et CD2 pour définir le chemin vers Internet. Sur R1 et R2, une <strong>route flottante</strong> a été ajoutée en backup — elle a une distance administrative (AD) de 10, plus élevée que la route principale (AD 1), donc elle reste inactive tant que la route principale fonctionne. Si le lien ISP tombe, la route flottante s'active automatiquement et le trafic bascule vers l'autre routeur.
+                </p>
+                <p class="sub-intro">
+                    CD1 et CD2 ont également une route par défaut vers R1/R2 respectivement — cette route est redistribuée dans OSPF pour que tous les équipements du réseau sachent comment atteindre Internet.
+                </p>
+
+                <!-- A. Tableau R1 -->
+                <div class="config-subsection">
+                    <h4 class="config-label">A. Tableau routes statiques — R1</h4>
+                    <div class="table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Destination</th>
+                                    <th>Next-hop</th>
+                                    <th>AD</th>
+                                    <th>Remarque</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Défaut</td>
+                                    <td>0.0.0.0/0</td>
+                                    <td>203.0.113.1</td>
+                                    <td>1</td>
+                                    <td>Route principale via SP1</td>
+                                </tr>
+                                <tr>
+                                    <td>Flottante</td>
+                                    <td>0.0.0.0/0</td>
+                                    <td>10.10.20.2</td>
+                                    <td>10</td>
+                                    <td>Backup via R2 si SP1 tombe</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- B. Tableau R2 -->
+                <div class="config-subsection">
+                    <h4 class="config-label">B. Tableau routes statiques — R2</h4>
+                    <div class="table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Destination</th>
+                                    <th>Next-hop</th>
+                                    <th>AD</th>
+                                    <th>Remarque</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Défaut</td>
+                                    <td>0.0.0.0/0</td>
+                                    <td>203.0.113.5</td>
+                                    <td>1</td>
+                                    <td>Route principale via SP2</td>
+                                </tr>
+                                <tr>
+                                    <td>Flottante</td>
+                                    <td>0.0.0.0/0</td>
+                                    <td>10.10.20.1</td>
+                                    <td>10</td>
+                                    <td>Backup via R1 si SP2 tombe</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- C. Tableau CD1 & CD2 -->
+                <div class="config-subsection">
+                    <h4 class="config-label">C. Tableau routes statiques — CD1 &amp; CD2</h4>
+                    <div class="table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Équipement</th>
+                                    <th>Destination</th>
+                                    <th>Next-hop</th>
+                                    <th>Remarque</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>CD1</td>
+                                    <td>0.0.0.0/0</td>
+                                    <td>10.10.1.2</td>
+                                    <td>Vers R1 — redistribuée OSPF</td>
+                                </tr>
+                                <tr>
+                                    <td>CD2</td>
+                                    <td>0.0.0.0/0</td>
+                                    <td>10.10.1.6</td>
+                                    <td>Vers R2 — redistribuée OSPF</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ── 7. NAT PAT ── -->
+            <div class="sub-section">
+                <h3 class="sub-title">7. Network <span class="italic-underline">Address</span> Translation (PAT)</h3>
+
+                <p class="sub-intro">
+                    Le NAT PAT (Port Address Translation) a été configuré sur R1 et R2 pour permettre aux équipements du réseau interne (10.10.0.0/16) d'accéder à Internet en utilisant l'adresse IP publique du routeur. Tous les équipements internes partagent une seule IP publique — R1 utilise 203.0.113.2 et R2 utilise 203.0.113.6. La différenciation entre les sessions se fait grâce aux numéros de ports.
+                </p>
+                <p class="sub-intro">
+                    L'interface G0/1 (vers CD1/CD2) est définie comme <span class="italic-underline">inside</span> et G0/0 (vers SP1/SP2) comme <span class="italic-underline">outside</span>. Une ACL standard autorise uniquement le trafic du réseau 10.10.0.0/16 à être traduit.
+                </p>
+
+                <!-- A. Tableau NAT PAT -->
+                <div class="config-subsection">
+                    <h4 class="config-label">A. Tableau NAT PAT</h4>
+                    <div class="table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Routeur</th>
+                                    <th>Interface <span class="italic-underline">inside</span></th>
+                                    <th>Interface <span class="italic-underline">outside</span></th>
+                                    <th>IP publique</th>
+                                    <th>ACL source</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>R1</td>
+                                    <td>G0/1 — vers CD1</td>
+                                    <td>G0/0 — vers SP1</td>
+                                    <td>203.0.113.2</td>
+                                    <td>10.10.0.0/16</td>
+                                </tr>
+                                <tr>
+                                    <td>R2</td>
+                                    <td>G0/1 — vers CD2</td>
+                                    <td>G0/0 — vers SP2</td>
+                                    <td>203.0.113.6</td>
+                                    <td>10.10.0.0/16</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- B. Vérification NAT -->
+                <div class="config-subsection">
+                    <h4 class="config-label">B. Vérification du NAT</h4>
+
+                    <div class="freq-row verif-row">
+                        <div class="freq-col">
+                            <p class="verif-label">Vérification des traductions NAT</p>
+                            <figure class="image-card image-medium clickable" onclick="openLightbox('cisco-nat-translations')">
+                                <img src="screen-cisco-38.png" alt="show ip nat translations" class="image-card__img">
+                                <figcaption class="image-card__caption">show ip nat translations — R1</figcaption>
+                            </figure>
+                        </div>
+                        <div class="freq-col">
+                            <div class="config-note">
+                                <p>Les adresses privées du réseau interne 10.10.10.0/24 sont traduites en adresse publique <strong>203.0.113.2</strong>, permettant aux équipements internes d'accéder au réseau externe tout en masquant leurs adresses IP privées.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="freq-row verif-row">
+                        <div class="freq-col">
+                            <p class="verif-label">Statistiques NAT</p>
+                            <figure class="image-card image-medium clickable" onclick="openLightbox('cisco-nat-stats')">
+                                <img src="screen-cisco-39.png" alt="show ip nat statistics" class="image-card__img">
+                                <figcaption class="image-card__caption">show ip nat statistics — R1</figcaption>
+                            </figure>
+                        </div>
+                        <div class="freq-col">
+                            <div class="config-note">
+                                <p>On observe que plusieurs traductions dynamiques ont été créées et que les interfaces <span class="italic-underline">inside</span> et <span class="italic-underline">outside</span> sont correctement définies.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ── 8. ACL ── -->
+            <div class="sub-section">
+                <h3 class="sub-title">8. Access Control List</h3>
+
+                <p class="sub-intro">
+                    Une ACL a été configurée pour filtrer le trafic au niveau des <span class="italic-underline">SVIs</span>.
+                </p>
+                <p class="sub-intro">
+                    <strong>ACL 110</strong> simule le comportement d'une DMZ pour le VLAN 200. Elle bloque d'abord toute tentative des serveurs DMZ d'accéder au réseau interne, puis autorise uniquement le trafic sur les ports spécifiques à chaque serveur — HTTP/HTTPS pour SRV-WEB, SMTP/POP3/IMAP pour SRV-MAIL et FTP pour SRV-FTP. Seuls les services exposés sont autorisés, tout le reste est bloqué. Elle est appliquée sur la SVI VLAN 200 de CD1 et CD2.
+                </p>
+                <p class="sub-intro">
+                    L'ordre des règles est critique — la règle de blocage des serveurs DMZ vers le réseau interne est placée en premier, avant les permit, pour qu'elle soit évaluée en priorité.
+                </p>
+
+                <!-- A. Tableau ACL 110 -->
+                <div class="config-subsection">
+                    <h4 class="config-label">A. Tableau ACL 110 — DMZ SRV-WEB</h4>
+                    <div class="table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Seq</th>
+                                    <th>Action</th>
+                                    <th>Source</th>
+                                    <th>Destination</th>
+                                    <th>Port</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>10</td>
+                                    <td><span class="italic-underline">deny</span></td>
+                                    <td>10.10.200.0/24</td>
+                                    <td>10.10.0.0/16</td>
+                                    <td>—</td>
+                                </tr>
+                                <tr>
+                                    <td>20</td>
+                                    <td><span class="italic-underline">permit</span></td>
+                                    <td><span class="italic-underline">any</span></td>
+                                    <td>10.10.200.10</td>
+                                    <td>80, 443</td>
+                                </tr>
+                                <tr>
+                                    <td>30</td>
+                                    <td><span class="italic-underline">permit</span></td>
+                                    <td><span class="italic-underline">any</span></td>
+                                    <td>10.10.200.11</td>
+                                    <td>25, 110, 143</td>
+                                </tr>
+                                <tr>
+                                    <td>40</td>
+                                    <td><span class="italic-underline">permit</span></td>
+                                    <td><span class="italic-underline">any</span></td>
+                                    <td>10.10.200.12</td>
+                                    <td>20, 21</td>
+                                </tr>
+                                <tr>
+                                    <td>50</td>
+                                    <td><span class="italic-underline">permit</span></td>
+                                    <td><span class="italic-underline">any</span></td>
+                                    <td><span class="italic-underline">any</span></td>
+                                    <td>—</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- B. Vérification ACL -->
+                <div class="config-subsection">
+                    <h4 class="config-label">B. Vérification des configurations ACL</h4>
+
+                    <div class="freq-row verif-row">
+                        <div class="freq-col">
+                            <figure class="image-card image-medium clickable" onclick="openLightbox('cisco-acl-verif')">
+                                <img src="screen-cisco-40.png" alt="Vérification ACL 110" class="image-card__img">
+                                <figcaption class="image-card__caption">show ip access-lists 110 — CD1</figcaption>
+                            </figure>
+                        </div>
+                        <div class="freq-col">
+                            <div class="config-note">
+                                <p>L'ACL est correctement configurée sur les <span class="italic-underline">switchs</span> CD1 et CD2.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ── 9. DHCP + ip helper ── -->
+            <div class="sub-section">
+                <h3 class="sub-title">9. DHCP + <span class="italic-underline">ip helper</span></h3>
+
+                <p class="sub-intro">
+                    Le service DHCP a été configuré sur le serveur dédié SRV-DHCP (10.10.100.10) avec un pool par VLAN utilisateur. Plutôt que de configurer le DHCP directement sur les routeurs, un serveur centralisé a été choisi — c'est la bonne pratique en entreprise car cela centralise la gestion des adresses IP.
+                </p>
+                <p class="sub-intro">
+                    Comme le SRV-DHCP est dans le VLAN 100 et que les PC sont dans les VLANs 10 et 20, les requêtes DHCP ne peuvent pas traverser les VLANs seules. La commande <span class="italic-underline">ip helper-address</span> a été configurée sur les <span class="italic-underline">SVIs</span> VLAN 10 et VLAN 20 de CD1 et CD2 — elle relaie les requêtes DHCP broadcast des PC vers l'adresse unicast du SRV-DHCP.
+                </p>
+
+                <div class="config-subsection">
+                    <figure class="image-card image-full clickable" onclick="openLightbox('cisco-dhcp-topo')">
+                        <img src="screen-cisco-41.png" alt="Topologie DHCP ip helper" class="image-card__img">
+                        <figcaption class="image-card__caption">Topologie — DHCP centralisé via ip helper-address</figcaption>
+                    </figure>
+                </div>
+
+                <!-- A. Tableau pools DHCP -->
+                <div class="config-subsection">
+                    <h4 class="config-label">A. Tableau pools DHCP — SRV-DHCP</h4>
+                    <div class="table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Pool</th>
+                                    <th>Réseau</th>
+                                    <th>Plage distribuée</th>
+                                    <th>Passerelle</th>
+                                    <th>DNS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>POOL_VLAN10</td>
+                                    <td>10.10.10.0/24</td>
+                                    <td>10.10.10.100 – 10.10.10.200</td>
+                                    <td>10.10.10.1</td>
+                                    <td>10.10.100.11</td>
+                                </tr>
+                                <tr>
+                                    <td>POOL_VLAN20</td>
+                                    <td>10.10.20.0/24</td>
+                                    <td>10.10.20.100 – 10.10.20.200</td>
+                                    <td>10.10.20.1</td>
+                                    <td>10.10.100.11</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- B. Tableau ip helper-address -->
+                <div class="config-subsection">
+                    <h4 class="config-label">B. Tableau <span class="italic-underline">ip helper-address</span></h4>
+                    <div class="table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Switch</th>
+                                    <th>SVI</th>
+                                    <th><span class="italic-underline">ip helper-address</span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>CD1</td><td><span class="italic-underline">vlan</span> 10</td><td>10.10.100.10</td></tr>
+                                <tr><td>CD1</td><td><span class="italic-underline">vlan</span> 20</td><td>10.10.100.10</td></tr>
+                                <tr><td>CD2</td><td><span class="italic-underline">vlan</span> 10</td><td>10.10.100.10</td></tr>
+                                <tr><td>CD2</td><td><span class="italic-underline">vlan</span> 20</td><td>10.10.100.10</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- C. Vérification DHCP -->
+                <div class="config-subsection">
+                    <h4 class="config-label">C. Vérification des configuration DHCP</h4>
+
+                    <div class="freq-row verif-row">
+                        <div class="freq-col">
+                            <figure class="image-card image-medium clickable" onclick="openLightbox('cisco-dhcp-verif')">
+                                <img src="screen-cisco-41.png" alt="Vérification pools DHCP" class="image-card__img">
+                                <figcaption class="image-card__caption">show ip dhcp pool — SRV-DHCP</figcaption>
+                            </figure>
+                        </div>
+                        <div class="freq-col">
+                            <div class="config-note">
+                                <p>Les pools <strong>POOL_VLAN10</strong> et <strong>POOL_VLAN20</strong> sont correctement configurés avec leurs passerelles et leur serveur DNS.</p>
+                            </div>
+                            <div class="config-note">
+                                <p>Les adresses sont distribuées dans les plages définies et le SRV-DHCP est joignable depuis les deux VLANs via l'<span class="italic-underline">ip helper-address</span>.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <hr class="section-separator">
+
+    <!-- ═══════════════════════════════════════════════════════
+         SECTION VII — Tests & Validation du lab
+    ═══════════════════════════════════════════════════════ -->
+    <section id="tests-validation-cisco" class="content-section">
+        <div class="container">
+            <h2 class="chapter-title">VII. Tests &amp; Validation du <span class="italic-underline">lab</span></h2>
+            <div class="content-block">
+                <p class="sub-intro">
+                    Ce laboratoire ayant été entièrement configuré, cette partie a pour objectif de valider le bon fonctionnement de chaque fonctionnalité mise en place. Chaque test reproduit un scénario réel — panne d'équipement, tentative d'intrusion, accès aux services — pour prouver que l'infrastructure répond correctement dans toutes les situations.
+                </p>
+            </div>
+
+            <!-- ── 1. Tests couche 2 ── -->
+            <div class="sub-section">
+                <h3 class="sub-title">1. Tests couche 2</h3>
+
+                <p class="sub-intro">
+                    Les tests couche 2 valident le bon fonctionnement de la commutation, de la segmentation réseau et des mécanismes de sécurité et de redondance au niveau <span class="italic-underline">switching</span>.
+                </p>
+
+                <div class="config-subsection">
+                    <figure class="image-card image-full clickable" onclick="openLightbox('cisco-test-l2-topo')">
+                        <img src="screen-cisco-43.png" alt="Topologie Tests couche 2" class="image-card__img">
+                        <figcaption class="image-card__caption">Topologie — Vue complète du lab pour les tests couche 2</figcaption>
+                    </figure>
+                </div>
+
+                <!-- A. EtherChannel -->
+                <div class="config-subsection">
+                    <h4 class="config-label">A. EtherChannel</h4>
+
+                    <p class="sub-intro">
+                        <strong>Scénario</strong> : Un des deux liens physiques entre CD1 et CD2 est coupé volontairement. Le trafic doit continuer à passer sur le lien restant sans interruption, prouvant que l'agrégation de liens assure bien la redondance.
+                    </p>
+
+                    <figure class="image-card image-medium clickable" onclick="openLightbox('cisco-test-etherchannel-scenario')">
+                        <img src="screen-cisco-44.png" alt="Scénario EtherChannel — lien coupé" class="image-card__img">
+                        <figcaption class="image-card__caption">Scénario — Coupure de G1/0/2 entre CD1 et CD2</figcaption>
+                    </figure>
+
+                    <div class="steps-flow">
+
+                        <div class="step-block">
+                            <div class="step-header">
+                                <span class="step-badge">1</span>
+                                <h4 class="step-title">Vérification de la communication avant la coupure</h4>
+                            </div>
+                            <div class="content-img-side">
+                                <figure class="image-card image-medium clickable" onclick="openLightbox('cisco-test-etherchannel-1')">
+                                    <img src="screen-cisco-45.png" alt="EtherChannel Étape 1" class="image-card__img">
+                                    <figcaption class="image-card__caption">CD1 ping + PC COMPTA — avant coupure</figcaption>
+                                </figure>
+                                <div class="side-notes">
+                                    <div class="test-note">
+                                        <p>Le Port-Channel fonctionne correctement avec LACP : les interfaces Gi1/0/2 et Gi1/0/3 sont bien agrégées dans Po1.</p>
+                                        <p>Le ping vers 10.10.20.100 réussit, ce qui montre que la connectivité réseau passe bien par l'EtherChannel et que les <span class="italic-underline">SVI</span>s sont opérationnelles pour l'<span class="italic-underline">intervlan</span>.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="step-block">
+                            <div class="step-header">
+                                <span class="step-badge">2</span>
+                                <h4 class="step-title">Couper G1/0/2 sur CD1 et <span class="italic-underline">verification</span></h4>
+                            </div>
+                            <div class="content-img-side">
+                                <figure class="image-card image-medium clickable" onclick="openLightbox('cisco-test-etherchannel-2')">
+                                    <img src="screen-cisco-46.png" alt="EtherChannel Étape 2" class="image-card__img">
+                                    <figcaption class="image-card__caption">CD1 show etherchannel summary + ping — après coupure</figcaption>
+                                </figure>
+                                <div class="side-notes">
+                                    <div class="test-note">
+                                        <p>L'interface <strong>Gi1/0/2</strong> est passée en Down, donc un des liens de l'EtherChannel est tombé.</p>
+                                    </div>
+                                    <div class="test-note">
+                                        <p>Mais <strong>Gi1/0/3</strong> reste actif dans le Port-Channel, donc le ping fonctionne toujours : l'EtherChannel assure la redondance et évite une coupure réseau.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="validation-badge">
+                        <span>Test Validé : La perte d'un lien physique n'entraîne pas d'interruption du service. Le Port-channel reste actif grâce au lien G1/0/3 qui prend le relais automatiquement.</span>
+                    </div>
+
+                </div>
+
+                <!-- B. Spanning Tree -->
+                <div class="config-subsection">
+                    <h4 class="config-label">B. <span class="italic-underline">Spanning Tree</span></h4>
+
+                    <p class="sub-intro">
+                        <strong>Scénario</strong> : CD1 est hors service. CD2 doit automatiquement devenir root bridge pour le VLAN 10, 30 et 100 et recalculer les chemins pour maintenir la connectivité L2 dans tout le réseau.
+                    </p>
+
+                    <figure class="image-card image-medium clickable" onclick="openLightbox('cisco-test-stp-scenario')">
+                        <img src="screen-cisco-47.png" alt="Scénario STP — CD1 hors service" class="image-card__img">
+                        <figcaption class="image-card__caption">Scénario — Panne de CD1, recalcul STP</figcaption>
+                    </figure>
+
+                    <div class="steps-flow">
+
+                        <div class="step-block">
+                            <div class="step-header">
+                                <span class="step-badge">1</span>
+                                <h4 class="step-title">Vérifier l'état initial</h4>
+                            </div>
+                            <div class="content-img-side">
+                                <figure class="image-card image-medium clickable" onclick="openLightbox('cisco-test-stp-1')">
+                                    <img src="screen-cisco-48.png" alt="STP état initial" class="image-card__img">
+                                    <figcaption class="image-card__caption">show spanning-tree vlan 10/30 — CD1</figcaption>
+                                </figure>
+                                <div class="side-notes">
+                                    <div class="test-note">
+                                        <p>CD1 est bien root bridge sur les VLANs 10 et 30.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="step-block">
+                            <div class="step-header">
+                                <span class="step-badge">2</span>
+                                <h4 class="step-title">Éteindre CD1</h4>
+                            </div>
+                            <div class="content-img-side">
+                                <figure class="image-card image-medium clickable" onclick="openLightbox('cisco-test-stp-2')">
+                                    <img src="screen-cisco-49.png" alt="CD1 éteint" class="image-card__img">
+                                    <figcaption class="image-card__caption">Topologie — CD1 hors service</figcaption>
+                                </figure>
+                                <div class="side-notes">
+                                    <div class="test-note">
+                                        <p>On simule une panne complète de CD1 en l'éteignant.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="step-block">
+                            <div class="step-header">
+                                <span class="step-badge">3</span>
+                                <h4 class="step-title">Vérifier que CD2 devient root bridge VLAN 10 et 30</h4>
+                            </div>
+                            <div class="content-img-side">
+                                <figure class="image-card image-medium clickable" onclick="openLightbox('cisco-test-stp-3')">
+                                    <img src="screen-cisco-50.png" alt="CD2 root bridge" class="image-card__img">
+                                    <figcaption class="image-card__caption">show spanning-tree vlan 10/30 — CD2</figcaption>
+                                </figure>
+                                <div class="side-notes">
+                                    <div class="test-note">
+                                        <p>Après extinction de CD1, CD2 détecte l'absence de root bridge et se proclame automatiquement root sur tous les VLANs.</p>
+                                        <p>CD2 affiche bien <em>"This bridge is the root"</em> sur tous les VLANs.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="step-block">
+                            <div class="step-header">
+                                <span class="step-badge">4</span>
+                                <h4 class="step-title">Vérifier la connectivité entre VLAN 10 et 20</h4>
+                            </div>
+                            <div class="content-img-side">
+                                <figure class="image-card image-medium clickable" onclick="openLightbox('cisco-test-stp-4')">
+                                    <img src="screen-cisco-51.png" alt="Connectivité VLAN après panne CD1" class="image-card__img">
+                                    <figcaption class="image-card__caption">Ping inter-VLAN — trafic via CD2 uniquement</figcaption>
+                                </figure>
+                                <div class="side-notes">
+                                    <div class="test-note">
+                                        <p>Les PC peuvent toujours communiquer malgré la panne de CD1. Le trafic passe uniquement par CD2.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="validation-badge">
+                        <span>Test Validé : Le Spanning Tree Protocol prouve son efficacité en cas de panne d'un switch de distribution. CD2 détecte automatiquement l'absence de CD1 et recalcule la topologie pour maintenir la connectivité L2. Aucune intervention manuelle n'est nécessaire — la convergence STP garantit la continuité du service.</span>
+                    </div>
+
+                </div>
+
+                <!-- C. Port Security -->
+                <div class="config-subsection">
+                    <h4 class="config-label">C. <span class="italic-underline">Port Security</span></h4>
+
+                    <p class="sub-intro">
+                        <strong>Scénario</strong> : Un employé branche un hub sur le port <span class="italic-underline">access</span> Fa0/1 afin de connecter <span class="italic-underline">plusieurs pc</span> au réseau. Le port doit immédiatement passer en <span class="italic-underline">shutdown</span>, prouvant que la politique de sécurité MAC est bien appliquée.
+                    </p>
+
+                    <figure class="image-card image-medium clickable" onclick="openLightbox('cisco-test-portsec-scenario')">
+                        <img src="screen-cisco-52.png" alt="Scénario Port Security" class="image-card__img">
+                        <figcaption class="image-card__caption">Scénario — Hub branché sur Fa0/1 d'Acc3</figcaption>
+                    </figure>
+
+                    <div class="steps-flow">
+
+                        <div class="step-block">
+                            <div class="step-header">
+                                <span class="step-badge">1</span>
+                                <h4 class="step-title">Vérifier l'état initial</h4>
+                            </div>
+                            <div class="content-img-side">
+                                <figure class="image-card image-medium clickable" onclick="openLightbox('cisco-test-portsec-1')">
+                                    <img src="screen-cisco-53.png" alt="Port Security état initial" class="image-card__img">
+                                    <figcaption class="image-card__caption">show port-security interface Fa0/1 — Acc3</figcaption>
+                                </figure>
+                                <div class="side-notes">
+                                    <div class="test-note">
+                                        <p>Avant de simuler la violation, on vérifie l'état du port security sur Acc3 F0/1. Le port est en <strong>Secure-up</strong> avec une MAC autorisée et le mode violation en <strong>Shutdown</strong>.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="step-block">
+                            <div class="step-header">
+                                <span class="step-badge">2</span>
+                                <h4 class="step-title">Brancher un deuxième PC via hub</h4>
+                            </div>
+                            <div class="content-img-side">
+                                <div class="images-stack">
+                                    <figure class="image-card image-medium clickable" onclick="openLightbox('cisco-test-portsec-2a')">
+                                        <img src="screen-cisco-54.png" alt="Hub branché Acc3" class="image-card__img">
+                                        <figcaption class="image-card__caption">Topologie — deuxième PC via hub</figcaption>
+                                    </figure>
+                                    <figure class="image-card image-medium clickable" onclick="openLightbox('cisco-test-portsec-2b')">
+                                        <img src="screen-cisco-55.png" alt="Messages violation Port Security" class="image-card__img">
+                                        <figcaption class="image-card__caption">Syslog — violation PORT_SECURITY détectée</figcaption>
+                                    </figure>
+                                </div>
+                                <div class="side-notes">
+                                    <div class="test-note">
+                                        <p>On branche un deuxième PC sur le port Fa0/1 de Acc3, déjà occupé par PC COMPTA. Ce port n'accepte qu'une seule adresse MAC — le branchement d'un second équipement déclenche la violation.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="step-block">
+                            <div class="step-header">
+                                <span class="step-badge">3</span>
+                                <h4 class="step-title">Vérification de l'état du port Fa0/1</h4>
+                            </div>
+                            <div class="content-img-side">
+                                <div class="images-stack">
+                                    <figure class="image-card image-medium clickable" onclick="openLightbox('cisco-test-portsec-3a')">
+                                        <img src="screen-cisco-56.png" alt="Port Secure-shutdown" class="image-card__img">
+                                        <figcaption class="image-card__caption">show port-security — Port Status: Secure-shutdown</figcaption>
+                                    </figure>
+                                    <figure class="image-card image-medium clickable" onclick="openLightbox('cisco-test-portsec-3b')">
+                                        <img src="screen-cisco-57.png" alt="Interface err-disabled" class="image-card__img">
+                                        <figcaption class="image-card__caption">show interfaces Fa0/1 — err-disabled</figcaption>
+                                    </figure>
+                                </div>
+                                <div class="side-notes">
+                                    <div class="test-note">
+                                        <p>Dès que le deuxième PC envoie du trafic, le port passe en <strong>err-disabled</strong> et toute communication est coupée. On vérifie l'état du port après la violation.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="step-block">
+                            <div class="step-header">
+                                <span class="step-badge">4</span>
+                                <h4 class="step-title">Remettre le port en service</h4>
+                            </div>
+                            <div class="content-img-side">
+                                <figure class="image-card image-medium clickable" onclick="openLightbox('cisco-test-portsec-4')">
+                                    <img src="screen-cisco-58.png" alt="Remise en service Fa0/1" class="image-card__img">
+                                    <figcaption class="image-card__caption">shutdown / no shutdown — Fa0/1 remis en service</figcaption>
+                                </figure>
+                                <div class="side-notes">
+                                    <div class="test-note">
+                                        <p>Pour remettre le port en service après une violation <span class="italic-underline">shutdown</span>, il faut manuellement le désactiver puis le réactiver.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="validation-badge">
+                        <span>Test validé : Le Port Security prouve son efficacité contre les connexions non autorisées. Dès qu'un équipement inconnu tente de se connecter sur un port protégé, le port est immédiatement désactivé.</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ── 2. Tests Couche 3 ── -->
+            <div class="sub-section">
+                <h3 class="sub-title">2. Tests Couche 3</h3>
+
+                <p class="sub-intro">
+                    Les tests couche 3 valident le routage, la redondance des passerelles, la sécurité du trafic et l'accès à Internet.
+                </p>
+
+                <div class="config-subsection">
+                    <figure class="image-card image-full clickable" onclick="openLightbox('cisco-test-l3-topo')">
+                        <img src="screen-cisco-59.png" alt="Topologie Tests couche 3" class="image-card__img">
+                        <figcaption class="image-card__caption">Topologie — Vue complète du lab pour les tests couche 3</figcaption>
+                    </figure>
+                </div>
+
+                <!-- A. HSRP -->
+                <div class="config-subsection">
+                    <h4 class="config-label">A. HSRP</h4>
+
+                    <p class="sub-intro">CD1 est éteint. Les PC doivent continuer à communiquer sans interruption car CD2 prend automatiquement le rôle de passerelle active via HSRP.</p>
+
+                    <figure class="image-card image-full clickable" onclick="openLightbox('cisco-test-hsrp-scenario')">
+                        <img src="screen-cisco-60.png" alt="Scénario HSRP — CD1 down" class="image-card__img">
+                        <figcaption class="image-card__caption">Scénario — CD1 éteint, redirection HSRP via CD2</figcaption>
+                    </figure>
+
+                    <div class="steps-flow">
+
+                        <div class="step-block">
+                            <div class="step-header">
+                                <span class="step-badge">1</span>
+                                <h4 class="step-title">Vérifier l'état initial</h4>
+                            </div>
+                            <div class="content-img-side">
+                                <figure class="image-card image-medium clickable" onclick="openLightbox('cisco-test-hsrp-1')">
+                                    <img src="screen-cisco-61.png" alt="État initial HSRP" class="image-card__img">
+                                    <figcaption class="image-card__caption">État initial — CD1 actif sur VLAN 10, 30, 100</figcaption>
+                                </figure>
+                                <div class="side-notes">
+                                    <div class="test-note">
+                                        <p>On vérifie que CD1 est bien actif HSRP sur les VLANs 10, 30 et 100 et CD2 sur les VLANs 20 et 200.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="step-block">
+                            <div class="step-header">
+                                <span class="step-badge">2</span>
+                                <h4 class="step-title">Éteindre CD1 et vérifier que CD2 devient actif sur tous les VLANs</h4>
+                            </div>
+                            <div class="content-img-side">
+                                <figure class="image-card image-medium clickable" onclick="openLightbox('cisco-test-hsrp-2')">
+                                    <img src="screen-cisco-62.png" alt="CD2 actif HSRP après extinction CD1" class="image-card__img">
+                                    <figcaption class="image-card__caption">CD2 actif sur tous les VLANs après extinction de CD1</figcaption>
+                                </figure>
+                                <div class="side-notes">
+                                    <div class="test-note">
+                                        <p>Après extinction de CD1, on vérifie que CD2 est maintenant actif sur tous les VLANs — y compris VLAN 10, 30 et 100 sur lesquels il était standby.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="step-block">
+                            <div class="step-header">
+                                <span class="step-badge">5</span>
+                                <h4 class="step-title">Rallumer CD1 et vérifier le preempt</h4>
+                            </div>
+                            <div class="content-img-side">
+                                <figure class="image-card image-medium clickable" onclick="openLightbox('cisco-test-hsrp-5')">
+                                    <img src="screen-cisco-63.png" alt="CD1 reprend son rôle actif via preempt" class="image-card__img">
+                                    <figcaption class="image-card__caption">CD1 reprend son rôle actif — preempt HSRP</figcaption>
+                                </figure>
+                                <div class="side-notes">
+                                    <div class="test-note">
+                                        <p>On rallume CD1 et on vérifie qu'il reprend automatiquement son rôle actif sur les VLANs 10, 30 et 100 grâce au preempt configuré.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="validation-badge">
+                        <span>Test validé : HSRP prouve son efficacité en garantissant la continuité de service en cas de panne d'un switch de distribution. CD2 prend automatiquement le relais sans aucune intervention manuelle et les PC ne perdent pas leur connectivité. Lorsque CD1 revient, le preempt lui permet de reprendre immédiatement son rôle actif.</span>
+                    </div>
+
+                </div>
+
+                <!-- B. Routes flottantes -->
+                <div class="config-subsection">
+                    <h4 class="config-label">B. Routes flottantes</h4>
+
+                    <p class="sub-intro">Le lien entre R1 et SP1 est coupé. R1 doit automatiquement basculer sur la route flottante via R2 pour maintenir l'accès à Internet, prouvant que la redondance WAN fonctionne.</p>
+
+                    <figure class="image-card image-full clickable" onclick="openLightbox('cisco-test-float-scenario')">
+                        <img src="screen-cisco-64.png" alt="Scénario Routes flottantes — R1 SP1 coupé" class="image-card__img">
+                        <figcaption class="image-card__caption">Scénario — Lien R1↔SP1 coupé, basculement via R2</figcaption>
+                    </figure>
+
+                    <div class="steps-flow">
+
+                        <div class="step-block">
+                            <div class="step-header">
+                                <span class="step-badge">1</span>
+                                <h4 class="step-title">Vérifier l'état initial</h4>
+                            </div>
+                            <div class="content-img-side">
+                                <figure class="image-card image-medium clickable" onclick="openLightbox('cisco-test-float-1')">
+                                    <img src="screen-cisco-65.png" alt="Table de routage initiale R1" class="image-card__img">
+                                    <figcaption class="image-card__caption">Table de routage R1 — route principale via SP1 active</figcaption>
+                                </figure>
+                                <div class="side-notes">
+                                    <div class="test-note">
+                                        <p>Avant la panne, on vérifie la table de routage de R1. La route par défaut principale via SP1 (203.0.113.1) doit être active avec une AD de 1. La route flottante via R2 (10.10.20.2) avec AD 10 n'apparaît pas car elle est inactive tant que la route principale fonctionne.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="step-block">
+                            <div class="step-header">
+                                <span class="step-badge">2</span>
+                                <h4 class="step-title">Couper le lien R1↔SP1</h4>
+                            </div>
+                            <div class="content-img-side">
+                                <figure class="image-card image-medium clickable" onclick="openLightbox('cisco-test-float-2')">
+                                    <img src="screen-cisco-66.png" alt="Route flottante active après coupure" class="image-card__img">
+                                    <figcaption class="image-card__caption">Basculement — route flottante via R2 maintenant active</figcaption>
+                                </figure>
+                                <div class="side-notes">
+                                    <div class="test-note">
+                                        <p>Après la coupure, R1 doit automatiquement activer la route flottante via R2 (10.10.20.2). On vérifie que la table de routage affiche maintenant la route flottante comme route active.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="step-block">
+                            <div class="step-header">
+                                <span class="step-badge">3</span>
+                                <h4 class="step-title">Communication R1 vers SP1</h4>
+                            </div>
+                            <div class="content-img-side">
+                                <figure class="image-card image-medium clickable" onclick="openLightbox('cisco-test-float-3')">
+                                    <img src="screen-cisco-67.png" alt="Ping R1 vers SP1 via R2" class="image-card__img">
+                                    <figcaption class="image-card__caption">Ping vers SP1 — trafic transite via R2 (10.10.20.1)</figcaption>
+                                </figure>
+                                <div class="side-notes">
+                                    <div class="test-note">
+                                        <p>Le trafic passe par R2 via 10.10.20.1.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="step-block">
+                            <div class="step-header">
+                                <span class="step-badge">4</span>
+                                <h4 class="step-title">Réactiver le lien R1↔SP1</h4>
+                            </div>
+                            <div class="content-img-side">
+                                <figure class="image-card image-medium clickable" onclick="openLightbox('cisco-test-float-4')">
+                                    <img src="screen-cisco-68.png" alt="Route principale restaurée" class="image-card__img">
+                                    <figcaption class="image-card__caption">Route principale restaurée — AD 1 reprend la priorité</figcaption>
+                                </figure>
+                                <div class="side-notes">
+                                    <div class="test-note">
+                                        <p>On réactive l'interface G0/0 de R1 et on vérifie que la route principale reprend automatiquement sa place avec AD 1, remplaçant la route flottante.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="validation-badge">
+                        <span>Test validé : Les routes flottantes prouvent leur utilité en assurant la redondance WAN. Lorsque le lien principal vers SP1 tombe, R1 bascule automatiquement sur le chemin de secours via R2 sans aucune intervention manuelle.</span>
+                    </div>
+
+                </div>
+
+                <!-- C. NAT PAT -->
+                <div class="config-subsection">
+                    <h4 class="config-label">C. Network Address Translation</h4>
+
+                    <p class="sub-intro">Un ping est lancé depuis PC COMPTA vers Internet (SP1). La table NAT de R1 est affichée pour montrer la traduction de l'IP privée en IP publique.</p>
+
+                    <div class="steps-flow">
+
+                        <div class="step-block">
+                            <div class="step-header">
+                                <span class="step-badge">1</span>
+                                <h4 class="step-title">Générer du trafic vers Internet</h4>
+                            </div>
+                            <div class="content-img-side">
+                                <div class="images-stack">
+                                    <figure class="image-card image-medium clickable" onclick="openLightbox('cisco-test-nat-1a')">
+                                        <img src="screen-cisco-69.png" alt="Table NAT R1" class="image-card__img">
+                                        <figcaption class="image-card__caption">R1 — show ip nat translations</figcaption>
+                                    </figure>
+                                    <figure class="image-card image-medium clickable" onclick="openLightbox('cisco-test-nat-1b')">
+                                        <img src="screen-cisco-70.png" alt="Ping PC COMPTA vers SP1" class="image-card__img">
+                                        <figcaption class="image-card__caption">PC COMPTA — ping 203.0.113.1</figcaption>
+                                    </figure>
+                                </div>
+                                <div class="side-notes">
+                                    <div class="test-note">
+                                        <p>Immédiatement après le ping, on vérifie la table NAT de R1. On doit voir la traduction entre l'IP privée du PC et l'IP publique de R1.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="step-block">
+                            <div class="step-header">
+                                <span class="step-badge">2</span>
+                                <h4 class="step-title">Vérifier les statistiques NAT</h4>
+                            </div>
+                            <div class="content-img-side">
+                                <figure class="image-card image-medium clickable" onclick="openLightbox('cisco-test-nat-2')">
+                                    <img src="screen-cisco-71.png" alt="Statistiques NAT R1" class="image-card__img">
+                                    <figcaption class="image-card__caption">R1 — show ip nat statistics</figcaption>
+                                </figure>
+                                <div class="side-notes">
+                                    <div class="test-note">
+                                        <p>Les statistiques nous montrent le nombre de traductions actives et le nombre de hits sur les règles NAT.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="validation-badge">
+                        <span>Test validé : La table NAT de R1 affiche correctement la traduction de l'adresse IP privée du PC COMPTA vers l'adresse IP publique de R1, confirmant le bon fonctionnement du NAT/PAT et l'accès à Internet.</span>
+                    </div>
+
+                </div>
+
+                <!-- D. ACL -->
+                <div class="config-subsection">
+                    <h4 class="config-label">D. Access Control List</h4>
+
+                    <p class="sub-intro"><strong>ACL 110 : Isolation DMZ</strong></p>
+                    <p class="sub-intro">Un ping est lancé depuis SRV-WEB (10.10.200.10) vers PC COMPTA (10.10.10.100). La communication doit être bloquée par l'ACL 110, prouvant que les serveurs DMZ sont bien isolés du réseau interne et ne peuvent pas initier de connexions vers les utilisateurs.</p>
+
+                    <figure class="image-card image-full clickable" onclick="openLightbox('cisco-test-acl-scenario')">
+                        <img src="screen-cisco-72.png" alt="Topologie ACL — Isolation DMZ" class="image-card__img">
+                        <figcaption class="image-card__caption">Topologie — Isolation DMZ via ACL 110</figcaption>
+                    </figure>
+
+                    <div class="steps-flow">
+
+                        <div class="step-block">
+                            <div class="step-header">
+                                <span class="step-badge">1</span>
+                                <h4 class="step-title">Vérifier l'ACL 110 en place</h4>
+                            </div>
+                            <div class="content-img-side">
+                                <figure class="image-card image-medium clickable" onclick="openLightbox('cisco-test-acl-1')">
+                                    <img src="screen-cisco-73.png" alt="show ip access-lists 110 — avant" class="image-card__img">
+                                    <figcaption class="image-card__caption">CD1 — show ip access-lists 110 (4 matches)</figcaption>
+                                </figure>
+                                <div class="side-notes">
+                                    <div class="test-note">
+                                        <p>L'ACL 110 est bien présente sur CD1 et appliquée en entrée sur la SVI VLAN 200. La séquence 10 bloque tout trafic initié depuis le sous-réseau 10.10.200.0 vers le réseau interne 10.10.10.0.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="step-block">
+                            <div class="step-header">
+                                <span class="step-badge">2</span>
+                                <h4 class="step-title">Lancer un ping depuis SRV-WEB vers PC COMPTA</h4>
+                            </div>
+                            <div class="content-img-side">
+                                <figure class="image-card image-medium clickable" onclick="openLightbox('cisco-test-acl-2')">
+                                    <img src="screen-cisco-74.png" alt="Ping SRV-WEB vers PC COMPTA — bloqué" class="image-card__img">
+                                    <figcaption class="image-card__caption">SRV-WEB — ping 10.10.10.100 bloqué</figcaption>
+                                </figure>
+                                <div class="side-notes">
+                                    <div class="test-note">
+                                        <p>Aucun paquet n'atteint PC COMPTA. Le trafic initié depuis la DMZ est bien bloqué dès la SVI VLAN 200.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="step-block">
+                            <div class="step-header">
+                                <span class="step-badge">3</span>
+                                <h4 class="step-title">Vérifier les compteurs ACL après le ping</h4>
+                            </div>
+                            <div class="content-img-side">
+                                <figure class="image-card image-medium clickable" onclick="openLightbox('cisco-test-acl-3')">
+                                    <img src="screen-cisco-75.png" alt="show ip access-lists 110 — après" class="image-card__img">
+                                    <figcaption class="image-card__caption">CD1 — show ip access-lists 110 (8 matches)</figcaption>
+                                </figure>
+                                <div class="side-notes">
+                                    <div class="test-note">
+                                        <p>Le compteur de la séquence 10 est passé de 4 à 8 matches — les 4 paquets ICMP ont bien été interceptés et bloqués par la règle <span class="italic-underline">deny</span>.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="validation-badge">
+                        <span>Test validé : L'ACL 110 bloque efficacement tout trafic initié depuis la DMZ vers le réseau interne. Les 4 paquets ICMP ont été interceptés et bloqués dès la SVI VLAN 200, confirmant l'isolation de la DMZ.</span>
+                    </div>
+
+                    <!-- Second scénario ACL -->
+                    <p class="sub-intro" style="margin-top:2.5rem;"><strong>ACL 110 : Accès aux serveurs DMZ depuis l'extérieur</strong></p>
+                    <p class="sub-intro">Depuis un PC client externe, un navigateur accède à l'adresse IP du SRV-WEB en HTTP. La page web doit s'afficher, prouvant que le serveur est accessible depuis l'extérieur via le port 80.</p>
+
+                    <figure class="image-card image-full clickable" onclick="openLightbox('cisco-test-acl2-scenario')">
+                        <img src="screen-cisco-77.png" alt="Topologie ACL — Accès DMZ depuis l'extérieur" class="image-card__img">
+                        <figcaption class="image-card__caption">Topologie — Accès depuis l'extérieur vers les serveurs DMZ</figcaption>
+                    </figure>
+
+                    <div class="steps-flow">
+
+                        <div class="step-block">
+                            <div class="step-header">
+                                <span class="step-badge">1</span>
+                                <h4 class="step-title">Vérification de la page Web</h4>
+                            </div>
+                            <div class="content-img-side">
+                                <figure class="image-card image-medium clickable" onclick="openLightbox('cisco-test-acl2-1')">
+                                    <img src="screen-cisco-78.png" alt="SRV-WEB — page index.html" class="image-card__img">
+                                    <figcaption class="image-card__caption">SRV-WEB — page index.html configurée</figcaption>
+                                </figure>
+                                <div class="side-notes">
+                                    <div class="test-note">
+                                        <p>La page index a été codée côté serveur Web.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="step-block">
+                            <div class="step-header">
+                                <span class="step-badge">2</span>
+                                <h4 class="step-title">Tester l'accès depuis l'extérieur</h4>
+                            </div>
+                            <div class="content-img-side">
+                                <figure class="image-card image-medium clickable" onclick="openLightbox('cisco-test-acl2-2')">
+                                    <img src="screen-cisco-79.png" alt="Accès HTTP depuis l'extérieur" class="image-card__img">
+                                    <figcaption class="image-card__caption">PC externe — page Web accessible en HTTP</figcaption>
+                                </figure>
+                                <div class="side-notes">
+                                    <div class="test-note">
+                                        <p>La page Web est accessible depuis l'extérieur. L'ACE <strong>permit tcp any host 10.10.200.10 eq www</strong> de l'ACL 110 fonctionne correctement.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="validation-badge">
+                        <span>Test validé : Les serveurs DMZ sont accessibles depuis l'extérieur sur les ports autorisés. L'ACL 110 permet le trafic HTTP entrant vers SRV-WEB (port 80), confirmant que les règles permit fonctionnent correctement en complément des règles deny.</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION VIII — Conclusion
+═══════════════════════════════════════════════════════ -->
+<hr class="section-separator">
+<section id="conclusion-cisco" class="content-section">
+    <div class="container">
+        <h2 class="chapter-title">VIII. Conclusion</h2>
+        <div class="content-block">
+            <p class="sub-intro">
+                Ce projet de laboratoire réseau a permis de concevoir et configurer une infrastructure réseau d'entreprise complète, couvrant l'ensemble des fonctionnalités couche 2 et couche 3. La redondance a été assurée à chaque niveau — EtherChannel et Spanning Tree en couche 2, HSRP et routes flottantes en couche 3 — garantissant la continuité de service en toutes circonstances. La sécurité du réseau a été renforcée via le Port Security, les ACL et une DMZ dédiée aux serveurs exposés. L'ensemble des configurations a été validé par des tests de scénarios réels, prouvant que l'infrastructure répond correctement aux exigences d'une entreprise moderne.
+            </p>
+        </div>
+    </div>
+</section>
+
+<hr class="section-separator">
+     
+
+     <!-- ─── Lightbox ───────────────────────────────────────── -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+        <img src="Schema-veeam.jpg" alt="Topologie Veeam" onclick="event.stopPropagation()">
+    </div>
+
+    <div class="lightbox" id="lightbox-backup1" onclick="closeLightbox('backup1')">
+    <button class="lightbox-close" onclick="closeLightbox('backup1')">✕</button>
+    <img src="Schema-backup-1.jpg" alt="Topologie Backup 1" onclick="event.stopPropagation()">
+</div>
+
+    <div class="lightbox" id="lightbox-backup2" onclick="closeLightbox('backup2')">
+    <button class="lightbox-close" onclick="closeLightbox('backup2')">✕</button>
+    <img src="Schema-backup-2.png" alt="Topologie Backup 2" onclick="event.stopPropagation()">
+</div>
+
+<div class="lightbox" id="lightbox-backup3" onclick="closeLightbox('backup3')">
+    <button class="lightbox-close" onclick="closeLightbox('backup3')">✕</button>
+    <img src="Schema-backup-3.jpg" alt="Topologie Backup 3" onclick="event.stopPropagation()">
+</div>
+
+<div class="lightbox" id="lightbox-restauration-standard" onclick="closeLightbox('restauration-standard')">
+    <button class="lightbox-close" onclick="closeLightbox('restauration-standard')">✕</button>
+    <img src="Schema-restauration-standard.jpg" alt="Topologie Restore Entire VM" onclick="event.stopPropagation()">
+</div>
+
+<div class="lightbox" id="lightbox-instant-recovery" onclick="closeLightbox('instant-recovery')">
+    <button class="lightbox-close" onclick="closeLightbox('instant-recovery')">✕</button>
+    <img src="Schema-instante-recovery.jpg" alt="Topologie Instant Recovery" onclick="event.stopPropagation()">
+</div>
+
+<div class="lightbox" id="lightbox-restauration-ad" onclick="closeLightbox('restauration-ad')">
+    <button class="lightbox-close" onclick="closeLightbox('restauration-ad')">✕</button>
+    <img src="Schema-restauration-ad.jpg" alt="Topologie Restore Application Items (AD)" onclick="event.stopPropagation()">
+</div>
+
+<div class="lightbox" id="lightbox-restauration-linux" onclick="closeLightbox('restauration-linux')">
+    <button class="lightbox-close" onclick="closeLightbox('restauration-linux')">✕</button>
+    <img src="Schema-restauration-linux.jpg" alt="Topologie File Level Restore Linux" onclick="event.stopPropagation()">
+</div>
+
+<div class="lightbox" id="lightbox-restauration-disk" onclick="closeLightbox('restauration-disk')">
+    <button class="lightbox-close" onclick="closeLightbox('restauration-disk')">✕</button>
+    <img src="Schema-restauration-disk.jpg" alt="Topologie Virtual disk restore" onclick="event.stopPropagation()">
+</div>
+
+<div class="lightbox" id="lightbox-iso-recovery" onclick="closeLightbox('iso-recovery')">
+    <button class="lightbox-close" onclick="closeLightbox('iso-recovery')">✕</button>
+    <img src="schema-iso-recovery.png" alt="Topologie Bare Metal Recovery" onclick="event.stopPropagation()">
+</div>
+
+
+
+
+
+    <!-- ─── Footer ──────────────────────────────────────────── -->
+    <footer>
+        <p>© 2026 LAPULY Matthis — Tous droits réservés</p>
+    </footer>
+
+    <!-- Lightbox — Spanning Tree topology -->
+    <div class="lightbox" id="lightbox-cisco-stp" onclick="closeLightbox('cisco-stp')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-stp')">✕</button>
+        <img src="Screen-cisco-12.png" alt="Topologie STP" onclick="event.stopPropagation()">
+    </div>
+
+    <!-- Lightbox — Ports access topology -->
+    <div class="lightbox" id="lightbox-cisco-access" onclick="closeLightbox('cisco-access')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-access')">✕</button>
+        <img src="Screen-cisco-9.png" alt="Ports access" onclick="event.stopPropagation()">
+    </div>
+
+    <!-- Lightbox — EtherChannel -->
+    <div class="lightbox" id="lightbox-cisco-etherchannel" onclick="closeLightbox('cisco-etherchannel')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-etherchannel')">✕</button>
+        <img src="screen-cisco6.png" alt="EtherChannel CD1-CD2" onclick="event.stopPropagation()">
+    </div>
+
+    <!-- Lightbox — Schéma trunk Cisco -->
+    <div class="lightbox" id="lightbox-cisco-trunk" onclick="closeLightbox('cisco-trunk')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-trunk')">✕</button>
+        <img src="Screen-cisco-2.png" alt="Liens trunk" onclick="event.stopPropagation()">
+    </div>
+
+    <!-- Lightbox — Schéma topologie Cisco -->
+    <div class="lightbox" id="lightbox-cisco-topo" onclick="closeLightbox('cisco-topo')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-topo')">✕</button>
+        <img src="Screen-cisco-1.png" alt="Schéma topologie Cisco" onclick="event.stopPropagation()">
+    </div>
+
+    <!-- Lightbox — Port Security -->
+    <div class="lightbox" id="lightbox-cisco-test-portsec-scenario" onclick="closeLightbox('cisco-test-portsec-scenario')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-test-portsec-scenario')">✕</button>
+        <img src="screen-cisco-52.png" alt="Scénario Port Security" onclick="event.stopPropagation()">
+    </div>
+    <div class="lightbox" id="lightbox-cisco-test-portsec-1" onclick="closeLightbox('cisco-test-portsec-1')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-test-portsec-1')">✕</button>
+        <img src="screen-cisco-53.png" alt="Port Security état initial" onclick="event.stopPropagation()">
+    </div>
+    <div class="lightbox" id="lightbox-cisco-test-portsec-2a" onclick="closeLightbox('cisco-test-portsec-2a')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-test-portsec-2a')">✕</button>
+        <img src="screen-cisco-54.png" alt="Hub branché" onclick="event.stopPropagation()">
+    </div>
+    <div class="lightbox" id="lightbox-cisco-test-portsec-2b" onclick="closeLightbox('cisco-test-portsec-2b')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-test-portsec-2b')">✕</button>
+        <img src="screen-cisco-55.png" alt="Violation syslog" onclick="event.stopPropagation()">
+    </div>
+    <div class="lightbox" id="lightbox-cisco-test-portsec-3a" onclick="closeLightbox('cisco-test-portsec-3a')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-test-portsec-3a')">✕</button>
+        <img src="screen-cisco-56.png" alt="Secure-shutdown" onclick="event.stopPropagation()">
+    </div>
+    <div class="lightbox" id="lightbox-cisco-test-portsec-3b" onclick="closeLightbox('cisco-test-portsec-3b')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-test-portsec-3b')">✕</button>
+        <img src="screen-cisco-57.png" alt="err-disabled" onclick="event.stopPropagation()">
+    </div>
+    <div class="lightbox" id="lightbox-cisco-test-portsec-4" onclick="closeLightbox('cisco-test-portsec-4')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-test-portsec-4')">✕</button>
+        <img src="screen-cisco-58.png" alt="Remise en service" onclick="event.stopPropagation()">
+    </div>
+
+    <!-- Lightbox — Tests STP -->
+    <div class="lightbox" id="lightbox-cisco-test-stp-scenario" onclick="closeLightbox('cisco-test-stp-scenario')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-test-stp-scenario')">✕</button>
+        <img src="screen-cisco-47.png" alt="Scénario STP" onclick="event.stopPropagation()">
+    </div>
+    <div class="lightbox" id="lightbox-cisco-test-stp-1" onclick="closeLightbox('cisco-test-stp-1')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-test-stp-1')">✕</button>
+        <img src="screen-cisco-48.png" alt="STP étape 1" onclick="event.stopPropagation()">
+    </div>
+    <div class="lightbox" id="lightbox-cisco-test-stp-2" onclick="closeLightbox('cisco-test-stp-2')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-test-stp-2')">✕</button>
+        <img src="screen-cisco-49.png" alt="STP étape 2" onclick="event.stopPropagation()">
+    </div>
+    <div class="lightbox" id="lightbox-cisco-test-stp-3" onclick="closeLightbox('cisco-test-stp-3')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-test-stp-3')">✕</button>
+        <img src="screen-cisco-50.png" alt="STP étape 3" onclick="event.stopPropagation()">
+    </div>
+    <div class="lightbox" id="lightbox-cisco-test-stp-4" onclick="closeLightbox('cisco-test-stp-4')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-test-stp-4')">✕</button>
+        <img src="screen-cisco-51.png" alt="STP étape 4" onclick="event.stopPropagation()">
+    </div>
+
+    <!-- Lightbox — Tests couche 3 / NAT -->
+    <div class="lightbox" id="lightbox-cisco-test-nat-1a" onclick="closeLightbox('cisco-test-nat-1a')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-test-nat-1a')">✕</button>
+        <img src="screen-cisco-69.png" alt="Table NAT R1" onclick="event.stopPropagation()">
+    </div>
+    <div class="lightbox" id="lightbox-cisco-test-nat-1b" onclick="closeLightbox('cisco-test-nat-1b')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-test-nat-1b')">✕</button>
+        <img src="screen-cisco-70.png" alt="Ping PC COMPTA vers SP1" onclick="event.stopPropagation()">
+    </div>
+    <div class="lightbox" id="lightbox-cisco-test-nat-2" onclick="closeLightbox('cisco-test-nat-2')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-test-nat-2')">✕</button>
+        <img src="screen-cisco-71.png" alt="Statistiques NAT R1" onclick="event.stopPropagation()">
+    </div>
+
+    <!-- Lightbox — Tests couche 3 / ACL scénario 2 -->
+    <div class="lightbox" id="lightbox-cisco-test-acl2-scenario" onclick="closeLightbox('cisco-test-acl2-scenario')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-test-acl2-scenario')">✕</button>
+        <img src="screen-cisco-77.png" alt="Topologie ACL accès DMZ depuis extérieur" onclick="event.stopPropagation()">
+    </div>
+    <div class="lightbox" id="lightbox-cisco-test-acl2-1" onclick="closeLightbox('cisco-test-acl2-1')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-test-acl2-1')">✕</button>
+        <img src="screen-cisco-78.png" alt="SRV-WEB page index.html" onclick="event.stopPropagation()">
+    </div>
+    <div class="lightbox" id="lightbox-cisco-test-acl2-2" onclick="closeLightbox('cisco-test-acl2-2')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-test-acl2-2')">✕</button>
+        <img src="screen-cisco-79.png" alt="Accès HTTP depuis l'extérieur" onclick="event.stopPropagation()">
+    </div>
+
+    <!-- Lightbox — Tests couche 3 / ACL -->
+    <div class="lightbox" id="lightbox-cisco-test-acl-scenario" onclick="closeLightbox('cisco-test-acl-scenario')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-test-acl-scenario')">✕</button>
+        <img src="screen-cisco-72.png" alt="Topologie ACL Isolation DMZ" onclick="event.stopPropagation()">
+    </div>
+    <div class="lightbox" id="lightbox-cisco-test-acl-1" onclick="closeLightbox('cisco-test-acl-1')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-test-acl-1')">✕</button>
+        <img src="screen-cisco-73.png" alt="ACL 110 avant ping" onclick="event.stopPropagation()">
+    </div>
+    <div class="lightbox" id="lightbox-cisco-test-acl-2" onclick="closeLightbox('cisco-test-acl-2')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-test-acl-2')">✕</button>
+        <img src="screen-cisco-74.png" alt="Ping SRV-WEB bloqué" onclick="event.stopPropagation()">
+    </div>
+    <div class="lightbox" id="lightbox-cisco-test-acl-3" onclick="closeLightbox('cisco-test-acl-3')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-test-acl-3')">✕</button>
+        <img src="screen-cisco-75.png" alt="ACL 110 après ping — 8 matches" onclick="event.stopPropagation()">
+    </div>
+
+    <!-- Lightbox — Tests couche 3 / Routes flottantes -->
+    <div class="lightbox" id="lightbox-cisco-test-float-scenario" onclick="closeLightbox('cisco-test-float-scenario')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-test-float-scenario')">✕</button>
+        <img src="screen-cisco-64.png" alt="Scénario Routes flottantes" onclick="event.stopPropagation()">
+    </div>
+    <div class="lightbox" id="lightbox-cisco-test-float-1" onclick="closeLightbox('cisco-test-float-1')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-test-float-1')">✕</button>
+        <img src="screen-cisco-65.png" alt="Table de routage initiale R1" onclick="event.stopPropagation()">
+    </div>
+    <div class="lightbox" id="lightbox-cisco-test-float-2" onclick="closeLightbox('cisco-test-float-2')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-test-float-2')">✕</button>
+        <img src="screen-cisco-66.png" alt="Route flottante active après coupure" onclick="event.stopPropagation()">
+    </div>
+    <div class="lightbox" id="lightbox-cisco-test-float-3" onclick="closeLightbox('cisco-test-float-3')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-test-float-3')">✕</button>
+        <img src="screen-cisco-67.png" alt="Ping R1 vers SP1 via R2" onclick="event.stopPropagation()">
+    </div>
+    <div class="lightbox" id="lightbox-cisco-test-float-4" onclick="closeLightbox('cisco-test-float-4')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-test-float-4')">✕</button>
+        <img src="screen-cisco-68.png" alt="Route principale restaurée" onclick="event.stopPropagation()">
+    </div>
+
+    <!-- Lightbox — Tests couche 3 / HSRP -->
+    <div class="lightbox" id="lightbox-cisco-test-l3-topo" onclick="closeLightbox('cisco-test-l3-topo')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-test-l3-topo')">✕</button>
+        <img src="screen-cisco-59.png" alt="Topologie tests couche 3" onclick="event.stopPropagation()">
+    </div>
+    <div class="lightbox" id="lightbox-cisco-test-hsrp-scenario" onclick="closeLightbox('cisco-test-hsrp-scenario')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-test-hsrp-scenario')">✕</button>
+        <img src="screen-cisco-60.png" alt="Scénario HSRP — CD1 down" onclick="event.stopPropagation()">
+    </div>
+    <div class="lightbox" id="lightbox-cisco-test-hsrp-1" onclick="closeLightbox('cisco-test-hsrp-1')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-test-hsrp-1')">✕</button>
+        <img src="screen-cisco-61.png" alt="HSRP état initial" onclick="event.stopPropagation()">
+    </div>
+    <div class="lightbox" id="lightbox-cisco-test-hsrp-2" onclick="closeLightbox('cisco-test-hsrp-2')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-test-hsrp-2')">✕</button>
+        <img src="screen-cisco-62.png" alt="CD2 actif HSRP" onclick="event.stopPropagation()">
+    </div>
+    <div class="lightbox" id="lightbox-cisco-test-hsrp-5" onclick="closeLightbox('cisco-test-hsrp-5')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-test-hsrp-5')">✕</button>
+        <img src="screen-cisco-63.png" alt="CD1 preempt HSRP" onclick="event.stopPropagation()">
+    </div>
+
+    <!-- Lightbox — Tests couche 2 -->
+    <div class="lightbox" id="lightbox-cisco-test-l2-topo" onclick="closeLightbox('cisco-test-l2-topo')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-test-l2-topo')">✕</button>
+        <img src="screen-cisco-43.png" alt="Topologie tests couche 2" onclick="event.stopPropagation()">
+    </div>
+    <div class="lightbox" id="lightbox-cisco-test-etherchannel-scenario" onclick="closeLightbox('cisco-test-etherchannel-scenario')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-test-etherchannel-scenario')">✕</button>
+        <img src="screen-cisco-44.png" alt="Scénario EtherChannel" onclick="event.stopPropagation()">
+    </div>
+    <div class="lightbox" id="lightbox-cisco-test-etherchannel-1" onclick="closeLightbox('cisco-test-etherchannel-1')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-test-etherchannel-1')">✕</button>
+        <img src="screen-cisco-45.png" alt="EtherChannel étape 1" onclick="event.stopPropagation()">
+    </div>
+    <div class="lightbox" id="lightbox-cisco-test-etherchannel-2" onclick="closeLightbox('cisco-test-etherchannel-2')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-test-etherchannel-2')">✕</button>
+        <img src="screen-cisco-46.png" alt="EtherChannel étape 2" onclick="event.stopPropagation()">
+    </div>
+
+    <!-- Lightbox — ACL -->
+    <div class="lightbox" id="lightbox-cisco-acl-verif" onclick="closeLightbox('cisco-acl-verif')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-acl-verif')">✕</button>
+        <img src="screen-cisco-40.png" alt="Vérification ACL" onclick="event.stopPropagation()">
+    </div>
+
+    <!-- Lightbox — DHCP -->
+    <div class="lightbox" id="lightbox-cisco-dhcp-topo" onclick="closeLightbox('cisco-dhcp-topo')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-dhcp-topo')">✕</button>
+        <img src="screen-cisco-41.png" alt="Topologie DHCP" onclick="event.stopPropagation()">
+    </div>
+    <div class="lightbox" id="lightbox-cisco-dhcp-verif" onclick="closeLightbox('cisco-dhcp-verif')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-dhcp-verif')">✕</button>
+        <img src="screen-cisco-41.png" alt="Vérification DHCP" onclick="event.stopPropagation()">
+    </div>
+
+    <!-- Lightbox — NAT -->
+    <div class="lightbox" id="lightbox-cisco-nat-translations" onclick="closeLightbox('cisco-nat-translations')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-nat-translations')">✕</button>
+        <img src="screen-cisco-38.png" alt="NAT translations" onclick="event.stopPropagation()">
+    </div>
+    <div class="lightbox" id="lightbox-cisco-nat-stats" onclick="closeLightbox('cisco-nat-stats')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-nat-stats')">✕</button>
+        <img src="screen-cisco-39.png" alt="NAT statistics" onclick="event.stopPropagation()">
+    </div>
+
+    <!-- Lightbox — Tables de routage OSPF -->
+    <div class="lightbox" id="lightbox-cisco-ospf-route-r1" onclick="closeLightbox('cisco-ospf-route-r1')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-ospf-route-r1')">✕</button>
+        <img src="screen-cisco-36.png" alt="Table routage R1" onclick="event.stopPropagation()">
+    </div>
+    <div class="lightbox" id="lightbox-cisco-ospf-route-cd1" onclick="closeLightbox('cisco-ospf-route-cd1')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-ospf-route-cd1')">✕</button>
+        <img src="screen-cisco-37.png" alt="Table routage CD1" onclick="event.stopPropagation()">
+    </div>
+
+    <!-- Lightbox — OSPF -->
+    <div class="lightbox" id="lightbox-cisco-ospf" onclick="closeLightbox('cisco-ospf')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-ospf')">✕</button>
+        <img src="screen-cisco-31.png" alt="Topologie OSPF" onclick="event.stopPropagation()">
+    </div>
+    <div class="lightbox" id="lightbox-cisco-ospf-cd1" onclick="closeLightbox('cisco-ospf-cd1')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-ospf-cd1')">✕</button>
+        <img src="screen-cisco-32.png" alt="OSPF CD1" onclick="event.stopPropagation()">
+    </div>
+    <div class="lightbox" id="lightbox-cisco-ospf-cd2" onclick="closeLightbox('cisco-ospf-cd2')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-ospf-cd2')">✕</button>
+        <img src="screen-cisco-33.png" alt="OSPF CD2" onclick="event.stopPropagation()">
+    </div>
+    <div class="lightbox" id="lightbox-cisco-ospf-r1" onclick="closeLightbox('cisco-ospf-r1')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-ospf-r1')">✕</button>
+        <img src="screen-cisco-34.png" alt="OSPF R1" onclick="event.stopPropagation()">
+    </div>
+    <div class="lightbox" id="lightbox-cisco-ospf-r2" onclick="closeLightbox('cisco-ospf-r2')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-ospf-r2')">✕</button>
+        <img src="screen-cisco-35.png" alt="OSPF R2" onclick="event.stopPropagation()">
+    </div>
+
+    <!-- Lightbox — Adressage IP routeurs -->
+    <div class="lightbox" id="lightbox-cisco-iprouteurs" onclick="closeLightbox('cisco-iprouteurs')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-iprouteurs')">✕</button>
+        <img src="screen-cisco-26.png" alt="Adressage IP routeurs" onclick="event.stopPropagation()">
+    </div>
+    <div class="lightbox" id="lightbox-cisco-iprouteurs-r1" onclick="closeLightbox('cisco-iprouteurs-r1')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-iprouteurs-r1')">✕</button>
+        <img src="screen-cisco-27.png" alt="IP R1" onclick="event.stopPropagation()">
+    </div>
+    <div class="lightbox" id="lightbox-cisco-iprouteurs-r2" onclick="closeLightbox('cisco-iprouteurs-r2')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-iprouteurs-r2')">✕</button>
+        <img src="screen-cisco-28.png" alt="IP R2" onclick="event.stopPropagation()">
+    </div>
+    <div class="lightbox" id="lightbox-cisco-iprouteurs-sp1" onclick="closeLightbox('cisco-iprouteurs-sp1')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-iprouteurs-sp1')">✕</button>
+        <img src="screen-cisco-29.png" alt="IP SP1" onclick="event.stopPropagation()">
+    </div>
+    <div class="lightbox" id="lightbox-cisco-iprouteurs-sp2" onclick="closeLightbox('cisco-iprouteurs-sp2')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-iprouteurs-sp2')">✕</button>
+        <img src="screen-cisco-30.png" alt="IP SP2" onclick="event.stopPropagation()">
+    </div>
+
+    <!-- Lightbox — Routed ports topology -->
+    <div class="lightbox" id="lightbox-cisco-routedports" onclick="closeLightbox('cisco-routedports')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-routedports')">✕</button>
+        <img src="screen-cisco-23.png" alt="Topologie routed ports" onclick="event.stopPropagation()">
+    </div>
+
+    <!-- Lightbox — Routed ports CD1 -->
+    <div class="lightbox" id="lightbox-cisco-routedports-cd1" onclick="closeLightbox('cisco-routedports-cd1')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-routedports-cd1')">✕</button>
+        <img src="screen-cisco-24.png" alt="Ping CD1 vers R1" onclick="event.stopPropagation()">
+    </div>
+
+    <!-- Lightbox — Routed ports CD2 -->
+    <div class="lightbox" id="lightbox-cisco-routedports-cd2" onclick="closeLightbox('cisco-routedports-cd2')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-routedports-cd2')">✕</button>
+        <img src="screen-cisco-25.png" alt="Ping CD2 vers R2" onclick="event.stopPropagation()">
+    </div>
+
+    <!-- Lightbox — HSRP topology -->
+    <div class="lightbox" id="lightbox-cisco-hsrp" onclick="closeLightbox('cisco-hsrp')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-hsrp')">✕</button>
+        <img src="screen-cisco-20.png" alt="Topologie HSRP" onclick="event.stopPropagation()">
+    </div>
+
+    <!-- Lightbox — Vérification routed ports CD1 -->
+    <div class="lightbox" id="lightbox-cisco-hsrp-cd1" onclick="closeLightbox('cisco-hsrp-cd1')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-hsrp-cd1')">✕</button>
+        <img src="screen-cisco-21.png" alt="Ping CD1 vers R1" onclick="event.stopPropagation()">
+    </div>
+
+    <!-- Lightbox — Vérification routed ports CD2 -->
+    <div class="lightbox" id="lightbox-cisco-hsrp-cd2" onclick="closeLightbox('cisco-hsrp-cd2')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-hsrp-cd2')">✕</button>
+        <img src="screen-cisco-22.png" alt="Ping CD2 vers R2" onclick="event.stopPropagation()">
+    </div>
+
+    <!-- Lightbox — ip routing SVIs topology -->
+    <div class="lightbox" id="lightbox-cisco-svi" onclick="closeLightbox('cisco-svi')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-svi')">✕</button>
+        <img src="screen-cisco-17.png" alt="Topologie ip routing SVIs" onclick="event.stopPropagation()">
+    </div>
+
+    <!-- Lightbox — Vérification SVIs CD1 -->
+    <div class="lightbox" id="lightbox-cisco-svi-cd1" onclick="closeLightbox('cisco-svi-cd1')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-svi-cd1')">✕</button>
+        <img src="Screen-cisco-18.png" alt="SVIs CD1" onclick="event.stopPropagation()">
+    </div>
+
+    <!-- Lightbox — Vérification SVIs CD2 -->
+    <div class="lightbox" id="lightbox-cisco-svi-cd2" onclick="closeLightbox('cisco-svi-cd2')">
+        <button class="lightbox-close" onclick="closeLightbox('cisco-svi-cd2')">✕</button>
+        <img src="Screen-cisco-19.png" alt="SVIs CD2" onclick="event.stopPropagation()">
+    </div>
+
+    <script src="projet-cisco.js"></script>
+
+</body>
+</html>
